@@ -1,0 +1,229 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    height: 64px;
+    padding: 0 30px;
+    margin: 0px;
+    box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 20%);
+    background-color: black;
+}
+
+.firstbox {
+    grid-column: 1;
+}
+
+.secondbox {
+    grid-column: 2;
+}
+
+.thirdbox {
+    position: relative;
+    display: flex;
+    min-width: 100px;
+}
+
+.fourthbox {
+    grid-column: 4;
+    margin-right: 300px;
+}
+
+.signup {
+    color: black;
+    text-decoration: none;
+    align-items: center;
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    padding: 0px 36px;
+    height: 48px;
+    min-width: 144px;
+    border-radius: 24px;
+    cursor: pointer;
+    background-color: rgb(16, 220, 4);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.login {
+    color: white;
+    text-decoration: none;
+    align-items: center;
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    padding: 0px 36px;
+    height: 48px;
+    min-width: 144px;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.home {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    text-decoration: none;
+    font-size: 27px;
+    color: white;
+}
+
+.feather_icon {
+    color: black;
+    display: flex;
+    align-items: center;
+}
+
+.feather_icon_container {}
+
+.fa-feather:before {
+    margin-left: 5px;
+}
+
+.nav_icons {
+    display: flex;
+}
+
+.dashboard {
+    display: block;
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 17px;
+    margin-right: 5px;
+}
+
+.welcome_message_container {}
+
+.welcome_message_outer_container {}
+
+.welcome_message_inner_container {
+    display: block;
+    border-radius: 10px;
+    background-color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 17px;
+    padding: 5px;
+}
+
+.search_outer_container {
+    display: flex;
+}
+
+.search_inner_container {
+    display: flex;
+    justify-content: end;
+}
+
+.search_container {
+    display: inline-block;
+    /* margin-inline: 350px; */
+    margin-right: 1470px;
+}
+
+.search {
+    /* position: absolute;
+    right: 740px; */
+    /* margin-right: 620px;
+    margin-bottom: 15px; */
+    border: 1px solid grey;
+    border-radius: 5px;
+    height: 20px;
+    width: 100%;
+    padding: 2px 23px 2px 30px;
+    outline: 0;
+    background-color: #f5f5f5;
+    margin-left: 80px;
+}
+
+.search:hover,
+.search:focus {
+    border: 1.5px solid #009688;
+    background-color: white;
+}
+
+.logout_btn {
+    display: block;
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 17px;
+    margin-left: 1070px;
+}
+
+.dropdown {
+    position: absolute;
+    display: inline-block;
+    margin-inline: 80px;
+}
+
+
+/* Dropdown Content (Hidden by Default) */
+
+.dropdown-content {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background-color: #f6f6f6;
+    min-width: 100px;
+    max-width: 200px;
+    height: 300px;
+    border: 1px solid #ddd;
+    z-index: 100;
+    overflow-y: scroll;
+    overflow-x: auto;
+}
+
+
+/* Links inside the dropdown */
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: lightskyblue;
+}
+
+.second_outer_container {
+    display: flex;
+    flex-direction: row;
+    /* margin-inline: 1000px; */
+}
+
+.second_container {}
+
+/* .nav-background{
+    top:0;
+    padding-top:0;
+    position:relative;
+    margin:0;
+    background-color: black;
+} */
