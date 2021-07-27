@@ -9,10 +9,8 @@ class Playlist(db.Model):
     playlist_image_url = db.Column(db.String(255))
     user_id = db.Column(db.Integer, nullable=False)
 
-    users = db.relationship(
-        'User', secondary=follow_playlist, back_populates='playlists')
-    songs = db.relationship('Song', secondary=saved_songs,
-                            back_populates='playlists')
+    users = db.relationship('User',  back_populates='playlists')
+    songs = db.relationship('Song', back_populates='playlists')
 
     def to_dict(self):
         return {

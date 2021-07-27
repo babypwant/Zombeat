@@ -11,8 +11,7 @@ class Song(db.Model):
     image_url = db.Column(db.String(500), nullable=False)
     duration_ms = db.Column(db.Integer)
 
-    playlists = db.relationship(
-        'Playlist', secondary=saved_songs, back_populates='songs')
+    playlists = db.relationship('Playlist', back_populates='songs')
 
     def to_dict(self):
         return {
