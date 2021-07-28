@@ -27,6 +27,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <NavBar />
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -34,7 +35,6 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <NavBar />
         <Route path='/' exact={true} >
           <Home />
         </Route>

@@ -45,13 +45,13 @@ nav {
     min-width: 144px;
     border-radius: 24px;
     cursor: pointer;
-    background-color: rgb(16, 220, 4);
+    background-color: rgb(55, 178, 226);
     font-size: 20px;
     font-weight: bold;
 }
 
 .login {
-    color: white;
+    color: black;
     text-decoration: none;
     align-items: center;
     box-sizing: border-box;
@@ -68,6 +68,8 @@ nav {
     cursor: pointer;
     font-size: 20px;
     font-weight: bold;
+    margin-right: 30px;
+    background-color: rgb(248, 134, 210);
 }
 
 .home {
@@ -217,13 +219,3 @@ nav {
     flex-direction: row;
     /* margin-inline: 1000px; */
 }
-
-.second_container {}
-
-/* .nav-background{
-    top:0;
-    padding-top:0;
-    position:relative;
-    margin:0;
-    background-color: black;
-} */
