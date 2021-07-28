@@ -2,7 +2,7 @@ from .db import db
 
 
 class Timer(db.Model):
-    __tablename__ = 'playlists'
+    __tablename__ = 'timer'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
