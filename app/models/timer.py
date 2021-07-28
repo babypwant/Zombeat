@@ -2,16 +2,17 @@ from .db import db
 
 
 class Timer(db.Model):
-    __tablename__ = 'timer'
+    __tablename__ = 'timers'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
-    playlist_id = db.Column(db.Integer, nullable=False)
-    user_id = db.Column(db.Integer, nullable=False)
+    playlist_id = db.Column(db.Integer, db.ForeignKey(
+        'playlists.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     time = db.Column(db.Integer, nullable=False)
 
-    users = db.relationship('User',  back_populates='playlists')
-    songs = db.relationship('Song', back_populates='playlists')
+    users = db.relationship('User',  back_populates='timers')
+    songs = db.relationship('Song', back_populates='timers')
 
     def to_dict(self):
         return {

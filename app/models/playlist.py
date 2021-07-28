@@ -9,8 +9,9 @@ class Playlist(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
-    user_id = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     img = db.Column(db.String(255))
+    songs = db.Column(db.Integer)
 
     users = db.relationship('User',  back_populates='playlists')
     songs = db.relationship('Song', back_populates='playlists')
