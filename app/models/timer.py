@@ -12,7 +12,7 @@ class Timer(db.Model):
     time = db.Column(db.Integer, nullable=False)
 
     users = db.relationship('User',  back_populates='timers')
-    songs = db.relationship('Song', back_populates='timers')
+    # songs = db.relationship('Song', back_populates='timers')
 
     def to_dict(self):
         return {
@@ -23,5 +23,5 @@ class Timer(db.Model):
             'time': self.time,
         }
 
-    def get_songs(self):
-        return self.songs
+    def get_time(self):
+        return self.time

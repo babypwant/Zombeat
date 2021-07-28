@@ -1,4 +1,5 @@
 from .db import db
+from .playlist import saved_songs
 
 
 class Song(db.Model):
@@ -12,7 +13,8 @@ class Song(db.Model):
     song_length = db.Column(db.Integer, nullable=False)
     song_img = db.Column(db.String(255), nullable=False)
 
-    playlists = db.relationship('Playlist', back_populates='songs')
+    playlists = db.relationship(
+        'Playlist', secondary=saved_songs, back_populates='songs')
 
     def to_dict(self):
         return {
