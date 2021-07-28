@@ -1,8 +1,8 @@
 """models v1.5 alenajdro code table
 
-Revision ID: 2803608113a0
+Revision ID: 91461f03d24f
 Revises: 
-Create Date: 2021-07-28 13:25:58.555879
+Create Date: 2021-07-28 15:35:45.837762
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2803608113a0'
+revision = '91461f03d24f'
 down_revision = None
 branch_labels = None
 depends_on = None

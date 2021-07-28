@@ -11,7 +11,7 @@ class Timer(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     time = db.Column(db.Integer, nullable=False)
 
-    users = db.relationship('User',  back_populates='timers')
+    # users = db.relationship('User',  back_populates='timers')
     # songs = db.relationship('Song', back_populates='timers')
 
     def to_dict(self):
