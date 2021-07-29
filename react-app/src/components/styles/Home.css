@@ -13,12 +13,18 @@
 .title-container{
     display: flex;
     top:20%;
-    height: 30%;
+    height: 20%;
     align-items: center;
     justify-content: center;
     width: auto;
+    background-image: linear-gradient(rgba(94, 81, 81, 0.521), rgba(177,128,144,255))
+    ;
 }
 .title-container{
     font-family: 'Merriweather', serif;
     font-size: 42px;
+}
+.background{
+    height: 100%;
+    background-image: url('../styles/images/Vaporwave-Background-Gif-1920x1080-Spicesncurry.com.gif');
 }

@@ -5,13 +5,17 @@ const Home = () => {
 
     return (
         <div className='main-container'>
-            <div className='title-container'>
-                <div className='title'>
-                    Welcome to Sleepify()
-                    <div>
-                        Sleep is everything.
+            <div className='background'>
+                <div className='title-container'>
+                    <div className='title'>
+                        Welcome to Heaven( )
+                        <div>
+                            Sleep is everything.
+
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div >
     );

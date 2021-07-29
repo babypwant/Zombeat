@@ -10,25 +10,6 @@ nav {
     background-color: black;
 }
 
-.firstbox {
-    grid-column: 1;
-}
-
-.secondbox {
-    grid-column: 2;
-}
-
-.thirdbox {
-    position: relative;
-    display: flex;
-    min-width: 100px;
-}
-
-.fourthbox {
-    grid-column: 4;
-    margin-right: 300px;
-}
-
 .signup {
     color: black;
     text-decoration: none;
@@ -69,7 +50,7 @@ nav {
     font-size: 20px;
     font-weight: bold;
     margin-right: 30px;
-    background-color: rgb(248, 134, 210);
+    background-color: rgb(248, 226, 226);
 }
 
 .home {
