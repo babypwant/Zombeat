@@ -9,21 +9,20 @@ const Playlist = () => {
 
     useEffect(() => {
         (async () => {
+            const user_id = user.id
             const response = await fetch('/api/playlists/', {
                 mode: 'no-cors',
                 method: "post",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify("Sup")
+                body: JSON.stringify({ user_id })
             });
             const responseData = await response.json();
-            console.log(responseData)
-            console.log("2");
-            console.log(user)
+            console.log("Back to front end", responseData)
         })()
         console.log("1")
-    }, []);
+    }, [user]);
 
     const makeNewPlaylist = (e) => {
         e.preventDefault();
