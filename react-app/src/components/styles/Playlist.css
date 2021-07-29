@@ -1,0 +1,23 @@
+.dashboard-main-container{
+    position: fixed;
+    top: 6.5%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    height:100%;
+    width: 100%;
+}
+.content-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 100%;
+    width: 11.5%;
+    background-color: black;
+}
+.new-playlist-btn{
+    margin-bottom: 300px;
+}

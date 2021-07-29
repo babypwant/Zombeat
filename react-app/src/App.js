@@ -8,6 +8,7 @@ import Home from './components/Home';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import Playlist from './components/Playlist';
 import Dashboard from './components/Dashboard';
 import { authenticate } from './store/session';
 
@@ -39,6 +40,9 @@ function App() {
         <Route path='/' exact={true} >
           <Home />
         </Route>
+        <ProtectedRoute path='/new/playlist'>
+          <Playlist />
+        </ProtectedRoute>
         <ProtectedRoute path='/dashboard' exact={true}>
           <Dashboard />
         </ProtectedRoute>

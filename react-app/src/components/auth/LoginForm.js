@@ -64,7 +64,7 @@ const LoginForm = () => {
       <div className='errors'>
         {errors.length > 0 ? (
           <div>
-            <p><i class="fas fa-exclamation-circle"></i> Unable to log in with provided credentials.</p>
+            <p><i className="fas fa-exclamation-circle"></i> Unable to log in with provided credentials.</p>
           </div>
         ) : (
           <p></p>

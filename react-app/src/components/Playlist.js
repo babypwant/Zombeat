@@ -1,7 +1,7 @@
 import './styles/Dashboard.css'
 import { useHistory } from 'react-router';
 
-const Dashboard = () => {
+const Playlist = () => {
     const history = useHistory();
 
     const makeNewPlaylist = (e) => {
@@ -20,4 +20,4 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+export default Playlist;
