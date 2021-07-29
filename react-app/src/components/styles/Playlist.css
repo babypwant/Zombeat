@@ -1,4 +1,18 @@
-.dashboard-main-container{
+
+.column-1 {
+    float: left;
+    height: 50%;
+    width: 50%;
+    flex: 50%;
+    background-color: black;
+    }
+  .column-2{
+    float: right;
+    height: 50%;
+    width: 50%;
+    flex: 50%;
+  }
+  .row{
     position: fixed;
     top: 6.5%;
     left: 0;
@@ -7,17 +21,24 @@
     overflow: auto;
     height:100%;
     width: 100%;
-}
-.content-container{
+  }
+  .new-playlist-btn{
+      width: auto;
+  }
+.playlist-main-content{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    color: white;
+    justify-content: center;
+    flex-direction: column;
+    float: right;
+    align-self: stretch;
+    width: 10%;
     height: 100%;
-    width: 11.5%;
-    background-color: black;
-}
-.new-playlist-btn{
-    margin-bottom: 300px;
-}
+    color: red;
+    background-color: yellow;
+    width:88.5%;
+  }
+  .album-form{
+      display: flex;
+      flex-direction: column;
+  }

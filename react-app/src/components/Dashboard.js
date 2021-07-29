@@ -1,5 +1,5 @@
-import './styles/Dashboard.css'
 import { useHistory } from 'react-router';
+import './styles/Dashboard.css'
 
 const Dashboard = () => {
     const history = useHistory();
@@ -12,7 +12,7 @@ const Dashboard = () => {
     return (
         <div className='dashboard-main-container'>
             <div className='content-container'>
-                <div className='new-playlist-btn' onClick={makeNewPlaylist}>
+                <div className='here' onClick={makeNewPlaylist}>
                     Create Playlist
                 </div>
             </div>
