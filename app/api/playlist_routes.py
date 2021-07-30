@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from flask.wrappers import Response
 from sqlalchemy import update
 from app.models import Playlist, db
 import ast
@@ -12,8 +13,8 @@ def new_playlist():
     request_data = request.data.decode("utf-8")
     data = ast.literal_eval(request_data)
     all_playlist_number = Playlist.query.filter_by().all()
-    playlist_number = all_playlist_number[-1].id + 1
-    name = f'My Playlist #{playlist_number}'
+    playlist_number = all_playlist_number[-1].id
+    name = f'My Playlist #{playlist_number + 1}'
     img = 'https://i.pinimg.com/originals/55/27/89/552789ccf1e4e919e17930976a5e62c9.jpg'
     user_id = data["user_id"]
     playlist = Playlist(
@@ -22,8 +23,6 @@ def new_playlist():
         img=img
     )
     db.session.add(playlist)
-
-    # db.destroy
     db.session.commit()
 
     return {"Backend": name, "playlist_Id": playlist_number}
@@ -35,7 +34,30 @@ def edit_playlist():
     data = ast.literal_eval(request_data)
     id = data["playlist_Id"]
     user_id = data["user_id"]
+    new_name = data["new_name"]
     playlist = Playlist.query.filter_by(id=id, user_id=user_id).first()
-    
-    print("YOUR DATA IS HERE ", playlist)
-    return {"data": data}
+    playlist.name = new_name
+    db.session.commit()
+    return {"data": "=== Successfully updated name === "}
+
+
+@playlist_routes.route('/delete', methods=['POST'])
+def delete_playlist():
+    request_data = request.data.decode("utf-8")
+    data = ast.literal_eval(request_data)
+    id = data["playlist_Id"]
+    user_id = data["user_id"]
+    playlist = Playlist.query.filter_by(id=id, user_id=user_id).first()
+    db.session.delete(playlist)
+    db.session.commit()
+    return{"Successful": "=== Deleted Playlist ==="}
+
+
+@playlist_routes.route('/id', methods=["POST"])
+def playlist_id():
+    # request_data = request.data.decode("utf-8")
+    # data = ast.literal_eval(request_data)
+    # id = data["user_id"]
+    all_playlist_number = Playlist.query.filter_by().all()
+    playlist_number = all_playlist_number[-1].id
+    return {"id": playlist_number}

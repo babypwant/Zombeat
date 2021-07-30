@@ -6,11 +6,13 @@ import './styles/Playlist.css'
 const Playlist = () => {
     const history = useHistory();
     const [playlist_Id, setPlaylistId] = useState(0)
+    const [new_name, setNewName] = useState('')
+    const [playlistName, setPlaylistName] = useState('')
     const user = useSelector(state => state.session.user);
     const user_id = user.id
     useEffect(() => {
         (async () => {
-            const response = await fetch('/api/playlists/', {
+            const response = await fetch('/api/playlists/id', {
                 mode: 'no-cors',
                 method: "POST",
                 headers: {
@@ -19,18 +21,47 @@ const Playlist = () => {
                 body: JSON.stringify({ user_id })
             });
             const responseData = await response.json();
-            setPlaylistId(responseData.playlist_Id)
+            console.log(responseData)
+            setPlaylistId(responseData?.id)
         })()
-    }, [user]);
+    }, []);
 
-    const makeNewPlaylist = (e) => {
+
+
+
+    const makeNewPlaylist = async (e) => {
         e.preventDefault();
-        history.push('/new/playlist')
+        const response = await fetch('/api/playlists/', {
+            mode: 'no-cors',
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ user_id })
+        });
+        const responseData = await response.json()
+        setPlaylistId(responseData.playlist_Id)
+
+        console.log("Successful", `=== New playlist Created ===`)
+        history.push('/dashboard')
     }
 
     const updatePlaylist = async (e) => {
         e.preventDefault();
-        const response = await fetch('/api/playlists/edit', {
+        // const response = await fetch('/api/playlists/edit', {
+        //     mode: 'no-cors',
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({ playlist_Id, user_id, new_name })
+        // })
+        // const responseData = await response.json();
+        console.log(playlist_Id)
+    }
+    const deletePlaylist = async (e) => {
+        e.preventDefault();
+        const response = await fetch('/api/playlists/delete', {
             mode: 'no-cors',
             method: "POST",
             headers: {
@@ -40,17 +71,24 @@ const Playlist = () => {
         })
         const responseData = await response.json();
         console.log(responseData)
+        history.push('/dashboard')
     }
 
     return (
         <div className='dashboard-main-container'>
             <div className='playlist-main-content'>
                 <form className='album-form' method="POST" action="/playlists/">
-                    <label> Playlist #1 </label>
-                    <input>
+                    <label> My playlist #1 </label>
+                    <input onChange={(e) => setNewName(e.target.value)}>
                     </input>
+                    <div >
+                        <button onClick={makeNewPlaylist}>Create</button>
+                    </div>
                     <div>
-                        <button onClick={updatePlaylist}>Submit</button>
+                        <button onClick={updatePlaylist}>Edit</button>
+                    </div>
+                    <div>
+                        <button onClick={deletePlaylist}>Delete</button>
                     </div>
                 </form>
             </div>
