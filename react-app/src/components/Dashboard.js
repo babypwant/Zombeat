@@ -57,7 +57,7 @@ const Dashboard = () => {
             <div className='content-container'>
                 <div className='create-playlist-btn' onClick={makeNewPlaylist}>
                     <img className='new-playlist-icon' src={playlistIcon} />
-                    <label> Create Playlist </label>
+                    <label className='create-playlist-label'> Create Playlist </label>
                 </div>
                 <div className='all-playlists-container'>
                     <ul>
