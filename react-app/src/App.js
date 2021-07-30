@@ -10,6 +10,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import Playlist from './components/Playlist';
 import Dashboard from './components/Dashboard';
+import EditPlaylist from './components/EditPlaylist';
 import { authenticate } from './store/session';
 
 function App() {
