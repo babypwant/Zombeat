@@ -3,6 +3,7 @@ import MusicBar from './MusicBar';
 import './styles/Dashboard.css'
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 
 const Dashboard = () => {
     const history = useHistory();
@@ -55,7 +56,8 @@ const Dashboard = () => {
             </div>
             <div className='content-container'>
                 <div className='create-playlist-btn' onClick={makeNewPlaylist}>
-                    Create Playlist
+                    <img className='new-playlist-icon' src={playlistIcon} />
+                    <label> Create Playlist </label>
                 </div>
                 <div className='all-playlists-container'>
                     <ul>

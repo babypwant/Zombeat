@@ -47,8 +47,14 @@
       color: white;
   }
   .create-playlist-btn{
+      display: flex;
+      flex-direction: row;
+      text-align: center;
       color:rgb(199, 196, 196);
       margin-bottom: 60px;
+      width: 100%;
+      height: 10%;
+      /* background-color: white; */
   }
   .create-playlist-btn:hover{
       color: white;
@@ -59,4 +65,8 @@
       height: 70%;
       overflow: scroll;
       overflow-x: hidden;
+  }
+  .new-playlist-icon{
+      width: 15%;
+      height: 35%;
   }
