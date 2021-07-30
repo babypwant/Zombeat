@@ -21,7 +21,6 @@ const Playlist = () => {
                 body: JSON.stringify({ user_id })
             });
             const responseData = await response.json();
-            console.log(responseData)
             setPlaylistId(responseData?.id)
         })()
     }, []);
@@ -48,15 +47,15 @@ const Playlist = () => {
 
     const updatePlaylist = async (e) => {
         e.preventDefault();
-        // const response = await fetch('/api/playlists/edit', {
-        //     mode: 'no-cors',
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({ playlist_Id, user_id, new_name })
-        // })
-        // const responseData = await response.json();
+        const response = await fetch('/api/playlists/edit', {
+            mode: 'no-cors',
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ playlist_Id, user_id, new_name })
+        })
+        const responseData = await response.json();
         console.log(playlist_Id)
     }
     const deletePlaylist = async (e) => {
