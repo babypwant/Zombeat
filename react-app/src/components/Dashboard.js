@@ -1,21 +1,79 @@
 import { useHistory } from 'react-router';
+import MusicBar from './MusicBar';
 import './styles/Dashboard.css'
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 const Dashboard = () => {
     const history = useHistory();
+    const user = useSelector(state => state.session.user);
+    const [allPlaylists, setAllPlaylists] = useState([])
+
+    useEffect(() => {
+        (async () => {
+            const user_id = user.id
+            const response = await fetch(`/api/playlists/all`, {
+                mode: 'no-cors',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ user_id })
+            })
+            const responseData = await response.json();
+            setAllPlaylists(responseData.Success)
+        })()
+
+    }, [])
 
     const makeNewPlaylist = (e) => {
         e.preventDefault();
         history.push('/new/playlist')
     }
+    const editPlaylist = (e) => {
+        e.preventDefault();
+        history.push(`/edit/playlist/${e.target.value}`)
+    }
 
     return (
         <div className='dashboard-main-container'>
+            <div className='dashboard-main-content'>
+                <form className='album-form' method="POST" action="/playlists/">
+                    <label> My playlist #1 </label>
+                    <input >
+                    </input>
+                    <div >
+                        <button >Create</button>
+                    </div>
+                    <div>
+                        <button >Edit</button>
+                    </div>
+                    <div>
+                        <button >Delete</button>
+                    </div>
+                </form>
+            </div>
             <div className='content-container'>
-                <div className='here' onClick={makeNewPlaylist}>
+                <div className='create-playlist-btn' onClick={makeNewPlaylist}>
                     Create Playlist
                 </div>
+                <div className='all-playlists-container'>
+                    <ul>
+                        {allPlaylists.map((playlist) => {
+                            return (
+                                <li key={playlist.id}
+                                    className={`playlist-btn`}
+                                    value={playlist.id}
+                                    onClick={editPlaylist}
+                                >
+                                    {playlist.name}
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
             </div>
+            <MusicBar />
         </div >
     );
 };

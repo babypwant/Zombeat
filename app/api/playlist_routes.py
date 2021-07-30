@@ -61,3 +61,16 @@ def playlist_id():
     all_playlist_number = Playlist.query.filter_by().all()
     playlist_number = all_playlist_number[-1].id
     return {"id": playlist_number}
+
+
+@playlist_routes.route('/all', methods=["POST"])
+def all_playlist():
+    request_data = request.data.decode("utf-8")
+    data = ast.literal_eval(request_data)
+    user_id = data["user_id"]
+    all_playlist_raw_data = Playlist.query.filter_by(user_id=user_id).all()
+    all_playlist = []
+    for playlist in all_playlist_raw_data:
+        formated_data = playlist.to_dict()
+        all_playlist.append(formated_data)
+    return {"Success": all_playlist}
