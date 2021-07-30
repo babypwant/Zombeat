@@ -8,19 +8,19 @@ const Playlist = () => {
     const user = useSelector(state => state.session.user);
 
     useEffect(() => {
-        (async () => {
-            const user_id = user.id
-            const response = await fetch('/api/playlists/', {
-                mode: 'no-cors',
-                method: "post",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ user_id })
-            });
-            const responseData = await response.json();
-            console.log("Back to front end", responseData)
-        })()
+        // (async () => {
+        //     const user_id = user.id
+        //     const response = await fetch('/api/playlists/', {
+        //         mode: 'no-cors',
+        //         method: "post",
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         },
+        //         body: JSON.stringify({ user_id })
+        //     });
+        //     const responseData = await response.json();
+        //     console.log("Back to front end", responseData)
+        // })()
         console.log("1")
     }, [user]);
 
@@ -29,8 +29,16 @@ const Playlist = () => {
         history.push('/new/playlist')
     }
 
-    const updatePlaylist = (e) => {
+    const updatePlaylist = async (e) => {
         e.preventDefault();
+        const response = await fetch('/api/playlists/edit', {
+            mode: 'no-cors',
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({})
+        })
         console.log("Hello")
     }
 

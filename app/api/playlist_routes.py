@@ -7,13 +7,13 @@ import os
 playlist_routes = Blueprint('playlist', __name__)
 
 
-@playlist_routes.route('/', methods=['GET', 'POST'])
+@playlist_routes.route('/', methods=['GET', 'POST', 'DELETE'])
 def new_playlist():
     request_data = request.data.decode("utf-8")
     data = ast.literal_eval(request_data)
     all_playlist_number = Playlist.query.filter_by().all()
     playlist_number = all_playlist_number[-1].id
-    name = f'My Playlist #{playlist_number}'
+    name = f'My Playlist #{playlist_number + 1}'
     img = 'https://i.pinimg.com/originals/55/27/89/552789ccf1e4e919e17930976a5e62c9.jpg'
     user_id = data["user_id"]
     playlist = Playlist(
@@ -22,6 +22,16 @@ def new_playlist():
         img=img
     )
     db.session.add(playlist)
+
+    # db.destroy
     db.session.commit()
 
     return {"Backend": name}
+
+
+@playlist_routes.route('/edit', methods=['PUT'])
+def edit_playlist():
+    request_data = request.data.decode("utf-8")
+    data = ast.literal_eval(request_data)
+
+    return {"data": data}
