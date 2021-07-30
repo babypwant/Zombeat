@@ -1,0 +1,99 @@
+.dashboard-main-container{
+    position: fixed;
+    top: 6.5%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    height:100%;
+    width: 100%;
+}
+.content-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(161, 161, 161);
+    height: 100%;
+    width: 11.5%;
+    background-color: black;
+}
+.new-playlist-btn{
+    margin-bottom: 300px;
+}
+
+.edit-playlist-main-content{
+    display: flex;
+    /* align-items: left;
+    justify-content: center; */
+    flex-direction: column;
+    float: right;
+    align-self: stretch;
+    width: 10%;
+    height: 100%;
+    color: white;
+    background-image: linear-gradient(180deg, rgb(66, 17, 240),rgb(10, 6, 6));
+    width:88.5%;
+  }
+  .album-form{
+      display: flex;
+      flex-direction: column;
+  }
+  .playlist-btn{
+    margin-top: 15px;
+    color: rgb(161, 161, 161);
+  }
+  .playlist-btn:hover{
+      color: white;
+  }
+  .create-playlist-btn{
+      display: flex;
+      flex-direction: row;
+      text-align: center;
+      color:rgb(199, 196, 196);
+      margin-bottom: 60px;
+      width: 100%;
+      height: 10%;
+      /* background-color: white; */
+  }
+  .create-playlist-btn:hover{
+      color: white;
+  }
+  .all-playlists-container{
+      box-sizing: border-box;
+      width: 100%;
+      height: 70%;
+      overflow: scroll;
+      overflow-x: hidden;
+  }
+  .playlist-img{
+      margin-top: 40px;
+      margin-left: 40px;
+      box-sizing: border-box;
+      width: 250px;
+      height: 250px;
+      /* box-shadow: 5px 10px #000000; */
+      box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    }
+    .create-playlist-label{
+        margin-left: 4px;
+    }
+    
+    .playlist-header{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 35%;
+        background-image: linear-gradient(180deg, rgb(161, 159, 167),rgb(40, 13, 134));
+      /* background-color: white; */
+      
+  }
+  .playlist-name-top{
+      margin-top: 100px;
+      margin-left: 30px;
+  }
+  .playlist-name-bottom{
+      margin-top: 55px;
+      font-size: 90px;
+      font-family: 'Roboto Condensed', sans-serif;
+  }

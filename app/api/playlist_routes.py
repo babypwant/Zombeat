@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask.wrappers import Response
 from sqlalchemy import update
-from app.models import Playlist, db
+from app.models import Playlist, db, playlist
 import ast
 import os
 
@@ -74,3 +74,15 @@ def all_playlist():
         formated_data = playlist.to_dict()
         all_playlist.append(formated_data)
     return {"Success": all_playlist}
+
+
+@playlist_routes.route('/info', methods=['GET', 'POST'])
+def playlist_info():
+    request_data = request.data.decode("utf-8")
+    data = ast.literal_eval(request_data)
+    user_id = data["user_id"]
+    playlist_id = data["playlist_id"]
+    playlist = Playlist.query.filter_by(
+        user_id=user_id, playlist_id=playlist_id).first()
+    playlist_info = playlist.to_dict()
+    return {"Success": playlist_info}

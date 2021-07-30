@@ -1,14 +1,14 @@
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import MusicBar from './MusicBar';
-import './styles/Dashboard.css'
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
-
+import './styles/EditPlaylist.css'
 const EditPlaylist = () => {
-    const history = useHistory();
-    const user = useSelector(state => state.session.user);
     const [allPlaylists, setAllPlaylists] = useState([])
+    const user = useSelector(state => state.session.user);
+    const { id } = useParams()
+    const history = useHistory();
 
     useEffect(() => {
         (async () => {
@@ -24,7 +24,17 @@ const EditPlaylist = () => {
             const responseData = await response.json();
             setAllPlaylists(responseData.Success)
         })()
-
+    }, [])
+    useEffect(async () => {
+        const user_id = user.id
+        const response = await fetch(`/api/playlists/info`, {
+            mode: 'no-cors',
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ user_id, id })
+        })
     }, [])
 
     const makeNewPlaylist = (e) => {
@@ -38,8 +48,16 @@ const EditPlaylist = () => {
 
     return (
         <div className='dashboard-main-container'>
-            <div className='dashboard-main-content'>
-                Hello
+            <div className='edit-playlist-main-content'>
+                <div className='playlist-header'>
+                    <img className='playlist-img' src={playlistIcon} />
+                    <div className='playlist-name-top'>
+                        Playlist
+                        <div className='playlist-name-bottom'>
+                            My Playlist #104
+                        </div>
+                    </div>
+                </div>
             </div>
             <div className='content-container'>
                 <div className='create-playlist-btn' onClick={makeNewPlaylist}>
