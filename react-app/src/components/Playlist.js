@@ -1,27 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 import './styles/Playlist.css'
 
 const Playlist = () => {
     const history = useHistory();
+    const [playlist_Id, setPlaylistId] = useState(0)
     const user = useSelector(state => state.session.user);
-
+    const user_id = user.id
     useEffect(() => {
-        // (async () => {
-        //     const user_id = user.id
-        //     const response = await fetch('/api/playlists/', {
-        //         mode: 'no-cors',
-        //         method: "post",
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         },
-        //         body: JSON.stringify({ user_id })
-        //     });
-        //     const responseData = await response.json();
-        //     console.log("Back to front end", responseData)
-        // })()
-        console.log("1")
+        (async () => {
+            const response = await fetch('/api/playlists/', {
+                mode: 'no-cors',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ user_id })
+            });
+            const responseData = await response.json();
+            setPlaylistId(responseData.playlist_Id)
+        })()
     }, [user]);
 
     const makeNewPlaylist = (e) => {
@@ -33,13 +32,14 @@ const Playlist = () => {
         e.preventDefault();
         const response = await fetch('/api/playlists/edit', {
             mode: 'no-cors',
-            method: "post",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({})
+            body: JSON.stringify({ playlist_Id, user_id })
         })
-        console.log("Hello")
+        const responseData = await response.json();
+        console.log(responseData)
     }
 
     return (
