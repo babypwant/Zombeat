@@ -97,3 +97,19 @@
       font-size: 90px;
       font-family: 'Roboto Condensed', sans-serif;
   }
+  .edit-modal{
+      display: flex;
+      width: 50px;
+      align-items: center;
+      justify-content: center;
+  }
+  .edit-form{
+    position: absolute;
+    box-sizing: border-box;
+    background-color: yellow;
+  }
+
+.modal-container{
+    display: flex;
+    flex-direction: column;
+}

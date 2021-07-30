@@ -32,7 +32,7 @@ def new_playlist():
 def edit_playlist():
     request_data = request.data.decode("utf-8")
     data = ast.literal_eval(request_data)
-    id = data["playlist_Id"]
+    id = data["id"]
     user_id = data["user_id"]
     new_name = data["new_name"]
     playlist = Playlist.query.filter_by(id=id, user_id=user_id).first()
@@ -81,8 +81,8 @@ def playlist_info():
     request_data = request.data.decode("utf-8")
     data = ast.literal_eval(request_data)
     user_id = data["user_id"]
-    playlist_id = data["playlist_id"]
+    id = data["id"]
     playlist = Playlist.query.filter_by(
-        user_id=user_id, playlist_id=playlist_id).first()
+        user_id=user_id, id=id).first()
     playlist_info = playlist.to_dict()
     return {"Success": playlist_info}
