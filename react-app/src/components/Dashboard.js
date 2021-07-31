@@ -52,6 +52,8 @@ const Dashboard = () => {
                 </div>
                 <div className='all-playlists-container'>
                     <ul>
+
+                        {/* fix in the morning , lists not rendering so cant move on to next part */}
                         {allPlaylists && allPlaylists.map((playlist) => {
                             return (
                                 <li key={playlist.id}
