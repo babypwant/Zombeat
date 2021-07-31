@@ -6,8 +6,6 @@ import './styles/Navbar.css'
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user)
-
-
   if (user) {
     return (
       <div className='navbar-background'>

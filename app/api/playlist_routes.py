@@ -86,3 +86,13 @@ def playlist_info():
         user_id=user_id, id=id).first()
     playlist_info = playlist.to_dict()
     return {"Success": playlist_info}
+
+
+@playlist_routes.route('/all/<int:id>')
+def get_all_playlists(id):
+    all_playlists = []
+    playlists = Playlist.query.filter_by(user_id=id).all()
+    for playlist in playlists:
+        formated_data = playlist.to_dict()
+        all_playlists.append(formated_data)
+    return {"all_playlists": all_playlists}

@@ -1,31 +1,22 @@
 import { useHistory } from 'react-router';
 import MusicBar from './MusicBar';
 import './styles/Dashboard.css'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
+import { getPlaylists } from '../store/playlists';
 
 const Dashboard = () => {
     const history = useHistory();
     const user = useSelector(state => state.session.user);
-    const [allPlaylists, setAllPlaylists] = useState([])
+    const allPlaylists = useSelector(state => state.session.playlists)
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        (async () => {
-            const user_id = user.id
-            const response = await fetch(`/api/playlists/all`, {
-                mode: 'no-cors',
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ user_id })
-            })
-            const responseData = await response.json();
-            setAllPlaylists(responseData.Success)
-        })()
-
-    }, [])
+        const user_id = user.id
+        dispatch(getPlaylists(user_id))
+        console.log(1)
+    }, [getPlaylists])
 
     const makeNewPlaylist = (e) => {
         e.preventDefault();
@@ -61,7 +52,7 @@ const Dashboard = () => {
                 </div>
                 <div className='all-playlists-container'>
                     <ul>
-                        {allPlaylists.map((playlist) => {
+                        {allPlaylists && allPlaylists.map((playlist) => {
                             return (
                                 <li key={playlist.id}
                                     className={`playlist-btn`}
