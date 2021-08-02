@@ -11,6 +11,7 @@ const Dashboard = () => {
     const allPlaylists = useSelector(state => state.playlists)
     const history = useHistory();
     const dispatch = useDispatch();
+    let listItems;
 
     //saved website 
 
@@ -22,7 +23,6 @@ const Dashboard = () => {
 
     useEffect(() => {
         dispatch(getPlaylists(user.id))
-        console.log(allPlaylists)
     }, [])
 
     const makeNewPlaylist = (e) => {
@@ -59,10 +59,8 @@ const Dashboard = () => {
                 </div>
                 <div className='all-playlists-container'>
                     <ul>
-                        {allPlaylists &&
-                            allPlaylists.map((playlist) => {
-                                console.log(1)
-                            })
+                        {
+                            listItems
                         }
                     </ul>
                 </div>

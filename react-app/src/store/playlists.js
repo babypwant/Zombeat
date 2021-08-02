@@ -29,10 +29,8 @@ export const getPlaylists = (userId) => async (dispatch) => {
             const res = await response.json();
             const all_playlist = []
             res.all_playlists.forEach(playlist => {
-                console.log(res.all_playlists)
                 all_playlist.push(playlist)
             })
-            console.log(all_playlist)
             dispatch(getAllPlaylists(all_playlist));
             return response
         }
