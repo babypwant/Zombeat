@@ -142,7 +142,8 @@ const EditPlaylist = () => {
                 </div>
                 <div className='all-playlists-container'>
                     <ul>
-                        {allPlaylists.map((playlist) => {
+                        {
+                        allPlaylists.map((playlist) => {
                             return (
                                 <li key={playlist.id}
                                     className={`playlist-btn`}
@@ -152,7 +153,8 @@ const EditPlaylist = () => {
                                     {playlist.name}
                                 </li>
                             )
-                        })}
+                        })
+                        }
                     </ul>
                 </div>
             </div>

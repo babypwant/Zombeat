@@ -22,8 +22,12 @@ const Dashboard = () => {
     // depen array 
 
     useEffect(() => {
-        dispatch(getPlaylists(user.id))
-    }, [])
+
+        (async () => {
+
+            dispatch(getPlaylists(user.id))
+        })()
+    }, [getPlaylists, dispatch])
 
     const makeNewPlaylist = (e) => {
         e.preventDefault();
@@ -59,8 +63,18 @@ const Dashboard = () => {
                 </div>
                 <div className='all-playlists-container'>
                     <ul>
-                        {
-                            listItems
+                        {allPlaylists &&
+                            Object.values(allPlaylists).map((playlist) => {
+                                return (
+                                    <li key={playlist.id}
+                                        className={`playlist-btn`}
+                                        value={playlist.id}
+                                        onClick={editPlaylist}
+                                    >
+                                        {playlist.name}
+                                    </li>
+                                )
+                            })
                         }
                     </ul>
                 </div>
