@@ -1,6 +1,6 @@
 const ADD_PLAYLIST = 'ADD_PLAYLIST';
 const GET_PLAYLISTS = 'GET_PLAYLISTS';
-const GET_ONE_PLAYLIST = 'GET_ONE_PLAYLIST';
+const GET_SINGLE_PLAYLIST = 'GET_SINGLE_PLAYLIST';
 
 const getAllPlaylists = (playlists) => {
     return {
@@ -11,7 +11,7 @@ const getAllPlaylists = (playlists) => {
 
 const getSinglePlaylist = (playlist) => {
     return {
-        type: GET_ONE_PLAYLIST,
+        type: GET_SINGLE_PLAYLIST,
         playlist
     };
 }
@@ -91,9 +91,7 @@ export const deletePlaylist = (userId, playlistId) => async (dispatch) => {
         return playlist;
     }
 }
-
 const initialState = {};
-
 const playlists = (state = initialState, action) => {
     switch (action.type) {
         case GET_PLAYLISTS: {
@@ -105,7 +103,7 @@ const playlists = (state = initialState, action) => {
                 ...allPlaylists
             }
         }
-        case GET_ONE_PLAYLIST: {
+        case GET_SINGLE_PLAYLIST: {
             const allPlaylists = {}
             action.playlist.playlists.forEach(playlist => {
                 allPlaylists[playlist.user_id] = playlist.user_id;
