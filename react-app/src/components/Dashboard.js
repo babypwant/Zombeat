@@ -62,6 +62,7 @@ const Dashboard = () => {
                 </div>
             </div>
             <MusicBar />
+            
         </div >
     );
 };

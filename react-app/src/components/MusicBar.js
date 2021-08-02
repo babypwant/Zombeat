@@ -1,17 +1,25 @@
-import { useSelector } from 'react-redux';
 import './styles/MusicBar.css'
-import SpotifyPlayer from 'react-spotify-web-playback';
+import { WebPlaybackSDK } from "react-spotify-web-playback-sdk";
 
 
 const MusicBar = () => {
-    const user = useSelector(state => state.session.user);
+
+    const AUTH_TOKEN = `${process.env.ACCESS_TOKEN}`;
+
+
+    // const MySpotifyPlayer: React.VFC = () => {
+    //     const getOAuthToken = useCallback(callback => callback(AUTH_TOKEN), []);
+
     return (
         <div className='music-bar-container'>
             <div className='iframe-container'>
-                {/* <SpotifyPlayer
-                    token="BQAtyB5d3q9Cy6Z1vhTFA-WL8b3K4jfwcRVYddxcep9HawHSyiQaC4Ft6e0-Xgm67mMIv10b3QMig2Qv9t4xS3e5oyFmIJhBvxLNgwn-YQqyKerKrSf1jCEj0NlRrbe-I492UIiC1UMZ4oa01OCnSb3pQEDRfxvDydQNZcXkkKti74t7pkQ"
-                    uris={['spotify:artist:6HQYnRM4OzToCYPpVBInuU']}
-                />; */}
+                {/* <WebPlaybackSDK
+                        deviceName="My awesome Spotify app"
+                        getOAuthToken={getOAuthToken}
+                        volume={0.5}>
+                        {/* `TogglePlay` and `SongTitle` will be defined later. */}
+
+                {/* </WebPlaybackSDK> */} */}
             </div>
         </div >
     );

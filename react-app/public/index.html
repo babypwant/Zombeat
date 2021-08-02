@@ -17,10 +17,11 @@
 <body>
   <div id="root"></div>
   <script src="https://sdk.scdn.co/spotify-player.js"></script>
-
   <script>
     window.onSpotifyWebPlaybackSDKReady = () => {
-      const token = '[My Spotify Web API access token]';
+
+      
+      const token = '';
       const player = new Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
         getOAuthToken: cb => { cb(token); }
