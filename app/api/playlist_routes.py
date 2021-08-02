@@ -88,7 +88,7 @@ def playlist_info():
     return {"Success": playlist_info}
 
 
-@playlist_routes.route('/all/<int:id>')
+@playlist_routes.route('/all/<int:id>', methods=['GET', 'POST'])
 def get_all_playlists(id):
     all_playlists = []
     playlists = Playlist.query.filter_by(user_id=id).all()

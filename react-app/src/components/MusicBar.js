@@ -1,25 +1,13 @@
 import './styles/MusicBar.css'
-import { WebPlaybackSDK } from "react-spotify-web-playback-sdk";
 
 
 const MusicBar = () => {
 
-    const AUTH_TOKEN = `${process.env.ACCESS_TOKEN}`;
-
-
-    // const MySpotifyPlayer: React.VFC = () => {
-    //     const getOAuthToken = useCallback(callback => callback(AUTH_TOKEN), []);
 
     return (
         <div className='music-bar-container'>
             <div className='iframe-container'>
-                {/* <WebPlaybackSDK
-                        deviceName="My awesome Spotify app"
-                        getOAuthToken={getOAuthToken}
-                        volume={0.5}>
-                        {/* `TogglePlay` and `SongTitle` will be defined later. */}
-
-                {/* </WebPlaybackSDK> */} */}
+                {/* <iframe src="https://open.spotify.com/embed/track/6SIUhbJgtqYnSGEn91sZh4" width="100%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe> */}
             </div>
         </div >
     );

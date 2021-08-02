@@ -4,25 +4,26 @@ import './styles/Dashboard.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
-import { getPlaylists } from '../store/playlists';
+import playlists, { getPlaylists } from '../store/playlists';
 
 const Dashboard = () => {
-    const [fetchedData, setFetchedData] = useState(false)
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const history = useHistory();
     const dispatch = useDispatch();
-    // const prop = (
-    //     <iframe src="https://open.spotify.com/embed/track/5EV4bGHxVN0kHpcAFvgnTt" width="100%" height="80" frameBorder="1000" allowtransparency="true" allow="encrypted-media"></iframe>
-    // )
 
     //saved website 
 
-    useEffect(() => {
-        const user_id = user.id
-        // dispatch(getPlaylists(user_id)
+    //Check to see if being called in other locations
+    //Check dependency array
+    // cb (return value can be another cd on unmount)
+    //dp array 
+    // depen array 
 
-    }, [allPlaylists, user.id, dispatch])
+    useEffect(() => {
+        dispatch(getPlaylists(user.id))
+        console.log(allPlaylists)
+    }, [])
 
     const makeNewPlaylist = (e) => {
         e.preventDefault();
@@ -58,11 +59,16 @@ const Dashboard = () => {
                 </div>
                 <div className='all-playlists-container'>
                     <ul>
+                        {allPlaylists &&
+                            allPlaylists.map((playlist) => {
+                                console.log(1)
+                            })
+                        }
                     </ul>
                 </div>
             </div>
             <MusicBar />
-            
+
         </div >
     );
 };

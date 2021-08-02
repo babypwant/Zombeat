@@ -22,18 +22,18 @@ export const getPlaylists = (userId) => async (dispatch) => {
 
     if (response.ok) {
         if (userId === undefined) {
-            const playlists = await response.json();
-            dispatch(getAllPlaylists(playlists.all_playlists));
+            const playlist = await response.json();
+            dispatch(getAllPlaylists(playlist.all_playlists));
             return response
         } else {
-            const playlist = await response.json();
-            const all_playlists = []
-            playlist.all_playlists.forEach(playlist => {
-                if (playlist.user_id === userId) {
-                    all_playlists.push(playlist)
-                }
+            const res = await response.json();
+            const all_playlist = []
+            res.all_playlists.forEach(playlist => {
+                console.log(res.all_playlists)
+                all_playlist.push(playlist)
             })
-            dispatch(getAllPlaylists(all_playlists));
+            console.log(all_playlist)
+            dispatch(getAllPlaylists(all_playlist));
             return response
         }
     }
@@ -54,9 +54,7 @@ export const getOnePlaylist = (playlistId) => async (dispatch) => {
 
 export const editOnePlaylist = (userId, editedPlaylist) => async (dispatch) => {
     const { id, img, name, user } = editedPlaylist;
-    const playlist = { playlist_id: id, playlist_name: name, playlist_image_url: img, user_id: user }
-
-    const response = await fetch(`/api/playlists/${id}`, {
+    const response = await fetch(`/api/playlists/edit/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ playlist_id: id, playlist_name: name, playlist_image_url: img, user_id: user })
@@ -77,20 +75,6 @@ export const editOnePlaylist = (userId, editedPlaylist) => async (dispatch) => {
     }
 }
 
-export const deletePlaylist = (userId, playlistId) => async (dispatch) => {
-
-    let thisId = parseInt(playlistId);
-    const response = await fetch(`/api/playlists/${thisId}`, {
-        method: 'DELETE'
-    });
-
-    if (response.ok) {
-
-        const playlist = await response.json();
-        dispatch(getPlaylists(userId));
-        return playlist;
-    }
-}
 const initialState = {};
 const playlists = (state = initialState, action) => {
     switch (action.type) {
@@ -105,7 +89,7 @@ const playlists = (state = initialState, action) => {
         }
         case GET_SINGLE_PLAYLIST: {
             const allPlaylists = {}
-            action.playlist.playlists.forEach(playlist => {
+            action.playlists.forEach(playlist => {
                 allPlaylists[playlist.user_id] = playlist.user_id;
             })
             return {
