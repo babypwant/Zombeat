@@ -12,13 +12,13 @@ const Dashboard = () => {
     const allPlaylists = useSelector(state => state.session.playlists)
     const dispatch = useDispatch();
 
-//saved website 
+    //saved website 
 
     useEffect(() => {
         const user_id = user.id
         dispatch(getPlaylists(user_id))
-        console.log(1)
-    }, [getPlaylists])
+        console.log(allPlaylists)
+    }, [allPlaylists, getPlaylists, user.id, dispatch])
 
     const makeNewPlaylist = (e) => {
         e.preventDefault();
@@ -54,7 +54,6 @@ const Dashboard = () => {
                 </div>
                 <div className='all-playlists-container'>
                     <ul>
-
                         {/* fix in the morning , lists not rendering so cant move on to next part */}
                         {allPlaylists && allPlaylists.map((playlist) => {
                             return (
