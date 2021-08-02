@@ -4,7 +4,8 @@ import './styles/Dashboard.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
-import playlists, { getPlaylists } from '../store/playlists';
+import timerIcon from '../components/styles/images/add-timer.png'
+import { getPlaylists } from '../store/playlists';
 
 const Dashboard = () => {
     const user = useSelector(state => state.session.user);
@@ -24,7 +25,6 @@ const Dashboard = () => {
     useEffect(() => {
 
         (async () => {
-
             dispatch(getPlaylists(user.id))
         })()
     }, [getPlaylists, dispatch])
@@ -36,6 +36,11 @@ const Dashboard = () => {
     const editPlaylist = (e) => {
         e.preventDefault();
         history.push(`/edit/playlist/${e.target.value}`)
+    }
+
+    const createTimer = (e) => {
+        e.preventDefault();
+        history.push('/new/timer')
     }
 
     return (
@@ -60,6 +65,10 @@ const Dashboard = () => {
                 <div className='create-playlist-btn' onClick={makeNewPlaylist}>
                     <img className='new-playlist-icon' src={playlistIcon} />
                     <label className='create-playlist-label'> Create Playlist </label>
+                </div>
+                <div className='create-timer-btn' onClick={createTimer}>
+                    <img src={timerIcon} />
+                    <label>Create a Timer</label>
                 </div>
                 <div className='all-playlists-container'>
                     <ul>

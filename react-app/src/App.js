@@ -11,6 +11,7 @@ import User from './components/User';
 import Playlist from './components/Playlist';
 import Dashboard from './components/Dashboard';
 import EditPlaylist from './components/EditPlaylist';
+import Timer from './components/Timer';
 import { authenticate } from './store/session';
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
     })();
   }, [dispatch]);
 
-  
+
 
   if (!loaded) {
     return null;
@@ -57,6 +58,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/edit/playlist/:id'>
           <EditPlaylist />
+        </ProtectedRoute>
+        <ProtectedRoute path='/new/timer' exact={true}>
+          <Timer />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

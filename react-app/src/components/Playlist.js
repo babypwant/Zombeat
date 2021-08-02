@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
+import Timer from './Timer';
 import './styles/Playlist.css'
+import MusicBar from './MusicBar';
 
 const Playlist = () => {
     const history = useHistory();
@@ -96,6 +98,7 @@ const Playlist = () => {
                     Create Playlist
                 </div>
             </div>
+            <MusicBar />
         </div >
     );
 };

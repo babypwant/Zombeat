@@ -143,17 +143,17 @@ const EditPlaylist = () => {
                 <div className='all-playlists-container'>
                     <ul>
                         {
-                        allPlaylists.map((playlist) => {
-                            return (
-                                <li key={playlist.id}
-                                    className={`playlist-btn`}
-                                    value={playlist.id}
-                                    onClick={editPlaylist}
-                                >
-                                    {playlist.name}
-                                </li>
-                            )
-                        })
+                            allPlaylists.map((playlist) => {
+                                return (
+                                    <li key={playlist.id}
+                                        className={`playlist-btn`}
+                                        value={playlist.id}
+                                        onClick={editPlaylist}
+                                    >
+                                        {playlist.name}
+                                    </li>
+                                )
+                            })
                         }
                     </ul>
                 </div>
