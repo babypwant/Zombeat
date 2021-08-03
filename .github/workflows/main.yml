@@ -14,6 +14,6 @@ jobs:
     - name: Login to Heroku Container registry
       run: heroku container:login
     - name: Build and push
-      run: heroku container:push -a spotify-clone-aa. web
+      run: heroku container:push -a spotify-clone-aa web
     - name: Release
-      run: heroku container:release -a spotify-clone-aa. web
+      run: heroku container:release -a spotify-clone-aa web
