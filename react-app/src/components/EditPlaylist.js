@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
+import trashIcon from '../components/styles/images/trash.png'
 import './styles/EditPlaylist.css'
 
 // Modal.setAppElement('App');
@@ -101,6 +102,23 @@ const EditPlaylist = () => {
         console.log(responseData)
         setPlaylistTitle(responseData.data)
     }
+
+    const deletePlaylist = async (e) => {
+        e.preventDefault();
+        const user_id = user.id
+        const timer_id = id
+        const response = await fetch(`/api/timers/delete`, {
+            mode: 'no-cors',
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ user_id, timer_id })
+        })
+        const responseData = await response.json()
+        console.log(responseData)
+        history.push('/dashboard')
+    }
     return (
         <div className='dashboard-main-container'>
             <div className='edit-playlist-main-content'>
@@ -132,6 +150,9 @@ const EditPlaylist = () => {
                         </div>
                     </div>
                     <div>
+                        <div className='delete-playlist-Icon'>
+                            <img src={trashIcon} onClick={deletePlaylist} />
+                        </div>
                     </div>
                 </div>
             </div>

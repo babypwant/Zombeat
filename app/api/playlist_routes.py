@@ -55,9 +55,6 @@ def delete_playlist():
 
 @playlist_routes.route('/id', methods=["POST"])
 def playlist_id():
-    # request_data = request.data.decode("utf-8")
-    # data = ast.literal_eval(request_data)
-    # id = data["user_id"]
     all_playlist_number = Playlist.query.filter_by().all()
     playlist_number = all_playlist_number[-1].id
     return {"id": playlist_number}
