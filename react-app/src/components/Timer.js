@@ -24,7 +24,7 @@ const Timer = () => {
         const playlist_id = 1
         const name = timerName
         dispatch(createTimer(name, playlist_id, user_id, time))
-        // history.push('/dashboard')
+        history.push('/dashboard')
     }
 
 

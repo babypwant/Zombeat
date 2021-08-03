@@ -106,14 +106,14 @@ const EditPlaylist = () => {
     const deletePlaylist = async (e) => {
         e.preventDefault();
         const user_id = user.id
-        const timer_id = id
-        const response = await fetch(`/api/timers/delete`, {
+        const playlist_Id = id
+        const response = await fetch(`/api/playlists/delete`, {
             mode: 'no-cors',
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ user_id, timer_id })
+            body: JSON.stringify({ user_id, playlist_Id })
         })
         const responseData = await response.json()
         console.log(responseData)
@@ -151,7 +151,7 @@ const EditPlaylist = () => {
                     </div>
                     <div>
                         <div className='delete-playlist-Icon'>
-                            <img src={trashIcon} onClick={deletePlaylist} />
+                            <img className='' src={trashIcon} onClick={deletePlaylist} />
                         </div>
                     </div>
                 </div>

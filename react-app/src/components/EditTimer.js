@@ -153,7 +153,7 @@ const EditTimer = () => {
                         </div>
                     </div>
                     <div>
-                        <div className='delete-Icon'>
+                        <div className='delete-playlist-Icon'>
                             <img src={trashIcon} onClick={deleteTimer} />
                         </div>
                     </div>
