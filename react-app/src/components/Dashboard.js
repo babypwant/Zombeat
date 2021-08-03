@@ -12,15 +12,6 @@ const Dashboard = () => {
     const allPlaylists = useSelector(state => state.playlists)
     const history = useHistory();
     const dispatch = useDispatch();
-    let listItems;
-
-    //saved website 
-
-    //Check to see if being called in other locations
-    //Check dependency array
-    // cb (return value can be another cd on unmount)
-    //dp array 
-    // depen array 
 
     useEffect(() => {
 

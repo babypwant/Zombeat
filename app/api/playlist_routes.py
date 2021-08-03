@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask.wrappers import Response
 from sqlalchemy import update
-from app.models import Playlist, db, playlist
+from app.models import Playlist, db
 import ast
 import os
 

@@ -12,6 +12,8 @@ const Playlist = () => {
     const [playlistName, setPlaylistName] = useState('')
     const user = useSelector(state => state.session.user);
     const user_id = user.id
+
+
     useEffect(() => {
         (async () => {
             const response = await fetch('/api/playlists/id', {
