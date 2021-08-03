@@ -6,10 +6,12 @@ import { useEffect, useState } from 'react';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import timerIcon from '../components/styles/images/add-timer.png'
 import { getPlaylists } from '../store/playlists';
+import { getAllTimers } from '../store/timer';
 
 const Dashboard = () => {
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
+    const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -17,8 +19,9 @@ const Dashboard = () => {
 
         (async () => {
             dispatch(getPlaylists(user.id))
+            dispatch(getAllTimers(user.id))
         })()
-    }, [getPlaylists, dispatch])
+    }, [dispatch, user.id])
 
     const makeNewPlaylist = (e) => {
         e.preventDefault();
@@ -34,23 +37,27 @@ const Dashboard = () => {
         history.push('/new/timer')
     }
 
+    const editTimer = (e) => {
+        e.preventDefault();
+        history.push(`/edit/timer/${e.target.value}`)
+        console.log(1)
+    }
+
     return (
         <div className='dashboard-main-container'>
             <div className='dashboard-main-content'>
-                <form className='album-form' method="POST" action="/playlists/">
-                    <label> My playlist #1 </label>
-                    <input >
-                    </input>
-                    <div >
-                        <button >Create</button>
-                    </div>
-                    <div>
-                        <button >Edit</button>
-                    </div>
-                    <div>
-                        <button >Delete</button>
-                    </div>
-                </form>
+                <div className='timers'>
+                    {allTimers &&
+                        allTimers.map((timer) => {
+                            return (
+                                <li value={timer.id}
+                                    onClick={editTimer}
+                                >{timer.name}</li>
+                            )
+                        })
+
+                    }
+                </div>
             </div>
             <div className='content-container'>
                 <div className='create-playlist-btn' onClick={makeNewPlaylist}>
@@ -58,7 +65,7 @@ const Dashboard = () => {
                     <label className='create-playlist-label'> Create Playlist </label>
                 </div>
                 <div className='create-timer-btn' onClick={createTimer}>
-                    <img src={timerIcon} />
+                    <img className='new-timer-icon' src={timerIcon} />
                     <label>Create a Timer</label>
                 </div>
                 <div className='all-playlists-container'>

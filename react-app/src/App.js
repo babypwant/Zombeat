@@ -12,6 +12,7 @@ import Playlist from './components/Playlist';
 import Dashboard from './components/Dashboard';
 import EditPlaylist from './components/EditPlaylist';
 import Timer from './components/Timer';
+import EditTimer from './components/EditTimer';
 import { authenticate } from './store/session';
 
 function App() {
@@ -61,6 +62,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/new/timer' exact={true}>
           <Timer />
+        </ProtectedRoute>
+        <ProtectedRoute path='/edit/timer/:id' exact={true}>
+          <EditTimer />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

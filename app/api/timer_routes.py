@@ -40,3 +40,43 @@ def get_all_timers():
         formated_data = timer.to_dict()
         all_timers.append(formated_data)
     return {"all_timers": all_timers}
+
+
+@timer_routes.route('/info', methods=['GET', 'POST'])
+def timer_info():
+    request_data = request.data.decode("utf-8")
+    data = ast.literal_eval(request_data)
+    user_id = data["user_id"]
+    print("HERE IS YOUR DATA", data)
+    id = data["timer_id"]
+    timer = Timer.query.filter_by(
+        user_id=user_id, id=id).first()
+    timer_info = timer.to_dict()
+    return {"Success": timer_info}
+
+
+@timer_routes.route('/edit', methods=['POST'])
+def edit_playlist():
+    request_data = request.data.decode("utf-8")
+    data = ast.literal_eval(request_data)
+    id = data["id"]
+    user_id = data["user_id"]
+    new_name = data["new_name"]
+    time = data["new_time"]
+    timer = Timer.query.filter_by(id=id, user_id=user_id).first()
+    timer.name = new_name
+    timer.time = time
+    db.session.commit()
+    return {"data": new_name}
+
+
+@timer_routes.route('/delete', methods=['POST'])
+def delete_timer():
+    request_data = request.data.decode("utf-8")
+    data = ast.literal_eval(request_data)
+    id = data["timer_id"]
+    user_id = data["user_id"]
+    timer = Timer.query.filter_by(id=id, user_id=user_id).first()
+    db.session.delete(timer)
+    db.session.commit()
+    return{"Successful": "=== Deleted Timer ==="}
