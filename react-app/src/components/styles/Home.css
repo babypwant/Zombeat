@@ -28,3 +28,10 @@
     height: 100%;
     background-image: url('../styles/images/Vaporwave-Background-Gif-1920x1080-Spicesncurry.com.gif');
 }
+.clouds-container{
+    display: flex;
+    justify-content: center;
+}
+.demo-login{
+    margin-bottom: 30px;
+}

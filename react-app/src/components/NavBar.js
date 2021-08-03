@@ -10,9 +10,12 @@ const NavBar = () => {
     return (
       <div className='navbar-background'>
         <nav className='nar-container'>
-          <NavLink to='/dashboard'>
-            Dashboard
-          </NavLink>
+          <div className="second_container">
+            <NavLink to='/dashboard'
+              className='login'>
+              Dashboard
+            </NavLink>
+          </div>
           <div className="thirdbox" >
             <LogoutButton />
           </div>
