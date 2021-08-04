@@ -29,9 +29,10 @@
     flex-direction: column;
     float: right;
     align-self: stretch;
+    font-family: 'Merriweather', serif;
     width: 10%;
     height: 100%;
-    color: red;
+    color: rgb(240, 234, 234);
     background-color: rgb(155, 103, 142);
     width:88.5%;
   }
@@ -53,7 +54,7 @@
       color:rgb(199, 196, 196);
       width: 100%;
       bottom: 0;
-      /* background-color: white; */
+      cursor: pointer;
   }
   .create-playlist-btn:hover{
       color: white;
@@ -64,6 +65,7 @@
       height: 70%;
       overflow: scroll;
       overflow-x: hidden;
+      
   }
   .new-playlist-icon{
       width: 15%;
@@ -88,4 +90,42 @@
 
 .timers{
     align-self: right;
+}
+
+.featured-playlists-container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: 100%;
+    width:90%;
+}
+
+.featured-playlist-img{
+width: 80%;
+height: auto;
+margin-top: 20px;
+}
+.spotify-playlist{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 275px;
+    width: 200px;
+    border-radius: 4px;
+    background-color: rgba(26,26,26,255);
+    margin-top: 40px;
+    cursor: pointer;
+}
+.spotify-playlist:hover{
+    background-color: rgb(51, 50, 50);
+
+}
+
+.featured-spotify-title{
+    margin-top: 10px;
+    box-shadow: 3px
+}
+
+.timer-li{
+    list-style: none;
 }

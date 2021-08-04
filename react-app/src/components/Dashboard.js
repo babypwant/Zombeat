@@ -10,9 +10,11 @@ import { getAllTimers } from '../store/timer';
 import { getAccessToken } from '../store/spotify';
 
 const Dashboard = () => {
+    const [featured, setFeatured] = useState(null)
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
+    const token = useSelector(state => state?.token?.token?.access_token)
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -23,6 +25,18 @@ const Dashboard = () => {
             dispatch(getAllTimers(user.id))
         })()
     }, [dispatch, user.id])
+
+    useEffect(() => {
+        (async () => {
+            const response = await fetch("https://api.spotify.com/v1/browse/featured-playlists", {
+                method: "GET",
+                headers: { 'Authorization': 'Bearer ' + token }
+            })
+            const data = await response.json()
+            setFeatured(data.playlists?.items)
+            console.log(data.playlists?.items)
+        })()
+    }, [])
 
     const makeNewPlaylist = (e) => {
         e.preventDefault();
@@ -49,22 +63,50 @@ const Dashboard = () => {
         dispatch(getAccessToken())
     }
 
+    const test = async (e) => {
+        e.preventDefault();
+        const response = await fetch("https://api.spotify.com/v1/browse/featured-playlists", {
+            method: "GET",
+            headers: { 'Authorization': 'Bearer ' + token }
+        })
+        const data = await response.json()
+        setFeatured(data.playlists.items)
+        console.log(data.playlists.items)
+    }
+    const testFeatured = () => {
+        console.log(featured)
+        featured.forEach((playlist) => {
+            console.log(playlist)
+            console.log(playlist.name)
+            console.log(playlist.id)
+            console.log(playlist.images[0]?.url)
+        })
+    }
     return (
         <div className='dashboard-main-container'>
             <div className='dashboard-main-content'>
-                <div className='timers'>
-                    {allTimers &&
-                        allTimers.map((timer) => {
+                <div className='featured-playlists-container'>
+                    {
+                        featured &&
+                        featured.map((playlist) => {
                             return (
-                                <li value={timer.id}
-                                    onClick={editTimer}
-                                >{timer.name}</li>
+                                <div
+                                    className='spotify-playlist'
+                                    value={playlist.id}
+                                >
+                                    <img className='featured-playlist-img' src={playlist.images[0]?.url} />
+                                    <label
+                                        className='featured-spotify-title'
+                                    >
+                                        {playlist.name}
+                                    </label>
+                                </div>
                             )
                         })
 
                     }
-                    <button onClick={getToken}>Test key</button>
                 </div>
+
             </div>
             <div className='content-container'>
                 <div className='create-playlist-btn' onClick={makeNewPlaylist}>
@@ -74,6 +116,22 @@ const Dashboard = () => {
                 <div className='create-timer-btn' onClick={createTimer}>
                     <img className='new-timer-icon' src={timerIcon} />
                     <label>Create a Timer</label>
+                </div>
+                <div className='timers'>
+                    {allTimers &&
+                        allTimers.map((timer) => {
+                            return (
+                                <li value={timer.id}
+                                    onClick={editTimer}
+                                    className='timer-li'
+                                >{timer.name}</li>
+                            )
+                        })
+
+                    }
+                    <button onClick={getToken}>Test key</button>
+                    <button onClick={test}> Song test </button>
+                    <button onClick={testFeatured}>Featured </button>
                 </div>
                 <div className='all-playlists-container'>
                     <ul>
