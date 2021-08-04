@@ -7,6 +7,7 @@ import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import timerIcon from '../components/styles/images/add-timer.png'
 import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
+import { getAccessToken } from '../store/spotify';
 
 const Dashboard = () => {
     const user = useSelector(state => state.session.user);
@@ -43,6 +44,11 @@ const Dashboard = () => {
         console.log(1)
     }
 
+    const getToken = (e) => {
+        e.preventDefault();
+        dispatch(getAccessToken())
+    }
+
     return (
         <div className='dashboard-main-container'>
             <div className='dashboard-main-content'>
@@ -57,6 +63,7 @@ const Dashboard = () => {
                         })
 
                     }
+                    <button onClick={getToken}>Test key</button>
                 </div>
             </div>
             <div className='content-container'>
