@@ -15,8 +15,12 @@ spotify_routes = Blueprint('spotify', __name__)
 def get_token():
     client_id = os.environ['CLIENT_ID']
     client_secret = os.environ['CLIENT_SECRET']
-    print("HERE IS CLIENT ID", client_id)
-    print("HERE IS CLIENT ID", client_secret)
+    ascii_id = client_id.encode('ascii')
+    ascii_secret = client_secret.encode('ascii')
+    encode_id = base64.b64encode(ascii_id)
+    encode_secret = base64.b64encode(ascii_secret)
+    print("HERE IS CLIENT ID", encode_id)
+    print("HERE IS CLIENT ID", encode_secret)
 
     post_response = requests.post(
         'https://accounts.spotify.com/api/token',
