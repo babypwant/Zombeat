@@ -1,28 +1,30 @@
 
-.column-1 {
-    float: left;
-    height: 977px;
-    flex: 50%;
-    background-image: url('../styles/images/left-panel.gif');
-    }
-  .column-2{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    float: left;
-    width: 50%;
-    flex: 50%;
-  }
-  .row{
-    display: flex;
-    height:100%;
-  }
-  .login-form{
-  }
-  
-  label {
-    margin-top: 20px;
+    .column-1 {
+        float: left;
+        height: 100%;
+        width: 50%;
+        flex: 50%;
+        background-image: url('../styles/images/Vaporwave-Background-Gif-1920x1080-Spicesncurry.com.gif');
+        }
+      .column-2{
+        float: right;
+        height: 50%;
+        width: 50%;
+        flex: 50%;
+      }
+      .row{
+        position: fixed;
+        top: 6.5%;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        overflow: auto;
+        height:100%;
+        width: 100%;
+      }
+
+  .form-label {
+    margin-top: 100px;
     margin-left: 80px;
     display: flex;
     flex-direction: row;
@@ -32,7 +34,7 @@
     margin-bottom: 0px;
     font-family: Tahoma, sans-serif;
     font-style: bold;
-  }
+  } 
   
   .input-div input {
     margin-top: 5px;
@@ -50,7 +52,6 @@
   
   .input-div:focus {
     transition: border-color 200ms ease 0s;
-    /* outline: 2px solid rgb(0, 255, 13); */
     outline: 2px solid rgb(196, 109, 128);
     border-radius:0;
   }
@@ -62,8 +63,7 @@
     display: flex;
     margin-top: 90px;
     margin-left: 80px;
-    background-color: rgb(13, 223, 24);
-    /* background-color: rgb(207, 30, 68); */
+    background-color: rgb(180, 115, 172);
     border: none;
     color: black;
     padding: 15px 40px;
@@ -76,8 +76,7 @@
     font-weight: bold;
   }
   .login-form-btn:hover{
-    /* background-color: rgb(10, 168, 18); */
-    background-color: rgb(128, 17, 41);
+    background-color: rgb(196, 119, 136);
   }
   .login-title{
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -95,9 +94,8 @@
     display: flex;
     flex-direction: column;
     align-content: center;
-    /* margin-top: 20px; */
     margin-left: 80px;
     font-family: sans-serif;
     font-weight: bold;
   }
-  
+   
