@@ -6,7 +6,6 @@ import './styles/Navbar.css'
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user)
-  console.log(user)
   if (user) {
     return (
       <div className='navbar-background'>

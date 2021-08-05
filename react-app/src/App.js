@@ -15,8 +15,10 @@ import Timer from './components/Timer';
 import EditTimer from './components/EditTimer';
 import { getAccessToken } from './store/spotify';
 import { authenticate } from './store/session';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const token = useSelector(state => state?.token?.token?.access_token)
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
@@ -25,7 +27,10 @@ function App() {
       await dispatch(authenticate());
       setLoaded(true);
     })();
-    dispatch(getAccessToken())
+    if (token === undefined) {
+      console.log(1)
+      dispatch(getAccessToken())
+    }
   }, [dispatch]);
 
 

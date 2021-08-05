@@ -8,9 +8,16 @@ const setAccessToken = (accessToken) => ({
 });
 
 export const getAccessToken = () => async (dispatch) => {
-
-    dispatch(setAccessToken(data));
-    return data
+    const response = await fetch('/api/spotify/token', {
+        mode: 'no-cors',
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const responseData = await response.json();
+    dispatch(setAccessToken(responseData));
+    return responseData
 };
 
 const initialState = {};
