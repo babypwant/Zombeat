@@ -14,7 +14,7 @@ def new_playlist():
     data = ast.literal_eval(request_data)
     all_playlist_number = Playlist.query.filter_by().all()
     playlist_number = all_playlist_number[-1].id
-    name = f'My Playlist #{playlist_number + 1}'
+    name = data["new_name"]
     img = 'https://i.pinimg.com/originals/55/27/89/552789ccf1e4e919e17930976a5e62c9.jpg'
     user_id = data["user_id"]
     playlist = Playlist(

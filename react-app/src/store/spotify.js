@@ -8,24 +8,16 @@ const setAccessToken = (accessToken) => ({
 });
 
 export const getAccessToken = () => async (dispatch) => {
-    var scopes = 'user-read-private user-read-email'
-    var client_id = process.env.CLIENT_ID;
-    // 'e0a081299571483cba0a00ed8dd15a96';
-    var client_secret = process.env.CLIENT_SECRET;
-    // 'fbbc6109c0424b06b088a168beb3f012';
-
-    const response = await fetch(`https://accounts.spotify.com/api/token`, {
-        method: 'POST',
+    const response = await fetch('/api/spotify/token', {
+        mode: 'no-cors',
+        method: "POST",
         headers: {
-            'Authorization': 'Basic ' + btoa(`` + ':' + ``),
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'grant_type=client_credentials'
-    });
-    const data = await response.json();
-    console.log(data)
-    dispatch(setAccessToken(data));
-    return data
+            "Content-Type": "application/json"
+        }
+    })
+    const responseData = await response.json();
+    dispatch(setAccessToken(responseData));
+    return responseData
 };
 
 const initialState = {};

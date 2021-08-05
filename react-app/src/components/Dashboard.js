@@ -38,7 +38,6 @@ const Dashboard = () => {
             })
             const data = await response.json()
             dispatch(setFeaturedPlaylists(data.playlists?.items))
-            console.log(featured)
         })()
     }, []);
 
