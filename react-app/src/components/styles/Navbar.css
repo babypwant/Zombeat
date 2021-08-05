@@ -26,7 +26,7 @@ nav {
     min-width: 144px;
     border-radius: 24px;
     cursor: pointer;
-    background-color: rgb(55, 178, 226);
+    background-color: rgb(103, 149, 218);
     font-size: 20px;
     font-weight: bold;
 }
@@ -50,15 +50,30 @@ nav {
     font-size: 20px;
     font-weight: bold;
     margin-right: 30px;
-    background-color: rgb(248, 226, 226);
+    background-color: rgb(156, 104, 139);
 }
-
+ 
 .home {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 20px;
+    color: black;
     text-decoration: none;
-    font-size: 27px;
-    color: white;
+    align-items: center;
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    padding: 0px 36px;
+    height: 48px;
+    min-width: 144px;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 30px;
+    background-color: rgb(224, 209, 224);
 }
 
 .feather_icon {
@@ -140,7 +155,7 @@ nav {
 
 .search:hover,
 .search:focus {
-    border: 1.5px solid #009688;
+    border: 1.5px solid #c963aa;
     background-color: white;
 }
 
