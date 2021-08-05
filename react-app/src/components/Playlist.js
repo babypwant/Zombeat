@@ -15,7 +15,6 @@ const Playlist = () => {
     const history = useHistory();
     const [playlist_Id, setPlaylistId] = useState(0)
     const [new_name, setNewName] = useState('')
-    const [playlistName, setPlaylistName] = useState('')
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)

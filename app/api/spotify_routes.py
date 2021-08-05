@@ -16,14 +16,17 @@ def get_token():
     ascii_secret = client_secret.encode('ascii')
     encode_id = base64.b64encode(ascii_id)
     encode_secret = base64.b64encode(ascii_secret)
-    print("HERE IS CLIENT ID", encode_id)
-    print("HERE IS CLIENT ID", encode_secret)
+    formatted_id = encode_id.decode('ascii')
+    formatted_secret = encode_secret.decode('ascii')
+    print("HERE IS CLIENT ID", formatted_id)
+    print("HERE IS CLIENT ID", formatted_secret)
+    print('Basic ' + f'{formatted_id}' + ':' + f'{formatted_secret}')
 
     post_response = requests.post(
         'https://accounts.spotify.com/api/token',
         data='grant_type=client_credentials',
         headers={
-            'Authorization': 'Basic ' + f'${encode_id}' + ':' + f'${encode_secret}',
+            'Authorization': 'Basic ' + f'{formatted_id}' + ':' + f'{formatted_secret}',
             'Content-Type': 'application/x-www-form-urlencoded'
         })
     tok = post_response.json()
