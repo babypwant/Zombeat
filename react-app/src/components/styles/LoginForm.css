@@ -4,7 +4,7 @@
         height: 100%;
         width: 50%;
         flex: 50%;
-        background-image: url('../styles/images/Vaporwave-Background-Gif-1920x1080-Spicesncurry.com.gif');
+        background-image: url('../styles/images/panel1.jpg');
         }
       .column-2{
         float: right;
@@ -84,6 +84,7 @@
     text-decoration: none;
     font-size: 27px;
     color:black;
+    margin-top: 200px;
   }
   .form-label{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;

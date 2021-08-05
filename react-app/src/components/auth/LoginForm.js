@@ -37,7 +37,7 @@ const LoginForm = () => {
       </div>
       <div class="column-2">
         <form classname='login-form'>
-          <label className='login-title'> Welcome to Mr. Hood </label>
+          <label className='login-title'> Get some rest, with the best. </label>
           <div className='input-div'>
             <label htmlFor='email' className='form-label'>Email or username</label>
             <input
