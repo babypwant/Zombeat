@@ -53,7 +53,6 @@
       text-align: center;
       color:rgb(199, 196, 196);
       width: 100%;
-      bottom: 0;
       cursor: pointer;
   }
   .create-playlist-btn:hover{
@@ -79,7 +78,10 @@
       margin-bottom: 10px;
   }
   .new-timer-icon{
+      height: 20px;
+      width: 20px;
       margin-right: 10px;
+      margin-left: 10px;
   }
   .create-timer-btn:hover{
     color: white;

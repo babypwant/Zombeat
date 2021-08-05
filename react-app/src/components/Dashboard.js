@@ -24,7 +24,7 @@ const Dashboard = () => {
             dispatch(getPlaylists(user.id))
             dispatch(getAllTimers(user.id))
         })()
-    }, [dispatch, user.id])
+    }, [dispatch, user.id]);
 
     useEffect(() => {
         (async () => {
@@ -36,32 +36,32 @@ const Dashboard = () => {
             setFeatured(data.playlists?.items)
             console.log(data.playlists?.items)
         })()
-    }, [])
+    }, []);
 
     const makeNewPlaylist = (e) => {
         e.preventDefault();
         history.push('/new/playlist')
-    }
+    };
     const editPlaylist = (e) => {
         e.preventDefault();
         history.push(`/edit/playlist/${e.target.value}`)
-    }
+    };
 
     const createTimer = (e) => {
         e.preventDefault();
         history.push('/new/timer')
-    }
+    };
 
     const editTimer = (e) => {
         e.preventDefault();
         history.push(`/edit/timer/${e.target.value}`)
         console.log(1)
-    }
+    };
 
     const getToken = (e) => {
         e.preventDefault();
         dispatch(getAccessToken())
-    }
+    };
 
     const test = async (e) => {
         e.preventDefault();
@@ -72,7 +72,7 @@ const Dashboard = () => {
         const data = await response.json()
         setFeatured(data.playlists.items)
         console.log(data.playlists.items)
-    }
+    };
     const testFeatured = () => {
         console.log(featured)
         featured.forEach((playlist) => {
@@ -81,7 +81,7 @@ const Dashboard = () => {
             console.log(playlist.id)
             console.log(playlist.images[0]?.url)
         })
-    }
+    };
     return (
         <div className='dashboard-main-container'>
             <div className='dashboard-main-content'>
@@ -113,7 +113,7 @@ const Dashboard = () => {
                     <img className='new-playlist-icon' src={playlistIcon} />
                     <label className='create-playlist-label'> Create Playlist </label>
                 </div>
-                <div className='create-timer-btn' onClick={createTimer}>
+                <div className='create-playlist-btn' onClick={createTimer}>
                     <img className='new-timer-icon' src={timerIcon} />
                     <label>Create a Timer</label>
                 </div>
@@ -152,7 +152,6 @@ const Dashboard = () => {
                 </div>
             </div>
             <MusicBar />
-
         </div >
     );
 };
