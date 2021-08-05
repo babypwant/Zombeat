@@ -17,7 +17,7 @@ export const getAccessToken = () => async (dispatch) => {
     const response = await fetch(`https://accounts.spotify.com/api/token`, {
         method: 'POST',
         headers: {
-            'Authorization': 'Basic ' + btoa(`e0a081299571483cba0a00ed8dd15a96` + ':' + `fbbc6109c0424b06b088a168beb3f012`),
+            'Authorization': 'Basic ' + btoa(`` + ':' + ``),
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: 'grant_type=client_credentials'
