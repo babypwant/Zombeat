@@ -100,7 +100,7 @@ const Dashboard = () => {
                 </div>
                 <div className='timers-container' onClick={createTimer}>
                     <img className='new-timer-icon' src={timerIcon} />
-                    <label className=''>Create a Timer</label>
+                    <label className='timer-label'>Create a Timer</label>
                 </div>
                 <div className='timers'>
                     <ul>
@@ -118,7 +118,6 @@ const Dashboard = () => {
 
                         }
                     </ul>
-                    <button onClick={getToken}>Test key</button>
                 </div>
                 <div className='all-playlists-container'>
                     <ul>

@@ -128,6 +128,7 @@ margin-top: 20px;
 
 .timer-li{
     list-style: none;
+    margin-top: 6px;
 }
 .timers-container{
     display: flex;
@@ -135,13 +136,17 @@ margin-top: 20px;
     text-align: center;
     color:rgb(199, 196, 196);
     width: 100%;
-    height: 0%;
+    height: 10%;
 }
 
-.timer-text{
 
+.timer-li:hover {
+    color: white;
 }
 
-.timer-text:hover {
+.timer-label{
+    color:gray;
+}
+.timer-label:hover{
     color: white;
 }
