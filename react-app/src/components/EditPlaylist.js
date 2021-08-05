@@ -146,7 +146,7 @@ const EditPlaylist = () => {
                         Playlist
                         <div className='playlist-name-bottom'>
                             {playlistTitle}
-                            <i class="fa-solid fa-circle-minus"></i>
+                            <i className="fa-solid fa-circle-minus"></i>
                         </div>
                     </div>
                     <div>

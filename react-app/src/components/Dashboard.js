@@ -16,6 +16,7 @@ const Dashboard = () => {
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
     const token = useSelector(state => state?.token?.token?.access_token)
+    const featured = useSelector(state => state.featured?.featured)
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -37,6 +38,7 @@ const Dashboard = () => {
             })
             const data = await response.json()
             dispatch(setFeaturedPlaylists(data.playlists?.items))
+            console.log(featured)
         })()
     }, []);
 
@@ -65,35 +67,27 @@ const Dashboard = () => {
         dispatch(getAccessToken())
     };
 
-    // const testFeatured = () => {
-    //     featured?.forEach((playlist) => {
-    //         console.log(playlist)
-    //         console.log(playlist.name)
-    //         console.log(playlist.id)
-    //         console.log(playlist.images[0]?.url)
-    //     })
-    // };
     return (
         <div className='dashboard-main-container'>
             <div className='dashboard-main-content'>
                 <div className='featured-playlists-container'>
                     {
-                        // featured &&
-                        // featured.map((playlist) => {
-                        //     return (
-                        //         <div
-                        //             className='spotify-playlist'
-                        //             value={playlist.id}
-                        //         >
-                        //             <img className='featured-playlist-img' src={playlist.images[0]?.url} />
-                        //             <label
-                        //                 className='featured-spotify-title'
-                        //             >
-                        //                 {playlist.name}
-                        //             </label>
-                        //         </div>
-                        //     )
-                        // })
+                        featured &&
+                        featured.map((playlist) => {
+                            return (
+                                <div
+                                    className='spotify-playlist'
+                                    value={playlist.id}
+                                >
+                                    <img className='featured-playlist-img' src={playlist.images[0]?.url} />
+                                    <label
+                                        className='featured-spotify-title'
+                                    >
+                                        {playlist.name}
+                                    </label>
+                                </div>
+                            )
+                        })
 
                     }
                 </div>
@@ -117,6 +111,7 @@ const Dashboard = () => {
                                     <li value={timer.id}
                                         onClick={editTimer}
                                         className='timer-li'
+                                        key={timer.id}
                                     >{timer.name}</li>
                                 )
                             })
