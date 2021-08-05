@@ -1,27 +1,5 @@
 
-.column-1 {
-    float: left;
-    height: 50%;
-    width: 50%;
-    flex: 50%;
-    background-color: black;
-    }
-  .column-2{
-    float: right;
-    height: 50%;
-    width: 50%;
-    flex: 50%;
-  }
-  .row{
-    position: fixed;
-    top: 6.5%;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    overflow: auto;
-    height:100%;
-    width: 100%;
-  }
+
   .new-playlist-btn{
       width: auto;
   }

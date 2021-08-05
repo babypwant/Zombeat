@@ -5,7 +5,7 @@ const getTimers = (timers) => {
         type: ADD_TIMER,
         timers
     };
-}
+};
 
 
 export const getAllTimers = (user_id) => async (dispatch) => {
@@ -29,7 +29,7 @@ export const getAllTimers = (user_id) => async (dispatch) => {
             return response
         }
     }
-}
+};
 
 export const createTimer = (name, playlist_id, user_id, time) => async (dispatch) => {
     console.log(1)
@@ -44,7 +44,7 @@ export const createTimer = (name, playlist_id, user_id, time) => async (dispatch
         dispatch(getAllTimers(user_id));
         return timer;
     }
-}
+};
 
 const initialState = {};
 const timers = (state = initialState, action) => {
@@ -67,6 +67,6 @@ const timers = (state = initialState, action) => {
         default:
             return state;
     }
-}
+};
 
 export default timers;

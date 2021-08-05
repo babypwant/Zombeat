@@ -7,11 +7,16 @@ import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import timerIcon from '../components/styles/images/add-timer.png'
 import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
+import { getAccessToken } from '../store/spotify';
+import { setFeaturedPlaylists } from '../store/featured';
 
 const Dashboard = () => {
+    // const [featured, setFeatured] = useState(null)
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
+    const token = useSelector(state => state?.token?.token?.access_token)
+    const featured = useSelector(state => state.featured?.featured)
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -21,52 +26,98 @@ const Dashboard = () => {
             dispatch(getPlaylists(user.id))
             dispatch(getAllTimers(user.id))
         })()
-    }, [dispatch, user.id])
+
+
+    }, [dispatch, user.id]);
+
+    useEffect(() => {
+        (async () => {
+            const response = await fetch("https://api.spotify.com/v1/browse/featured-playlists", {
+                method: "GET",
+                headers: { 'Authorization': 'Bearer ' + token }
+            })
+            const data = await response.json()
+            dispatch(setFeaturedPlaylists(data.playlists?.items))
+            console.log(featured)
+        })()
+    }, []);
 
     const makeNewPlaylist = (e) => {
         e.preventDefault();
         history.push('/new/playlist')
-    }
+    };
     const editPlaylist = (e) => {
         e.preventDefault();
         history.push(`/edit/playlist/${e.target.value}`)
-    }
+    };
 
     const createTimer = (e) => {
         e.preventDefault();
         history.push('/new/timer')
-    }
+    };
 
     const editTimer = (e) => {
         e.preventDefault();
         history.push(`/edit/timer/${e.target.value}`)
         console.log(1)
-    }
+    };
+
+    const getToken = (e) => {
+        e.preventDefault();
+        dispatch(getAccessToken())
+    };
 
     return (
         <div className='dashboard-main-container'>
             <div className='dashboard-main-content'>
-                <div className='timers'>
-                    {allTimers &&
-                        allTimers.map((timer) => {
+                <div className='featured-playlists-container'>
+                    {
+                        featured &&
+                        featured.map((playlist) => {
                             return (
-                                <li value={timer.id}
-                                    onClick={editTimer}
-                                >{timer.name}</li>
+                                <div
+                                    className='spotify-playlist'
+                                    value={playlist.id}
+                                >
+                                    <img className='featured-playlist-img' src={playlist.images[0]?.url} />
+                                    <label
+                                        className='featured-spotify-title'
+                                    >
+                                        {playlist.name}
+                                    </label>
+                                </div>
                             )
                         })
 
                     }
                 </div>
+
             </div>
             <div className='content-container'>
                 <div className='create-playlist-btn' onClick={makeNewPlaylist}>
                     <img className='new-playlist-icon' src={playlistIcon} />
                     <label className='create-playlist-label'> Create Playlist </label>
                 </div>
-                <div className='create-timer-btn' onClick={createTimer}>
+                <div className='timers-container' onClick={createTimer}>
                     <img className='new-timer-icon' src={timerIcon} />
-                    <label>Create a Timer</label>
+                    <label className='timer-label'>Create a Timer</label>
+                </div>
+                <div className='timers'>
+                    <ul>
+
+                        {allTimers &&
+                            allTimers.map((timer) => {
+                                return (
+                                    <li value={timer.id}
+                                        onClick={editTimer}
+                                        className='timer-li'
+                                        key={timer.id}
+                                    >{timer.name}</li>
+                                )
+                            })
+
+                        }
+                    </ul>
                 </div>
                 <div className='all-playlists-container'>
                     <ul>
@@ -87,7 +138,6 @@ const Dashboard = () => {
                 </div>
             </div>
             <MusicBar />
-
         </div >
     );
 };

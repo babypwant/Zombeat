@@ -6,6 +6,7 @@ import './styles/Navbar.css'
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user)
+  console.log(user)
   if (user) {
     return (
       <div className='navbar-background'>
@@ -16,9 +17,10 @@ const NavBar = () => {
               Dashboard
             </NavLink>
           </div>
-          <div className="thirdbox" >
-            <LogoutButton />
-          </div>
+          {/* <div className='avatar-container'>
+            <img classnName='user-avatar' src={user?.avatar} />
+          </div> */}
+          <LogoutButton />
           <div>
           </div>
         </nav>

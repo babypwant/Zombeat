@@ -3,11 +3,17 @@ import thunk from 'redux-thunk';
 import session from './session'
 import playlists from './playlists'
 import timers from './timer'
+import token from './spotify';
+import current from './current';
+import featured from './featured';
 
 const rootReducer = combineReducers({
   session,
   playlists,
-  timers
+  timers,
+  token,
+  current,
+  featured
 });
 
 

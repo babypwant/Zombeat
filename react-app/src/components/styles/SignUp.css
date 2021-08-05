@@ -1,0 +1,104 @@
+
+    .column-3 {
+        float: left;
+        height: 100%;
+        width: 50%;
+        flex: 50%;
+        background-image: url('../styles/images/panel5.jpg');
+        }
+      .column-4{
+        float: right;
+        height: 50%;
+        width: 50%;
+        flex: 50%;
+      }
+      .row-2{
+        position: fixed;
+        top: 6.5%;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        overflow: auto;
+        height:100%;
+        width: 100%;
+      }
+
+  .signup-form-label {
+    margin-top: 60px;
+    margin-left: 80px;
+    display: flex;
+    flex-direction: row;
+    text-align: right;
+    width: 500px;
+    line-height: 26px;
+    margin-bottom: 0px;
+    font-family: Tahoma, sans-serif;
+    font-style: bold;
+  } 
+  
+  .signup-div input {
+    margin-top: 5px;
+    height: 30px;
+    width: 400px;
+    flex: 0 0 200px;
+    margin-left: 80px;
+    border-radius: 4px;
+    border-color: rgba(196, 167, 144, 0.8);
+  }
+  
+  .signup-div:hover {
+    border-color: rgb(190, 83, 106);
+  }
+  
+  .signup-div:focus {
+    transition: border-color 200ms ease 0s;
+    outline: 2px solid rgb(196, 109, 128);
+    border-radius:0;
+  }
+  .sign-up-form-btn{
+    margin-top: 10px;
+    margin-left: 60px;
+  }
+  .sign-up-form-btn{
+    display: flex;
+    margin-top: 90px;
+    margin-left: 80px;
+    background-color: rgb(180, 115, 172);
+    border: none;
+    color: black;
+    padding: 15px 40px;
+    text-align: center;
+    align-self: flex-start;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  .sign-up-form-btn:hover{
+    background-color: rgb(196, 119, 136);
+  }
+  .sign-up-title{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    text-decoration: none;
+    font-size: 27px;
+    color:black;
+  }
+  .sign-up-label{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .errors{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin-left: 80px;
+    font-family: sans-serif;
+    font-weight: bold;
+  }
+   .sign-up-holder{
+       margin-top: 100px;
+       margin-left: 80px;
+   }
