@@ -13,6 +13,7 @@ import Dashboard from './components/Dashboard';
 import EditPlaylist from './components/EditPlaylist';
 import Timer from './components/Timer';
 import EditTimer from './components/EditTimer';
+import { getAccessToken } from './store/spotify';
 import { authenticate } from './store/session';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       await dispatch(authenticate());
       setLoaded(true);
     })();
+    dispatch(getAccessToken())
   }, [dispatch]);
 
 
