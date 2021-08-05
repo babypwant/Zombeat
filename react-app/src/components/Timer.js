@@ -35,20 +35,20 @@ const Timer = () => {
     }
 
     const makeNewPlaylist = async (e) => {
-        e.preventDefault();
-        const response = await fetch('/api/playlists/', {
-            mode: 'no-cors',
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ user_id })
-        });
-        const responseData = await response.json()
-        setPlaylistId(responseData.playlist_Id)
+        // e.preventDefault();
+        // const response = await fetch('/api/playlists/', {
+        //     mode: 'no-cors',
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({ user_id })
+        // });
+        // const responseData = await response.json()
+        // setPlaylistId(responseData.playlist_Id)
 
-        console.log("Successful", `=== New playlist Created ===`)
-        history.push('/dashboard')
+        // console.log("Successful", `=== New playlist Created ===`)
+        history.push('/new/playlist')
     }
 
 
