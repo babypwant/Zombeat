@@ -113,22 +113,25 @@ const Dashboard = () => {
                     <img className='new-playlist-icon' src={playlistIcon} />
                     <label className='create-playlist-label'> Create Playlist </label>
                 </div>
-                <div className='create-playlist-btn' onClick={createTimer}>
+                <div className='timers-container' onClick={createTimer}>
                     <img className='new-timer-icon' src={timerIcon} />
-                    <label>Create a Timer</label>
+                    <label className='timer-text'>Create a Timer</label>
                 </div>
                 <div className='timers'>
-                    {allTimers &&
-                        allTimers.map((timer) => {
-                            return (
-                                <li value={timer.id}
-                                    onClick={editTimer}
-                                    className='timer-li'
-                                >{timer.name}</li>
-                            )
-                        })
+                    <ul>
 
-                    }
+                        {allTimers &&
+                            allTimers.map((timer) => {
+                                return (
+                                    <li value={timer.id}
+                                        onClick={editTimer}
+                                        className='timer-li'
+                                    >{timer.name}</li>
+                                )
+                            })
+
+                        }
+                    </ul>
                     <button onClick={getToken}>Test key</button>
                     <button onClick={test}> Song test </button>
                     <button onClick={testFeatured}>Featured </button>
