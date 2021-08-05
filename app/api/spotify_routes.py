@@ -24,7 +24,7 @@ def get_token():
 
     post_response = requests.post(
         'https://accounts.spotify.com/api/token',
-        data='grant_type=client_credentials',
+        data={'grant_type': 'client_credentials'},
         headers={
             'Authorization': 'Basic ' + f'{formatted_id}' + ':' + f'{formatted_secret}',
             'Content-Type': 'application/x-www-form-urlencoded'

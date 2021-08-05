@@ -52,8 +52,8 @@ const Timer = () => {
     }
 
 
-    const createTimer = (e) => {
-        e.preventDefault();
+    const newtimer = (e) => {
+        e.preventDefault()
         history.push('/new/timer')
     };
 
@@ -72,7 +72,7 @@ const Timer = () => {
     return (
         <div className='dashboard-main-container'>
             <div className='playlist-main-content'>
-                <form className='album-form' method="POST" action="/timers/" onSubmit={newTimer} >
+                <form className='album-form' method="POST" action="/timers/" onSubmit={(e) => e.preventDefault()} >
                     <label>New timer name</label>
                     <input className='timer-name-input'
                         onChange={(e) => setTimerName(e.target.value)}
@@ -82,7 +82,7 @@ const Timer = () => {
                     <input className='timer-time-input'
                         onChange={(e) => setTime(e.target.value)}>
                     </input>
-                    <button type='submit'>Here</button>
+                    <button type='submit' onClick={newTimer}>Here</button>
                 </form>
             </div>
             <div className='content-container'>
@@ -90,7 +90,7 @@ const Timer = () => {
                     <img className='new-playlist-icon' src={playlistIcon} />
                     <label className='create-playlist-label'> Create Playlist </label>
                 </div>
-                <div className='timers-container' onClick={createTimer}>
+                <div className='timers-container' onClick={newtimer}>
                     <img className='new-timer-icon' src={timerIcon} />
                     <label className='timer-label'>Create a Timer</label>
                 </div>

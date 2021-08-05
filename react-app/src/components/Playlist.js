@@ -49,7 +49,7 @@ const Playlist = () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ user_id })
+            body: JSON.stringify({ user_id, new_name })
         });
         const responseData = await response.json()
         setPlaylistId(responseData.playlist_Id)
