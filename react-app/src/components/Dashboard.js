@@ -60,11 +60,6 @@ const Dashboard = () => {
         console.log(1)
     };
 
-    const getToken = (e) => {
-        e.preventDefault();
-        dispatch(getAccessToken())
-    };
-
     return (
         <div className='dashboard-main-container'>
             <div className='dashboard-main-content'>

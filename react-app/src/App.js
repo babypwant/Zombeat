@@ -27,7 +27,7 @@ function App() {
       await dispatch(authenticate());
       setLoaded(true);
     })();
-    if (token === undefined) {
+    if (!token) {
       console.log(1)
       dispatch(getAccessToken())
     }
