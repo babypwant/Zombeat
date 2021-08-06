@@ -21,7 +21,7 @@ const FeaturedPlaylist = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { id } = useParams();
-    let amountOfTrack = 0;
+    let amountOfTracks = 0;
 
     useEffect(() => {
         (async () => {
@@ -75,7 +75,7 @@ const FeaturedPlaylist = () => {
     return (
         <div className='dashboard-main-container'>
             <div className='featured-main-content'>
-                <div className='playlist-header'>
+                <div className='featured-header'>
                     <img className='playlist-img' src={image} />
                     <div className='playlist-name-top'>
                         Playlist
@@ -95,22 +95,94 @@ const FeaturedPlaylist = () => {
                 </div>
                 <div className='songs-container'>
                     <div className='featured-column-1'>
-                        <label className='featured-label'>#</label>
+                        <div className='song-list'>
+                            <div className='all-labels'>
+                                <label className='featured-label'>#</label>
+                                <label className='featured-label'>Title</label>
+                                <label className='featured-label'>Album</label>
+                                <label className='featured-label'>Duration</label>
+                            </div>
+                            {songs &&
+                                songs.map((song) => {
+                                    const minutes = Math.floor(song.track.duration_ms / 60000);
+                                    const seconds = ((song.track.duration_ms % 60000) / 1000).toFixed(0);
+                                    return (
+                                        <div className='song-metadata-container'>
+                                            <div className='song-number'>
+                                                {amountOfTracks += 1}
+                                            </div>
+                                            <div className='song-name'>
+                                                {song.track.name}
+                                            </div>
+                                            <div className='album-name'>
+                                                {song.track.album.name}
+                                            </div>
+                                            <div className='song-duration'>
+                                                {minutes + ":" + (seconds < 10 ? '0' : '') + seconds}
+                                            </div>
+                                        </div>
+                                    )
+                                })
+
+                            }
+                        </div>
+                    </div>
+                    {/* <div className='featured-column-2'>
+                        <label className='featured-label'>Title</label>
                         <ul>
-                            {
+                            {songs &&
+                                songs.map((song) => {
+                                    return (
+
+                                        <li className='featured-li'>
+                                            {song.track.name}
+                                        </li>
+                                    )
+                                })
 
                             }
                         </ul>
                     </div>
-                    <div className='featured-column-2'>
-                        <label className='featured-label'>Title</label>
-                    </div>
                     <div className='featured-column-3'>
                         <label className='featured-label'>Album</label>
+                        <ul className='featured-ul'>
+                            {songs &&
+                                songs.map((song) => {
+                                    if (song.track.album.album_type === 'album') {
+                                        return (
+                                            <li className='featured-li'>
+                                                {song.track.album.name}
+                                            </li>
+                                        )
+                                    } else {
+                                        return (
+                                            <li className='featured-li'>
+                                                Single
+                                            </li>
+                                        )
+                                    }
+                                })
+
+                            }
+                        </ul>
                     </div>
                     <div className='featured-column-4'>
                         <label className='featured-label'>Duration</label>
-                    </div>
+                        <ul>
+                            {songs &&
+                                songs.map((song) => {
+                                    const minutes = Math.floor(song.track.duration_ms / 60000);
+                                    const seconds = ((song.track.duration_ms % 60000) / 1000).toFixed(0);
+                                    return (
+                                        <li className='featured-li'>
+                                            {minutes + ":" + (seconds < 10 ? '0' : '') + seconds}
+                                        </li>
+                                    )
+
+                                })
+                            }
+                        </ul>
+                    </div> */}
                 </div>
             </div>
             <div className='content-container'>

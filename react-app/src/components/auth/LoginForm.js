@@ -35,7 +35,7 @@ const LoginForm = () => {
     <div className='row'>
       <div className='column-1'>
       </div>
-      <div class="column-2">
+      <div className="column-2">
         <form classname='login-form'>
           <div className='login-holder'>
             <label className='login-title'> Get some rest, you deserve it. </label>
@@ -51,7 +51,7 @@ const LoginForm = () => {
             />
           </div>
           <div className='input-div'>
-            <label htmlFor='password' class='form-label'>Password</label>
+            <label htmlFor='password' className='form-label'>Password</label>
             <input
               name='password'
               type='password'
@@ -65,7 +65,7 @@ const LoginForm = () => {
 
           {errors.length > 0 ? (
             <div>
-              <p><i class="fas fa-exclamation-circle"></i> Unable to log in with provided credentials.</p>
+              <p><i className="fas fa-exclamation-circle"></i> Unable to log in with provided credentials.</p>
             </div>
           ) : (
             <p></p>

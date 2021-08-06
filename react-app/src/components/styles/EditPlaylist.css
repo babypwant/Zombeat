@@ -79,12 +79,12 @@
         margin-left: 4px;
     }
     
-    .playlist-header{
+    .featured-header{
         display: flex;
         flex-direction: row;
         width: 100%;
         height: 35%;
-        background-image: linear-gradient(180deg, rgb(161, 159, 167),rgb(40, 13, 134));
+        background-image: linear-gradient(180deg, rgb(161, 159, 167),rgb(53, 126, 155));
       /* background-color: white; */
       
   }
