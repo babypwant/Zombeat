@@ -11,7 +11,6 @@ import { getAccessToken } from '../store/spotify';
 import { setFeaturedPlaylists } from '../store/featured';
 
 const Dashboard = () => {
-    // const [featured, setFeatured] = useState(null)
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
