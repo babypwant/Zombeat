@@ -9,6 +9,7 @@ import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
 import { getAccessToken } from '../store/spotify';
 import { setFeaturedPlaylists } from '../store/featured';
+import { setSelectedPlaylist } from '../store/selectedPlaylist';
 
 const Dashboard = () => {
     const user = useSelector(state => state.session.user);
@@ -63,7 +64,9 @@ const Dashboard = () => {
 
     const selectedPlaylist = (e) => {
         e.preventDefault();
-        history.push(`/featured${e.target.value}`)
+        const id = e.target.id
+        dispatch(setSelectedPlaylist(id, token))
+        history.push(`/featured/${e.target.id}`)
     }
 
     return (
@@ -73,13 +76,12 @@ const Dashboard = () => {
                     {
                         featured &&
                         featured.map((playlist) => {
-                            console.log(playlist.id)
                             return (
                                 <div
                                     className='spotify-playlist'
                                     value={playlist.id}
                                     id={playlist.id}
-                                    onClick={(e) => history.push(`/featured/${e.target.id}`)}
+                                    onClick={selectedPlaylist}
                                 >
                                     <img className='featured-playlist-img' src={playlist.images[0]?.url} value={playlist.id} id={playlist.id}
                                     />

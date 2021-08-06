@@ -10,14 +10,16 @@ import { getAllTimers } from '../store/timer';
 
 
 const FeaturedPlaylist = () => {
-    const [songs, setSongs] = useState(null)
-    const [image, setImage] = useState('')
+    // const [songs, setSongs] = useState(null)
+    // const [image, setImage] = useState('')
     const [description, setDescription] = useState('')
     const [playlistName, setPlaylistName] = useState('demo')
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
     const token = useSelector(state => state?.token?.token?.access_token)
+    const songs = useSelector(state => state.selectedPlaylist?.current?.tracks?.items)
+    const image = useSelector(state => state.selectedPlaylist?.current.images[0]?.url)
     const history = useHistory();
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -30,27 +32,6 @@ const FeaturedPlaylist = () => {
         })()
 
     }, [dispatch, user.id]);
-
-    useEffect(() => {
-        if (user) {
-            (async () => {
-                const response = await fetch(`https://api.spotify.com/v1/playlists/${id}`, {
-                    method: "GET",
-                    headers: { 'Authorization': 'Bearer ' + token }
-                })
-                const data = await response.json()
-                console.log(data)
-                if (songs === null) {
-                    console.log(data.tracks.items)
-                    setPlaylistName(data.name)
-                    setSongs(data.tracks?.items)
-                    setImage(data.images[0]?.url)
-                    setDescription(data.description)
-                }
-            })()
-        }
-    }, []);
-
 
     const makeNewPlaylist = (e) => {
         e.preventDefault();
@@ -127,62 +108,6 @@ const FeaturedPlaylist = () => {
                             }
                         </div>
                     </div>
-                    {/* <div className='featured-column-2'>
-                        <label className='featured-label'>Title</label>
-                        <ul>
-                            {songs &&
-                                songs.map((song) => {
-                                    return (
-
-                                        <li className='featured-li'>
-                                            {song.track.name}
-                                        </li>
-                                    )
-                                })
-
-                            }
-                        </ul>
-                    </div>
-                    <div className='featured-column-3'>
-                        <label className='featured-label'>Album</label>
-                        <ul className='featured-ul'>
-                            {songs &&
-                                songs.map((song) => {
-                                    if (song.track.album.album_type === 'album') {
-                                        return (
-                                            <li className='featured-li'>
-                                                {song.track.album.name}
-                                            </li>
-                                        )
-                                    } else {
-                                        return (
-                                            <li className='featured-li'>
-                                                Single
-                                            </li>
-                                        )
-                                    }
-                                })
-
-                            }
-                        </ul>
-                    </div>
-                    <div className='featured-column-4'>
-                        <label className='featured-label'>Duration</label>
-                        <ul>
-                            {songs &&
-                                songs.map((song) => {
-                                    const minutes = Math.floor(song.track.duration_ms / 60000);
-                                    const seconds = ((song.track.duration_ms % 60000) / 1000).toFixed(0);
-                                    return (
-                                        <li className='featured-li'>
-                                            {minutes + ":" + (seconds < 10 ? '0' : '') + seconds}
-                                        </li>
-                                    )
-
-                                })
-                            }
-                        </ul>
-                    </div> */}
                 </div>
             </div>
             <div className='content-container'>

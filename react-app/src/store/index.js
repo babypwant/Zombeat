@@ -6,6 +6,7 @@ import timers from './timer'
 import token from './spotify';
 import current from './current';
 import featured from './featured';
+import selectedPlaylist from './selectedPlaylist';
 
 const rootReducer = combineReducers({
   session,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   timers,
   token,
   current,
-  featured
+  featured,
+  selectedPlaylist
 });
 
 
