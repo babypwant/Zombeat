@@ -1,6 +1,6 @@
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import MusicBar from './MusicBar';
-import './styles/Dashboard.css'
+import './styles/Featured.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
@@ -10,12 +10,16 @@ import { getAllTimers } from '../store/timer';
 
 
 const FeaturedPlaylist = () => {
+    const [description, setDescription] = useState('')
+    const [playlistName, setPlaylistName] = useState('demo')
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
-    const token = useSelector(state => state?.token?.token?.access_token)
+    const songs = useSelector(state => state.selectedPlaylist?.current?.tracks?.items)
+    const image = useSelector(state => state.selectedPlaylist?.current.images[0]?.url)
     const history = useHistory();
     const dispatch = useDispatch();
+    let amountOfTracks = 0;
 
     useEffect(() => {
         (async () => {
@@ -23,9 +27,7 @@ const FeaturedPlaylist = () => {
             dispatch(getAllTimers(user.id))
         })()
 
-
     }, [dispatch, user.id]);
-
 
     const makeNewPlaylist = (e) => {
         e.preventDefault();
@@ -49,8 +51,60 @@ const FeaturedPlaylist = () => {
 
     return (
         <div className='dashboard-main-container'>
-            <div className='dashboard-main-content'>
+            <div className='featured-main-content'>
+                <div className='featured-header'>
+                    <img className='playlist-img' src={image} />
+                    <div className='playlist-name-top'>
+                        Playlist
+                        <div className='playlist-name-bottom'>
+                            {playlistName}
+                            <i className="fa-solid fa-circle-minus"></i>
+                        </div>
+                        <div>
+                            {description}
+                        </div>
+                    </div>
+                    <div>
+                        <div className='delete-playlist-Icon'>
+                            <img className='' />
+                        </div>
+                    </div>
+                </div>
+                <div className='songs-container'>
+                    <div className='featured-column-1'>
+                        <div className='song-list'>
+                            <div className='all-labels'>
+                                <label className='featured-label-number'>#</label>
+                                <label className='featured-label-title'>Title</label>
+                                <label className='featured-label-album'>Album</label>
+                                <label className='featured-label-duration'>Duration</label>
+                            </div>
+                            {songs &&
+                                songs.map((song) => {
+                                    const minutes = Math.floor(song.track.duration_ms / 60000);
+                                    const seconds = ((song.track.duration_ms % 60000) / 1000).toFixed(0);
+                                    return (
+                                        <div className='song-metadata-container'>
+                                            <div className='song-number'>
+                                                {amountOfTracks += 1}
+                                            </div>
+                                            <div className='song-name'>
+                                                {song.track.name}
+                                            </div>
+                                            <div className='album-name'>
+                                                {song.track.album.name}
+                                            </div>
+                                            <div className='song-duration'>
+                                                {minutes + ":" + (seconds < 10 ? '0' : '') + seconds}
+                                            </div>
+                                        </div>
+                                    )
+                                })
 
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
             <div className='content-container'>
                 <div className='create-playlist-btn' onClick={makeNewPlaylist}>

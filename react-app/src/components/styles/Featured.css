@@ -1,0 +1,97 @@
+.featured-main-content{
+    display: flex;
+    flex-direction: column;
+    float: right;
+    align-self: stretch;
+    width: 10%;
+    height: 100%;
+    color: rgb(29, 25, 25);
+    background-image: linear-gradient(180deg, rgb(119, 18, 49),rgb(119, 18, 49));
+    width:88.5%;
+  }
+  .songs-container{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 80%;
+      height: 52%;
+      margin-left: 120px;
+      overflow: scroll;
+      overflow-x: hidden;
+      color: rgb(48, 46, 46);
+
+  }
+
+  .featured-column-1{
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      color: white;
+      width: 100%;
+      height: 100%;
+    text-align: left;
+  }
+
+.featured-li{
+    list-style: none;
+    width: 100%;
+}
+.featured-ul{
+    list-style-type: none;  
+}
+.song-metadata-container{
+    margin-top: 12px;
+    display: flex;
+    width:100%;
+    text-align: left;
+    color: rgb(252, 230, 230);
+
+}
+
+.song-number{
+margin-left: 10px;
+width: 20px;
+text-align: left;
+}
+.song-list{
+    width: 100%;
+}
+.song-name{
+    width: 500px;
+    margin-left: 100px;
+    text-align: left;
+}
+.album-name{
+width: 500px;
+margin-left: 100px;
+}
+.song-duration{
+margin-right: 60px;
+}
+.all-labels{
+    display: flex;
+    width: 100%;
+}
+
+
+.featured-header{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 35%;
+    background-image: linear-gradient(180deg, rgb(161, 159, 167),rgb(119, 18, 49));
+  /* background-color: white; */
+  
+}
+.featured-label-number{
+    margin-left: 10px;
+}
+.featured-label-title{
+    margin-left: 110px;
+}
+.featured-label-album{
+    margin-left: 570px;
+}
+.featured-label-duration{
+margin-left: 440px;
+}
