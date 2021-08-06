@@ -30,6 +30,8 @@ const Dashboard = () => {
 
     }, [dispatch, user.id]);
 
+
+    // put on higher level than dashboar because its never being mounted
     useEffect(() => {
         if (user) {
             (async () => {

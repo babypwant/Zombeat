@@ -4,6 +4,8 @@ import './styles/MusicBar.css'
 
 const MusicBar = () => {
     const currsong = 'https://open.spotify.com/embed/track/45BBlVHECwB0uNt7BsJ97r';
+    //in tracks.id pass it in as the string
+    //"https://open.spotify.com/track/6ft4hAq6yde8jPZY2i5zLr"
     return (
         <div className='music-bar-container'>
             <div className='iframe-container'>
