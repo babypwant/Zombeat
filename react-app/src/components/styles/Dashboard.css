@@ -116,6 +116,7 @@ margin-top: 20px;
     background-color: rgba(26,26,26,255);
     margin-top: 40px;
     cursor: pointer;
+    box-shadow: 5px 8px #000000;
 }
 .spotify-playlist:hover{
     background-color: rgb(51, 50, 50);

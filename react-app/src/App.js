@@ -13,7 +13,7 @@ import Dashboard from './components/Dashboard';
 import EditPlaylist from './components/EditPlaylist';
 import Timer from './components/Timer';
 import EditTimer from './components/EditTimer';
-import { getAccessToken } from './store/spotify';
+import FeaturedPlaylist from './components/FeaturedPlaylist';
 import { authenticate } from './store/session';
 import { useSelector } from 'react-redux';
 
@@ -27,10 +27,6 @@ function App() {
       await dispatch(authenticate());
       setLoaded(true);
     })();
-    if (!token) {
-      console.log(1)
-      dispatch(getAccessToken())
-    }
   }, [dispatch]);
 
 
@@ -72,6 +68,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/edit/timer/:id' exact={true}>
           <EditTimer />
+        </ProtectedRoute>
+        <ProtectedRoute path='/featured/:id' exact={true}>
+          <FeaturedPlaylist />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

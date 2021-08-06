@@ -1,11 +1,20 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAccessToken } from '../store/spotify';
 import LogoutButton from './auth/LogoutButton';
 import './styles/Navbar.css'
 
 const NavBar = () => {
-  const user = useSelector(state => state.session.user)
+  const user = useSelector(state => state.session.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (user) {
+      dispatch(getAccessToken())
+      console.log(1)
+    }
+  }, [dispatch])
   if (user) {
     return (
       <div className='navbar-background'>
