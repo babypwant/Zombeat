@@ -10,19 +10,15 @@ import { getAllTimers } from '../store/timer';
 
 
 const FeaturedPlaylist = () => {
-    // const [songs, setSongs] = useState(null)
-    // const [image, setImage] = useState('')
     const [description, setDescription] = useState('')
     const [playlistName, setPlaylistName] = useState('demo')
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
-    const token = useSelector(state => state?.token?.token?.access_token)
     const songs = useSelector(state => state.selectedPlaylist?.current?.tracks?.items)
     const image = useSelector(state => state.selectedPlaylist?.current.images[0]?.url)
     const history = useHistory();
     const dispatch = useDispatch();
-    const { id } = useParams();
     let amountOfTracks = 0;
 
     useEffect(() => {
