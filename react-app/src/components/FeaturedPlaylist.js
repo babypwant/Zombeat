@@ -1,6 +1,6 @@
 import { useHistory, useParams } from 'react-router';
 import MusicBar from './MusicBar';
-import './styles/Dashboard.css'
+import './styles/Featured.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
@@ -11,6 +11,9 @@ import { getAllTimers } from '../store/timer';
 
 const FeaturedPlaylist = () => {
     const [songs, setSongs] = useState(null)
+    const [image, setImage] = useState('')
+    const [description, setDescription] = useState('')
+    const [playlistName, setPlaylistName] = useState('demo')
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
@@ -18,6 +21,7 @@ const FeaturedPlaylist = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { id } = useParams();
+    let amountOfTrack = 0;
 
     useEffect(() => {
         (async () => {
@@ -26,7 +30,6 @@ const FeaturedPlaylist = () => {
         })()
 
     }, [dispatch, user.id]);
-
 
     useEffect(() => {
         if (user) {
@@ -37,9 +40,16 @@ const FeaturedPlaylist = () => {
                 })
                 const data = await response.json()
                 console.log(data)
+                if (songs === null) {
+                    console.log(data.tracks.items)
+                    setPlaylistName(data.name)
+                    setSongs(data.tracks?.items)
+                    setImage(data.images[0]?.url)
+                    setDescription(data.description)
+                }
             })()
         }
-    }, [dispatch, token]);
+    }, []);
 
 
     const makeNewPlaylist = (e) => {
@@ -64,8 +74,44 @@ const FeaturedPlaylist = () => {
 
     return (
         <div className='dashboard-main-container'>
-            <div className='dashboard-main-content'>
+            <div className='featured-main-content'>
+                <div className='playlist-header'>
+                    <img className='playlist-img' src={image} />
+                    <div className='playlist-name-top'>
+                        Playlist
+                        <div className='playlist-name-bottom'>
+                            {playlistName}
+                            <i className="fa-solid fa-circle-minus"></i>
+                        </div>
+                        <div>
+                            {description}
+                        </div>
+                    </div>
+                    <div>
+                        <div className='delete-playlist-Icon'>
+                            <img className='' />
+                        </div>
+                    </div>
+                </div>
+                <div className='songs-container'>
+                    <div className='featured-column-1'>
+                        <label className='featured-label'>#</label>
+                        <ul>
+                            {
 
+                            }
+                        </ul>
+                    </div>
+                    <div className='featured-column-2'>
+                        <label className='featured-label'>Title</label>
+                    </div>
+                    <div className='featured-column-3'>
+                        <label className='featured-label'>Album</label>
+                    </div>
+                    <div className='featured-column-4'>
+                        <label className='featured-label'>Duration</label>
+                    </div>
+                </div>
             </div>
             <div className='content-container'>
                 <div className='create-playlist-btn' onClick={makeNewPlaylist}>

@@ -1,0 +1,41 @@
+.featured-main-content{
+    display: flex;
+    flex-direction: column;
+    float: right;
+    align-self: stretch;
+    width: 10%;
+    height: 100%;
+    color: white;
+    background-image: linear-gradient(180deg, rgb(66, 17, 240),rgb(10, 6, 6));
+    width:88.5%;
+  }
+  .songs-container{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      background-color: red;
+      width: 80%;
+      height: 52%;
+      margin-left: 120px;
+  }
+
+  .featured-column-1{
+      color: white;
+      background: black;
+      width: 90px;
+  }
+  .featured-column-2{
+    color: white;
+    background: black;
+    width: 300px;
+}
+.featured-column-3{
+    color: white;
+    background: black;
+    width: 300px;
+}
+.featured-column-4{
+    color: white;
+    background: black;
+    width: 300px;
+}
