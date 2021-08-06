@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import MusicBar from './MusicBar';
 import './styles/Dashboard.css'
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,12 +10,14 @@ import { getAllTimers } from '../store/timer';
 
 
 const FeaturedPlaylist = () => {
+    const [songs, setSongs] = useState(null)
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
     const token = useSelector(state => state?.token?.token?.access_token)
     const history = useHistory();
     const dispatch = useDispatch();
+    const { id } = useParams();
 
     useEffect(() => {
         (async () => {
@@ -23,8 +25,21 @@ const FeaturedPlaylist = () => {
             dispatch(getAllTimers(user.id))
         })()
 
-
     }, [dispatch, user.id]);
+
+
+    useEffect(() => {
+        if (user) {
+            (async () => {
+                const response = await fetch(`https://api.spotify.com/v1/playlists/${id}`, {
+                    method: "GET",
+                    headers: { 'Authorization': 'Bearer ' + token }
+                })
+                const data = await response.json()
+                console.log(data)
+            })()
+        }
+    }, [dispatch, token]);
 
 
     const makeNewPlaylist = (e) => {
