@@ -5,8 +5,8 @@
     align-self: stretch;
     width: 10%;
     height: 100%;
-    color: rgb(112, 109, 109);
-    background-image: linear-gradient(180deg, rgb(70, 39, 60),rgb(10, 6, 6));
+    color: rgb(29, 25, 25);
+    background-image: linear-gradient(180deg, rgb(119, 18, 49),rgb(119, 18, 49));
     width:88.5%;
   }
   .songs-container{
@@ -18,7 +18,7 @@
       margin-left: 120px;
       overflow: scroll;
       overflow-x: hidden;
-      color: rgb(112, 109, 109);
+      color: rgb(48, 46, 46);
 
   }
 
@@ -40,12 +40,11 @@
     list-style-type: none;  
 }
 .song-metadata-container{
-    background-color: blanchedalmond;
+    margin-top: 12px;
     display: flex;
-    justify-content: space-between;
     width:100%;
     text-align: left;
-    color: rgb(112, 109, 109);
+    color: rgb(252, 230, 230);
 
 }
 
@@ -53,35 +52,46 @@
 margin-left: 10px;
 width: 20px;
 text-align: left;
-
 }
 .song-list{
     width: 100%;
 }
 .song-name{
-    width: 600px;
+    width: 500px;
+    margin-left: 100px;
     text-align: left;
-    background-color: blanchedalmond;
 }
 .album-name{
-width: 10
-50px;
-text-align: left;
+width: 500px;
+margin-left: 100px;
 }
 .song-duration{
 margin-right: 60px;
 }
 .all-labels{
     display: flex;
-    background-color: white;
     width: 100%;
-    justify-content: space-between;
 }
 
-.playlist-header{
+
+.featured-header{
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 35%;
-    background-image: linear-gradient(180deg, rgb(161, 159, 167),rgb(70, 39, 60));  
+    background-image: linear-gradient(180deg, rgb(161, 159, 167),rgb(119, 18, 49));
+  /* background-color: white; */
+  
+}
+.featured-label-number{
+    margin-left: 10px;
+}
+.featured-label-title{
+    margin-left: 110px;
+}
+.featured-label-album{
+    margin-left: 570px;
+}
+.featured-label-duration{
+margin-left: 440px;
 }

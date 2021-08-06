@@ -97,10 +97,10 @@ const FeaturedPlaylist = () => {
                     <div className='featured-column-1'>
                         <div className='song-list'>
                             <div className='all-labels'>
-                                <label className='featured-label'>#</label>
-                                <label className='featured-label'>Title</label>
-                                <label className='featured-label'>Album</label>
-                                <label className='featured-label'>Duration</label>
+                                <label className='featured-label-number'>#</label>
+                                <label className='featured-label-title'>Title</label>
+                                <label className='featured-label-album'>Album</label>
+                                <label className='featured-label-duration'>Duration</label>
                             </div>
                             {songs &&
                                 songs.map((song) => {
