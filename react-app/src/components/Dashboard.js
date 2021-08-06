@@ -11,7 +11,6 @@ import { getAccessToken } from '../store/spotify';
 import { setFeaturedPlaylists } from '../store/featured';
 
 const Dashboard = () => {
-    // const [featured, setFeatured] = useState(null)
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
@@ -31,15 +30,17 @@ const Dashboard = () => {
     }, [dispatch, user.id]);
 
     useEffect(() => {
-        (async () => {
-            const response = await fetch("https://api.spotify.com/v1/browse/featured-playlists", {
-                method: "GET",
-                headers: { 'Authorization': 'Bearer ' + token }
-            })
-            const data = await response.json()
-            dispatch(setFeaturedPlaylists(data.playlists?.items))
-        })()
-    }, []);
+        if (user) {
+            (async () => {
+                const response = await fetch("https://api.spotify.com/v1/browse/featured-playlists", {
+                    method: "GET",
+                    headers: { 'Authorization': 'Bearer ' + token }
+                })
+                const data = await response.json()
+                dispatch(setFeaturedPlaylists(data.playlists?.items))
+            })()
+        }
+    }, [dispatch, token]);
 
     const makeNewPlaylist = (e) => {
         e.preventDefault();
@@ -58,13 +59,12 @@ const Dashboard = () => {
     const editTimer = (e) => {
         e.preventDefault();
         history.push(`/edit/timer/${e.target.value}`)
-        console.log(1)
     };
 
-    const getToken = (e) => {
+    const selectedPlaylist = (e) => {
         e.preventDefault();
-        dispatch(getAccessToken())
-    };
+        history.push(`/featured${e.target.value}`)
+    }
 
     return (
         <div className='dashboard-main-container'>
@@ -73,14 +73,20 @@ const Dashboard = () => {
                     {
                         featured &&
                         featured.map((playlist) => {
+                            console.log(playlist.id)
                             return (
                                 <div
                                     className='spotify-playlist'
                                     value={playlist.id}
+                                    id={playlist.id}
+                                    onClick={(e) => history.push(`/featured/${e.target.id}`)}
                                 >
-                                    <img className='featured-playlist-img' src={playlist.images[0]?.url} />
+                                    <img className='featured-playlist-img' src={playlist.images[0]?.url} value={playlist.id} id={playlist.id}
+                                    />
                                     <label
                                         className='featured-spotify-title'
+                                        value={playlist.id}
+                                        id={playlist.id}
                                     >
                                         {playlist.name}
                                     </label>
@@ -124,9 +130,10 @@ const Dashboard = () => {
                             Object.values(allPlaylists).map((playlist) => {
                                 return (
                                     <li key={playlist.id}
-                                        className={`playlist-btn`}
+                                        className={`playlist - btn`}
                                         value={playlist.id}
                                         onClick={editPlaylist}
+                                        key={playlist.id}
                                     >
                                         {playlist.name}
                                     </li>
