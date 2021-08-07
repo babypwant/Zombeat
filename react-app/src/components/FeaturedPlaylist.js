@@ -55,8 +55,6 @@ const FeaturedPlaylist = () => {
         history.push(`/edit/timer/${e.target.value}`)
     };
 
-
-
     return (
         <div className='dashboard-main-container'>
             <div className='featured-main-content'>
