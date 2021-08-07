@@ -6,7 +6,6 @@ import { getAllTimers } from '../store/timer';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import timerIcon from '../components/styles/images/add-timer.png'
 
-import Timer from './Timer';
 import './styles/Playlist.css'
 import MusicBar from './MusicBar';
 
@@ -106,20 +105,25 @@ const Playlist = () => {
     return (
         <div className='dashboard-main-container'>
             <div className='playlist-main-content'>
-                <form className='album-form' method="POST" action="/playlists/">
-                    <label> My playlist #1 </label>
-                    <input onChange={(e) => setNewName(e.target.value)}>
-                    </input>
-                    <div >
-                        <button onClick={makeNewPlaylist}>Create</button>
-                    </div>
-                    <div>
-                        <button onClick={updatePlaylist}>Edit</button>
-                    </div>
-                    <div>
-                        <button onClick={deletePlaylist}>Delete</button>
-                    </div>
-                </form>
+                <div className='new-list-header'>
+                    <form className='album-form' method="POST" action="/playlists/">
+                        <label> My playlist #1 </label>
+                        <input onChange={(e) => setNewName(e.target.value)}>
+                        </input>
+                        <div >
+                            <button onClick={makeNewPlaylist}>Create</button>
+                        </div>
+                        <div>
+                            <button onClick={updatePlaylist}>Edit</button>
+                        </div>
+                        <div>
+                            <button onClick={deletePlaylist}>Delete</button>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <label>Hello</label>
+                </div>
             </div>
             <div className='content-container'>
                 <div className='create-playlist-btn' onClick={makeNewPlaylist}>

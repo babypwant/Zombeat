@@ -12,8 +12,8 @@
     align-self: stretch;
     width: 10%;
     height: 100%;
-    color: red;
-    background-color: yellow;
+    color: rgb(2, 2, 2);
+    background-color: rgb(82, 86, 136);
     width:88.5%;
   }
   .album-form{
