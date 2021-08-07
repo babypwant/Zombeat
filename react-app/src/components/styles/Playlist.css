@@ -20,3 +20,10 @@
       display: flex;
       flex-direction: column;
   }
+  .example-1{
+    border-radius: 10px;
+  }
+
+  .example-2{
+    border-radius: 10px;
+  }

@@ -5,6 +5,8 @@ import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import timerIcon from '../components/styles/images/add-timer.png'
+import playlistExample1 from '../components/styles/images/Example1.PNG'
+import playlistExample2 from '../components/styles/images/Example2.PNG'
 
 import './styles/Playlist.css'
 import MusicBar from './MusicBar';
@@ -106,25 +108,29 @@ const Playlist = () => {
         <div className='dashboard-main-container'>
             <div className='playlist-main-content'>
                 <div className='new-list-header'>
-                    <form className='album-form' method="POST" action="/playlists/">
-                        <label> My playlist #1 </label>
-                        <input onChange={(e) => setNewName(e.target.value)}>
-                        </input>
-                        <div >
-                            <button onClick={makeNewPlaylist}>Create</button>
+                    <div className='all-playlist-form-items'>
+                        <div className='make-playlist-form'>
+                            <form className='album-form' method="POST" action="/playlists/">
+                                <label> Your Playlist, needs a  name to fit your mood</label>
+                                <input onChange={(e) => setNewName(e.target.value)}>
+                                </input>
+                                <div >
+                                    <button onClick={makeNewPlaylist}>Create</button>
+                                </div>
+                            </form>
                         </div>
+                        <p>How to add songs:</p>
+                        <p>On the Dashboard pick a playlist that fits your style</p>
                         <div>
-                            <button onClick={updatePlaylist}>Edit</button>
+                            <img className='example-1' src={playlistExample1} />
                         </div>
-                        <div>
-                            <button onClick={deletePlaylist}>Delete</button>
-                        </div>
-                    </form>
+                        <p>Press play to hear the song or the plus icon to add it to a playlist</p>
+                        <img className='example-2' src={playlistExample2} />
+                    </div>
                 </div>
-                <div>
-                    <label>Hello</label>
-                </div>
+
             </div>
+            {/* sidebar content */}
             <div className='content-container'>
                 <div className='create-playlist-btn' onClick={makeNewPlaylist}>
                     <img className='new-playlist-icon' src={playlistIcon} />
