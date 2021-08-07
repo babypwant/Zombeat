@@ -1,20 +1,31 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { setFeaturedPlaylists } from '../store/featured';
 import { getAccessToken } from '../store/spotify';
 import LogoutButton from './auth/LogoutButton';
 import './styles/Navbar.css'
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user);
+  const token = useSelector(state => state?.token?.token?.access_token)
   const dispatch = useDispatch();
 
-  useEffect(() => {
+
+  useEffect(async () => {
     if (user) {
-      dispatch(getAccessToken())
-      console.log(1)
+      (async () => {
+        await dispatch(getAccessToken())
+        const response = await fetch("https://api.spotify.com/v1/browse/featured-playlists", {
+          method: "GET",
+          headers: { 'Authorization': 'Bearer ' + token }
+        })
+        const data = await response.json()
+        dispatch(setFeaturedPlaylists(data.playlists?.items))
+      })()
     }
-  }, [dispatch])
+  }, [dispatch, token]);
+
   if (user) {
     return (
       <div className='navbar-background'>

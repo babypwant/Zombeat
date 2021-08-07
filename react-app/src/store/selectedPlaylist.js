@@ -13,9 +13,11 @@ export const setSelectedPlaylist = (id, token) => async (dispatch) => {
         headers: { 'Authorization': 'Bearer ' + token }
     })
     const data = await response.json()
+    console.log(data)
     dispatch(currentPlaylist(data))
 }
 
+// set 
 
 const initialState = {};
 
