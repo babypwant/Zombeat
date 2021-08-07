@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import timerIcon from '../components/styles/images/add-timer.png'
 import addIcon from '../components/styles/images/add-icon.png'
+import pauseIcon from '../components/styles/images/pause_icon.png'
 import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
 
@@ -13,6 +14,7 @@ import { getAllTimers } from '../store/timer';
 //match params with featuredplaylist and from useEffect make call in dashboard
 
 const FeaturedPlaylist = () => {
+    const [playButton, setPlayButton] = useState(addIcon)
     const playlistName = useSelector(state => state.selectedPlaylist?.current?.name)
     const description = useSelector(state => state.selectedPlaylist?.current?.description)
     const user = useSelector(state => state.session.user);
@@ -20,6 +22,8 @@ const FeaturedPlaylist = () => {
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
     const songs = useSelector(state => state.selectedPlaylist?.current?.tracks?.items)
     const image = useSelector(state => state.selectedPlaylist?.current?.images[0]?.url)
+
+    // const albumImg = (state => state.selectedPlaylist?.current?.tracks?)
     const history = useHistory();
     const dispatch = useDispatch();
     let amountOfTracks = 0;
@@ -49,7 +53,6 @@ const FeaturedPlaylist = () => {
     const editTimer = (e) => {
         e.preventDefault();
         history.push(`/edit/timer/${e.target.value}`)
-        console.log(1)
     };
 
 
@@ -65,7 +68,7 @@ const FeaturedPlaylist = () => {
                             {playlistName}
                             <i className="fa-solid fa-circle-minus"></i>
                         </div>
-                        <div>
+                        <div className='playlist-desc-bottom'>
                             {description}
                         </div>
                     </div>
@@ -92,6 +95,12 @@ const FeaturedPlaylist = () => {
                                         <div className='song-metadata-container'>
                                             <div className='song-number'>
                                                 {amountOfTracks += 1}
+                                            </div>
+                                            <div >
+                                                <img className='add-song' src={playButton} />
+                                            </div>
+                                            <div>
+                                                <img className='song-art' src={song.track.album.images[2].url} />
                                             </div>
                                             <div>
                                             </ div>

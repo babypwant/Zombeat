@@ -11,15 +11,11 @@ const NavBar = () => {
   const token = useSelector(state => state?.token?.token?.access_token)
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (user) {
-      await dispatch(getAccessToken())
-    }
-  }, [dispatch])
 
-  useEffect(() => {
+  useEffect(async () => {
     if (user) {
       (async () => {
+        await dispatch(getAccessToken())
         const response = await fetch("https://api.spotify.com/v1/browse/featured-playlists", {
           method: "GET",
           headers: { 'Authorization': 'Bearer ' + token }
