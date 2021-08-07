@@ -5,6 +5,8 @@ import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import timerIcon from '../components/styles/images/add-timer.png'
+import playlistExample1 from '../components/styles/images/Example1.PNG'
+import playlistExample2 from '../components/styles/images/Example2.PNG'
 import MusicBar from './MusicBar';
 import { createTimer } from '../store/timer';
 import './styles/Dashboard.css'
@@ -35,19 +37,6 @@ const Timer = () => {
     }
 
     const makeNewPlaylist = async (e) => {
-        // e.preventDefault();
-        // const response = await fetch('/api/playlists/', {
-        //     mode: 'no-cors',
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({ user_id })
-        // });
-        // const responseData = await response.json()
-        // setPlaylistId(responseData.playlist_Id)
-
-        // console.log("Successful", `=== New playlist Created ===`)
         history.push('/new/playlist')
     }
 
@@ -72,19 +61,29 @@ const Timer = () => {
     return (
         <div className='dashboard-main-container'>
             <div className='playlist-main-content'>
-                <form className='album-form' method="POST" action="/timers/" onSubmit={(e) => e.preventDefault()} >
-                    <label>New timer name</label>
-                    <input className='timer-name-input'
-                        onChange={(e) => setTimerName(e.target.value)}
-                    >
-                    </input>
-                    <label>Sleep time</label>
-                    <input className='timer-time-input'
-                        onChange={(e) => setTime(e.target.value)}>
-                    </input>
-                    <button type='submit' onClick={newTimer}>Here</button>
-                </form>
+                <div className='all-playlist-form-items'>
+                    <div className='make-playlist-form'>
+                        <form className='album-form' method="POST" action="/playlists/">
+                            <label className='your-playlist-label'> A perfect name for a perfect sleep</label>
+                            <input placeholder='Your Sleep Timer Name' className='playlist-form-name-input' onChange={(e) => setTimerName(e.target.value)}>
+                            </input>
+                            <div >
+                                <button onClick={newTimer}>Create</button>
+                            </div>
+                        </form>
+                    </div>
+                    <p className='p-label'>How to add songs:</p>
+                    <p className='p-label'>On the Dashboard, pick a playlist that fits your style!</p>
+                    <div>
+                        <img className='example-1' src={playlistExample1} />
+                    </div>
+                    <p className='p-label'>Press play to hear the song or the plus icon to add it to a playlist!</p>
+                    <img className='example-2' src={playlistExample2} />
+                    <p className='p-label'>That's it! You're a pro!</p>
+
+                </div>
             </div>
+            {/* sidebar content */}
             <div className='content-container'>
                 <div className='create-playlist-btn' onClick={makeNewPlaylist}>
                     <img className='new-playlist-icon' src={playlistIcon} />
