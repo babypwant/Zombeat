@@ -1,3 +1,4 @@
+import React from 'react';
 import { useHistory, useParams } from 'react-router';
 import MusicBar from './MusicBar';
 import './styles/Featured.css'
@@ -7,14 +8,29 @@ import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import timerIcon from '../components/styles/images/add-timer.png'
 import addIcon from '../components/styles/images/add-icon.png'
 import pauseIcon from '../components/styles/images/pause_icon.png'
+import Modal from 'react-modal';
 import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
 
 
 //match params with featuredplaylist and from useEffect make call in dashboard
 
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        backgroundImage: 'linear-gradient(280deg, #454545,#262222)',
+    },
+};
+
+
 const FeaturedPlaylist = () => {
     const [playButton, setPlayButton] = useState(addIcon)
+    const [modalIsOpen, setIsOpen] = React.useState(false);
     const playlistName = useSelector(state => state.selectedPlaylist?.current?.name)
     const description = useSelector(state => state.selectedPlaylist?.current?.description)
     const user = useSelector(state => state.session.user);
@@ -22,11 +38,25 @@ const FeaturedPlaylist = () => {
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
     const songs = useSelector(state => state.selectedPlaylist?.current?.tracks?.items)
     const image = useSelector(state => state.selectedPlaylist?.current?.images[0]?.url)
+    let subtitle;
 
-    // const albumImg = (state => state.selectedPlaylist?.current?.tracks?)
+
     const history = useHistory();
     const dispatch = useDispatch();
     let amountOfTracks = 0;
+
+
+    function openModal() {
+        setIsOpen(true);
+    }
+
+    function afterOpenModal() {
+        subtitle.style.color = 'white';
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
 
     useEffect(() => {
         (async () => {
@@ -94,8 +124,26 @@ const FeaturedPlaylist = () => {
                                             <div className='song-number'>
                                                 {amountOfTracks += 1}
                                             </div>
-                                            <div >
-                                                <img className='add-song' src={playButton} />
+                                            <div>
+                                                <div className='modal-container'>
+                                                    <Modal
+                                                        isOpen={modalIsOpen}
+                                                        onAfterOpen={afterOpenModal}
+                                                        onRequestClose={closeModal}
+                                                        style={customStyles}
+                                                        contentLabel="Example Modal"
+                                                    >
+                                                        <div className='edit-playlist-form-container'>
+                                                            <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Edit playlist</h2>
+                                                            <div>New playlist Name</div>
+                                                            <form>
+                                                                <inpu>Hello</inpu>
+                                                                <button >Save</button>
+                                                            </form>
+                                                        </div>
+                                                    </Modal>
+                                                </div>
+                                                <img className='add-song' onClick={openModal} src={playButton} />
                                             </div>
                                             <div>
                                                 <img className='song-art' src={song.track.album.images[2].url} />
