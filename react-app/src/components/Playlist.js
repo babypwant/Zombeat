@@ -111,21 +111,23 @@ const Playlist = () => {
                     <div className='all-playlist-form-items'>
                         <div className='make-playlist-form'>
                             <form className='album-form' method="POST" action="/playlists/">
-                                <label> Your Playlist, needs a  name to fit your mood</label>
-                                <input onChange={(e) => setNewName(e.target.value)}>
+                                <label className='your-playlist-label'> Your Playlist, needs a  name to fit your mood</label>
+                                <input placeholder='Your Playlist Name HERE' className='playlist-form-name-input' onChange={(e) => setNewName(e.target.value)}>
                                 </input>
                                 <div >
                                     <button onClick={makeNewPlaylist}>Create</button>
                                 </div>
                             </form>
                         </div>
-                        <p>How to add songs:</p>
-                        <p>On the Dashboard pick a playlist that fits your style</p>
+                        <p className='p-label'>How to add songs:</p>
+                        <p className='p-label'>On the Dashboard, pick a playlist that fits your style!</p>
                         <div>
                             <img className='example-1' src={playlistExample1} />
                         </div>
-                        <p>Press play to hear the song or the plus icon to add it to a playlist</p>
+                        <p className='p-label'>Press play to hear the song or the plus icon to add it to a playlist!</p>
                         <img className='example-2' src={playlistExample2} />
+                        <p className='p-label'>That's it! You're a pro!</p>
+
                     </div>
                 </div>
 

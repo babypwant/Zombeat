@@ -12,8 +12,8 @@
     align-self: stretch;
     width: 10%;
     height: 100%;
-    color: rgb(2, 2, 2);
-    background-color: rgb(82, 86, 136);
+    color: rgb(0, 0, 0);
+    background-color: rgb(60, 71, 218);
     width:88.5%;
   }
   .album-form{
@@ -22,8 +22,38 @@
   }
   .example-1{
     border-radius: 10px;
+    box-shadow: 5px 8px #000000;
+
   }
 
   .example-2{
     border-radius: 10px;
+    box-shadow: 5px 8px #000000;
+
   }
+  .album-form{
+    display: flex;
+    align-items: center;
+  }
+  .your-playlist-label{
+    margin-bottom: 20px;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .p-label{
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+
+  }
+.playlist-form-name-input{
+  border: none;
+  background: transparent;
+  outline: none;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: white;
+}
+.playlist-form-name-input::placeholder{
+  color: white
+}
