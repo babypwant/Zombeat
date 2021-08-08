@@ -50,9 +50,9 @@ const AddToPlaylist = () => {
 
     useEffect(() => {
         (async () => {
-            await dispatch(getPlaylists(user.id))
-            await dispatch(getAllTimers(user.id))
-            await dispatch(getSearchedSong(id, token))
+            dispatch(getPlaylists(user.id))
+            dispatch(getAllTimers(user.id))
+            dispatch(getSearchedSong(id, token))
             if (songLength) {
                 const minutes = Math.floor(songLengthMs / 60000);
                 const seconds = ((songLengthMs % 60000) / 1000).toFixed(0);
@@ -113,9 +113,11 @@ const AddToPlaylist = () => {
 
     const handleSaveRequests = (e) => {
         e.preventDefault();
-        addedPlaylists.map((playlist) => {
-            console.log(playlist)
-        })
+        if (addedPlaylists) {
+            for (const playlist in addedPlaylists) {
+                console.log(playlist)
+            }
+        }
     }
     return (
         <div className='dashboard-main-container'>
