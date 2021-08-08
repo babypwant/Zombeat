@@ -107,7 +107,10 @@ const AddToPlaylist = () => {
                 const album_name = albumName;
                 const song_length = songLength;
                 const song_img = image;
-                dispatch(storeSavedSong(song_link, song_name, artist_name, album_name, song_length, song_img))
+                (async () => {
+
+                    await dispatch(storeSavedSong(song_link, song_name, artist_name, album_name, song_length, song_img))
+                })()
             }
         }
     }

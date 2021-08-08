@@ -35,6 +35,5 @@ def get_token():
             'Content-Type': 'application/x-www-form-urlencoded'
         })
     tok = post_response.json()
-    print("HERE IS YOUR RESPONSE", tok)
 
     return tok

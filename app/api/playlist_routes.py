@@ -106,21 +106,21 @@ def save_song():
     song_length = data["song_length"]
     song_img = data["song_img"]
     check = Song.query.filter_by(song_link=song_link).first()
-    if check:
+    if check == None:
+        print(" == New Song Added == ")
+        song = Song(
+            song_link=song_link,
+            song_name=song_name,
+            artist_name=artist_name,
+            album_name=album_name,
+            song_length=song_length,
+            song_img=song_img
+        )
+        db.session.add(song)
+        db.session.commit()
+        new_song = Song.query.filter_by(song_link=song_link).first()
+        id = new_song.id
+        return {"id": id}
+    else:
         id = check.id
         return{"id": id}
-    else:
-        print(" == New Song Added == ")
-    song = Song(
-        song_link=song_link,
-        song_name=song_name,
-        artist_name=artist_name,
-        album_name=album_name,
-        song_length=song_length,
-        song_img=song_img
-    )
-    db.session.add(song)
-    db.session.commit()
-    new_song = Song.query.filter_by(song_link=song_link).first()
-    id = new_song.id
-    return {"id": id}
