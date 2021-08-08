@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import timerIcon from '../components/styles/images/add-timer.png'
-import addIcon from '../components/styles/images/add-icon.png'
-import pauseIcon from '../components/styles/images/pause_icon.png'
 import playIcon from '../components/styles/images/playIcon.png'
+import pauseIcon from '../components/styles/images/pause_icon.png'
 import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
+import { getSearchedSong } from '../store/searched';
 
 
 //match params with featuredplaylist and from useEffect make call in dashboard
@@ -29,13 +29,20 @@ const customStyles = {
 
 
 const AddToPlaylist = () => {
+    const [pausePlay, setPausePlay] = useState(playIcon)
+    const [pausePlaySwitch, setPausePlaySwitch] = useState('play')
+    const [songLength, setSongLength] = useState(0)
     const playlistName = useSelector(state => state.searched?.currsong?.name)
-    const description = useSelector(state => state.searched?.current?.description)
+    const artists = useSelector(state => state.searched?.currsong?.artists)
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
     const songs = useSelector(state => state.searched?.current?.tracks?.items)
     const image = useSelector(state => state.searched?.currsong?.album?.images[0]?.url)
+    const token = useSelector(state => state?.token?.token?.access_token)
+
+    const songLengthMs = useSelector(state => state.searched.currsong?.duration_ms)
+    const { id } = useParams()
     let subtitle;
 
 
@@ -45,8 +52,14 @@ const AddToPlaylist = () => {
 
     useEffect(() => {
         (async () => {
-            dispatch(getPlaylists(user.id))
-            dispatch(getAllTimers(user.id))
+            await dispatch(getPlaylists(user.id))
+            await dispatch(getAllTimers(user.id))
+            await dispatch(getSearchedSong(id, token))
+            if (songLength) {
+                const minutes = Math.floor(songLengthMs / 60000);
+                const seconds = ((songLengthMs % 60000) / 1000).toFixed(0);
+                setSongLength(minutes + ":" + (seconds < 10 ? '0' : '') + seconds)
+            }
         })()
 
     }, [dispatch, user.id]);
@@ -70,6 +83,16 @@ const AddToPlaylist = () => {
         history.push(`/edit/timer/${e.target.value}`)
     };
 
+    const pauseAndPlay = (e) => {
+        e.preventDefault();
+        if (pauseAndPlay === 'play') {
+            setPausePlay(pauseIcon)
+        } else {
+            setPausePlay(playIcon)
+        }
+
+    }
+
     return (
         <div className='dashboard-main-container'>
             <div className='featured-main-content'>
@@ -77,22 +100,70 @@ const AddToPlaylist = () => {
                     <img className='playlist-img' src={image} />
                     <div className='playlist-name-top'>
                         Song
-                        <div className='playlist-name-bottom'>
+                        <div className='song-name-bottom'>
                             {playlistName}
                             <i className="fa-solid fa-circle-minus"></i>
                         </div>
-                        <div className='playlist-desc-bottom'>
-                            {description}
+                        <div className='song-desc-bottom'>
+                            {artists &&
+                                artists.map((artist) => {
+                                    return (
+                                        <p className='artist-name'>• {artist.name} •</p>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                     <div>
-                        <div className='delete-playlist-Icon'>
-                            <img className='' />
-                        </div>
                     </div>
                 </div>
                 <div className='songs-container'>
-                    
+                    <div className='featured-column-1'>
+                        <div className='song-list'>
+                            <div className='all-labels'>
+                                <label className='featured-label-number'>#</label>
+                                <label className='featured-label-title'>Title</label>
+                                <label className='featured-label-duration'>Duration</label>
+                            </div>
+                            <div className='song-metadata-container' >
+                                <div className='song-number'>
+                                    <img className='play-and-pause' onClick={pauseAndPlay} src={pausePlay} />
+                                </div>
+                                <div>
+                                </ div>
+                                <div className='song-name-single'>
+                                    {playlistName}
+                                </div>
+                                <div className='song-duration-single'>
+                                    {songLength}
+                                </div>
+                            </div>
+                            <div className='add-to-playlists'>
+                                <form className='add-to-all-playlist-form'>
+                                    {allPlaylists &&
+                                        Object.values(allPlaylists).map((playlist) => {
+                                            return (
+                                                <div className='playlist-form-item'>
+
+                                                    <input
+                                                        type='checkbox'
+                                                        className={`playlist-btn`}
+                                                        value={playlist.id}
+                                                        key={playlist.id}
+                                                    >
+                                                    </input>
+                                                    <label>{playlist.name}</label>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                    <div className=''>
+                                        <button>Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className='content-container'>
@@ -126,7 +197,7 @@ const AddToPlaylist = () => {
                         {allPlaylists &&
                             Object.values(allPlaylists).map((playlist) => {
                                 return (
-                                    <li key={playlist.id}
+                                    <li
                                         className={`playlist-btn`}
                                         value={playlist.id}
                                         onClick={editPlaylist}
