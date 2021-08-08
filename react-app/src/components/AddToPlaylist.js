@@ -37,18 +37,16 @@ const AddToPlaylist = () => {
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
-    const songs = useSelector(state => state.searched?.current?.tracks?.items)
     const image = useSelector(state => state.searched?.currsong?.album?.images[0]?.url)
     const token = useSelector(state => state?.token?.token?.access_token)
+    let addedPlaylists = {};
 
     const songLengthMs = useSelector(state => state.searched.currsong?.duration_ms)
     const { id } = useParams()
-    let subtitle;
 
 
     const history = useHistory();
     const dispatch = useDispatch();
-    let amountOfTracks = 0;
 
     useEffect(() => {
         (async () => {
@@ -85,12 +83,32 @@ const AddToPlaylist = () => {
 
     const pauseAndPlay = (e) => {
         e.preventDefault();
-        if (pauseAndPlay === 'play') {
+        if (pausePlaySwitch === 'play') {
             setPausePlay(pauseIcon)
+            setPausePlaySwitch('pause')
         } else {
             setPausePlay(playIcon)
+            setPausePlaySwitch('play')
         }
 
+    };
+
+    const addingToAllPlaylists = (e) => {
+        e.preventDefault();
+        console.log(e.target)
+    };
+
+
+    const checkPlaylist = (e) => {
+        const checked = e.target.checked
+        const playlistId = e.target.value
+        if (checked === true) {
+            addedPlaylists[playlistId] = playlistId
+            console.log(addedPlaylists)
+        } else if (checked === false) {
+            delete addedPlaylists.[playlistId];
+            console.log(addedPlaylists)
+        }
     }
 
     return (
@@ -139,7 +157,7 @@ const AddToPlaylist = () => {
                                 </div>
                             </div>
                             <div className='add-to-playlists'>
-                                <form className='add-to-all-playlist-form'>
+                                <form className='add-to-all-playlist-form' onSubmit={addingToAllPlaylists}>
                                     {allPlaylists &&
                                         Object.values(allPlaylists).map((playlist) => {
                                             return (
@@ -150,6 +168,7 @@ const AddToPlaylist = () => {
                                                         className={`playlist-btn`}
                                                         value={playlist.id}
                                                         key={playlist.id}
+                                                        onChange={checkPlaylist}
                                                     >
                                                     </input>
                                                     <label>{playlist.name}</label>
