@@ -125,7 +125,7 @@ const Playlist = () => {
                         <div>
                             <img className='example-1' src={playlistExample1} />
                         </div>
-                        <p className='p-label'>Press play to hear the song or the plus icon to add it to a playlist!</p>
+                        <p className='p-label'>Press the plus icon to add it to a playlist!</p>
                         <img className='example-2' src={playlistExample2} />
                         <p className='p-label'>That's it! You're a pro!</p>
 

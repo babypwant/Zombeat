@@ -164,6 +164,9 @@ const EditPlaylist = () => {
                         </div>
                     </div>
                 </div>
+                <div className='all-songs-container'>
+                    Hello
+                </div>
             </div>
             <div className='content-container'>
                 <div className='create-playlist-btn' onClick={makeNewPlaylist}>
