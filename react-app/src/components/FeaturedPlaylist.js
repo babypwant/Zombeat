@@ -11,6 +11,7 @@ import pauseIcon from '../components/styles/images/pause_icon.png'
 import playIcon from '../components/styles/images/playIcon.png'
 import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
+import { contextType } from 'react-modal';
 
 
 //match params with featuredplaylist and from useEffect make call in dashboard
@@ -61,9 +62,9 @@ const FeaturedPlaylist = () => {
         e.preventDefault();
         history.push(`/edit/timer/${e.target.value}`)
     };
-    const addToPlaylists = (e) => {
-        e.preventDefault();
-        console.log(e.target)
+
+    const playSong = (e) => {
+        console.log(e.target.id)
     }
 
     return (
@@ -101,7 +102,7 @@ const FeaturedPlaylist = () => {
                                     const minutes = Math.floor(song.track.duration_ms / 60000);
                                     const seconds = ((song.track.duration_ms % 60000) / 1000).toFixed(0);
                                     return (
-                                        <div className='song-metadata-container'>
+                                        <div className='song-metadata-container' >
                                             <div className='song-number'>
                                                 {amountOfTracks += 1}
                                             </div>
@@ -109,17 +110,14 @@ const FeaturedPlaylist = () => {
                                                 <img className='add-song' onClick={(e) => history.push(`/add/${e.target.id}`)} src={addIcon} id={song.track.id} value={song.track.id} />
                                             </div>
                                             <div>
-                                                <img className='play-pause-icon' src={playIcon}></img>
-                                            </div >
-                                            <div>
                                                 <img className='song-art' src={song.track.album.images[2].url} />
                                             </div>
                                             <div>
                                             </ div>
-                                            <div className='song-name'>
+                                            <div className='song-name' onClick={playSong} id={song.track.id}>
                                                 {song.track.name}
                                             </div>
-                                            <div className='album-name'>
+                                            <div className='album-name' >
                                                 {song.track.album.name}
                                             </div>
                                             <div className='song-duration'>

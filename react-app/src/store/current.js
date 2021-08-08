@@ -1,4 +1,4 @@
-const SET_CURRENT_SONG = 'session/SET_CURRENT_SONG';
+const SET_CURRENT_SONG = 'SET_CURRENT_SONG';
 
 export const setCurrentSong = (id) => ({
     type: SET_CURRENT_SONG,
