@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask.wrappers import Response
 from sqlalchemy import update
-from app.models import Playlist, db
+from app.models import Playlist, db, Song
 import ast
 import os
 
@@ -93,3 +93,34 @@ def get_all_playlists(id):
         formated_data = playlist.to_dict()
         all_playlists.append(formated_data)
     return {"all_playlists": all_playlists}
+
+
+@playlist_routes.route('/new/song', methods=["POST"])
+def save_song():
+    request_data = request.data.decode("utf-8")
+    data = ast.literal_eval(request_data)
+    song_link = data["song_link"]
+    song_name = data["song_name"]
+    artist_name = data["artist_name"]
+    album_name = data["album_name"]
+    song_length = data["song_length"]
+    song_img = data["song_img"]
+    check = Song.query.filter_by(song_link=song_link).first()
+    if check:
+        id = check.id
+        return{"id": id}
+    else:
+        print(" == New Song Added == ")
+    song = Song(
+        song_link=song_link,
+        song_name=song_name,
+        artist_name=artist_name,
+        album_name=album_name,
+        song_length=song_length,
+        song_img=song_img
+    )
+    db.session.add(song)
+    db.session.commit()
+    new_song = Song.query.filter_by(song_link=song_link).first()
+    id = new_song.id
+    return {"id": id}

@@ -21,7 +21,6 @@ def get_token():
     print("HERE IS CLIENT ID", formatted_id)
     print("HERE IS CLIENT SECRET", formatted_secret)
     print('Basic ' + f'{formatted_id}' + ':' + f'{formatted_secret}')
-
     request_body = {
         "grant_type": 'client_credentials',
         "redirect_uri": 'https://spotify-clone-aa.herokuapp.com/dashboard',
