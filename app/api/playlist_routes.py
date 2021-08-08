@@ -121,6 +121,6 @@ def save_song():
         new_song = Song.query.filter_by(song_link=song_link).first()
         id = new_song.id
         return {"id": id}
-    else:
+    elif check != None:
         id = check.id
         return{"id": id}
