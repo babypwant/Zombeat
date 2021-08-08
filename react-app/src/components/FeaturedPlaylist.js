@@ -7,11 +7,9 @@ import { useEffect, useState } from 'react';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import timerIcon from '../components/styles/images/add-timer.png'
 import addIcon from '../components/styles/images/add-icon.png'
-import pauseIcon from '../components/styles/images/pause_icon.png'
-import playIcon from '../components/styles/images/playIcon.png'
 import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
-import { contextType } from 'react-modal';
+import { playCurrentSong } from '../store/current';
 
 
 //match params with featuredplaylist and from useEffect make call in dashboard
@@ -64,8 +62,9 @@ const FeaturedPlaylist = () => {
     };
 
     const playSong = (e) => {
-        console.log(e.target.id)
-    }
+        const id = e.target.id
+        dispatch(playCurrentSong(id))
+    };
 
     return (
         <div className='dashboard-main-container'>

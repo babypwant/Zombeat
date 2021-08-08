@@ -1,9 +1,14 @@
 const SET_CURRENT_SONG = 'SET_CURRENT_SONG';
 
-export const setCurrentSong = (id) => ({
+export const setSong = (id) => ({
     type: SET_CURRENT_SONG,
     id
 });
+
+export const playCurrentSong = (id) => async (dispatch) => {
+
+    dispatch(setSong(id))
+}
 
 const initialState = {};
 
