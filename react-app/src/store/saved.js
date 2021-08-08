@@ -1,8 +1,8 @@
 const SET_PLAYLIST_SONGS = 'SET_PLAYLIST_SONGS';
 
-export const saveSong = (id) => ({
+export const saveSong = (songs) => ({
     type: SET_PLAYLIST_SONGS,
-    id
+    songs
 });
 
 export const seedSongAndPlaylist = (song_id, playlist_id) => async (dispatch) => {
@@ -27,15 +27,20 @@ export const storeSavedSong = (song_link, song_name, artist_name, album_name, so
     dispatch(seedSongAndPlaylist(song_id, playlist_id))
 }
 
-export const getPlaylistSongs = () => async (dispatch) => {
-    const response = await fetch(`/api/playlists/new/song`, {
+export const getPlaylistSongs = (id) => async (dispatch) => {
+    const response = await fetch(`/api/playlists/get/songs`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({})
+        body: JSON.stringify({ id })
     })
     const data = await response.json()
-    console.log(data)
-    // dispatch(saveSong())
+    const res = data.songs
+    const songs = []
+    res.forEach((song) => {
+        songs.push(song[0])
+    })
+    console.log(songs)
+    dispatch(saveSong(songs))
 }
 
 const initialState = {};
@@ -43,7 +48,7 @@ const initialState = {};
 const saved = (state = initialState, action) => {
     switch (action.type) {
         case SET_PLAYLIST_SONGS:
-            return { saved: action.id }
+            return { saved: action.songs }
         default:
             return state;
     }

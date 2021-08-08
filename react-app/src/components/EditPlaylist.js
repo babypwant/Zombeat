@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
+import { getPlaylistSongs } from '../store/saved';
 import Modal from 'react-modal';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import trashIcon from '../components/styles/images/trash.png'
@@ -34,6 +35,7 @@ const EditPlaylist = () => {
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
+    const songs = useSelector(state => state.saved?.saved)
     let subtitle;
     const { id } = useParams()
     const history = useHistory();
@@ -56,8 +58,10 @@ const EditPlaylist = () => {
         (async () => {
             dispatch(getPlaylists(user.id))
             dispatch(getAllTimers(user.id))
+            dispatch(getPlaylistSongs(id))
         })()
     }, [playlistTitle, setPlaylistTitle])
+
     useEffect(async () => {
         const user_id = user.id
         const response = await fetch(`/api/playlists/info`, {
@@ -70,7 +74,6 @@ const EditPlaylist = () => {
         })
         const responseData = await response.json()
         setPlaylistTitle(responseData.Success.name)
-        console.log(playlistTitle)
     }, [playlistTitle, setPlaylistTitle])
 
     const makeNewPlaylist = (e) => {
@@ -165,7 +168,13 @@ const EditPlaylist = () => {
                     </div>
                 </div>
                 <div className='all-songs-container'>
-                    Hello
+                    {
+                        songs &&
+                        songs.map((song) => {
+                            console.log(1)
+                        })
+
+                    }
                 </div>
             </div>
             <div className='content-container'>

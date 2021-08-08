@@ -150,5 +150,11 @@ def add_song():
 def get_songs():
     request_data = request.data.decode("utf-8")
     data = ast.literal_eval(request_data)
-    print("YOU HIT THE BACKEND HERE IS YOUR DATA", data)
-    return{"here you got": data}
+    playlist_id = data["id"]
+    filtered_songs = []
+    unfiltered_songs = db.session.query(saved_songs).filter_by(
+        playlist_id=playlist_id).all()
+    for song in unfiltered_songs:
+        filtered_songs.append(list(song))
+    print("YOU HIT THE BACKEND HERE IS YOUR DATA", filtered_songs)
+    return{"songs": filtered_songs}
