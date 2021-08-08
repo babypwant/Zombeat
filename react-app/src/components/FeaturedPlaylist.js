@@ -10,6 +10,7 @@ import addIcon from '../components/styles/images/add-icon.png'
 import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
 import { playCurrentSong } from '../store/current';
+import { getSearchedSong } from '../store/searched';
 
 
 //match params with featuredplaylist and from useEffect make call in dashboard
@@ -22,9 +23,9 @@ const FeaturedPlaylist = () => {
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
+    const token = useSelector(state => state?.token?.token?.access_token)
     const songs = useSelector(state => state.selectedPlaylist?.current?.tracks?.items)
     const image = useSelector(state => state.selectedPlaylist?.current?.images[0]?.url)
-    let subtitle;
 
 
     const history = useHistory();
@@ -63,8 +64,15 @@ const FeaturedPlaylist = () => {
 
     const playSong = (e) => {
         const id = e.target.id
-        dispatch(playCurrentSong(id))
+        dispatch(playCurrentSong(id, token))
     };
+
+    const searchSong = async (e) => {
+        e.preventDefault();
+        const id = e.target.id
+        await dispatch(getSearchedSong(id, token))
+        history.push(`/add/${id}`)
+    }
 
     return (
         <div className='dashboard-main-container'>
@@ -106,7 +114,7 @@ const FeaturedPlaylist = () => {
                                                 {amountOfTracks += 1}
                                             </div>
                                             <div>
-                                                <img className='add-song' onClick={(e) => history.push(`/add/${e.target.id}`)} src={addIcon} id={song.track.id} value={song.track.id} />
+                                                <img className='add-song' onClick={searchSong} src={addIcon} id={song.track.id} value={song.track.id} />
                                             </div>
                                             <div>
                                                 <img className='song-art' src={song.track.album.images[2].url} />

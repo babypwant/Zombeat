@@ -4,9 +4,7 @@ import { useEffect } from 'react';
 //See iframe data
 
 const MusicBar = () => {
-    const song = useSelector(state => state.current.currsong)
-    const currsong = 'https://open.spotify.com/embed/track/45BBlVHECwB0uNt7BsJ97r';
-
+    const song = useSelector(state => state.current?.currsong?.id)
     return (
         <div className='music-bar-container'>
             <div className='iframe-container'>

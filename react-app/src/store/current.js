@@ -5,9 +5,14 @@ export const setSong = (id) => ({
     id
 });
 
-export const playCurrentSong = (id) => async (dispatch) => {
-
-    dispatch(setSong(id))
+export const playCurrentSong = (id, token) => async (dispatch) => {
+    const response = await fetch(`https://api.spotify.com/v1/tracks/${id}`, {
+        method: "GET",
+        headers: { 'Authorization': 'Bearer ' + token }
+    })
+    const data = await response.json()
+    console.log(data)
+    dispatch(setSong(data))
 }
 
 const initialState = {};

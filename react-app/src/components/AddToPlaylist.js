@@ -29,13 +29,13 @@ const customStyles = {
 
 
 const AddToPlaylist = () => {
-    const playlistName = useSelector(state => state.selectedPlaylist?.current?.name)
-    const description = useSelector(state => state.selectedPlaylist?.current?.description)
+    const playlistName = useSelector(state => state.searched?.currsong?.name)
+    const description = useSelector(state => state.searched?.current?.description)
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
-    const songs = useSelector(state => state.selectedPlaylist?.current?.tracks?.items)
-    const image = useSelector(state => state.selectedPlaylist?.current?.images[0]?.url)
+    const songs = useSelector(state => state.searched?.current?.tracks?.items)
+    const image = useSelector(state => state.searched?.currsong?.album?.images[0]?.url)
     let subtitle;
 
 
@@ -92,50 +92,7 @@ const AddToPlaylist = () => {
                     </div>
                 </div>
                 <div className='songs-container'>
-                    <div className='featured-column-1'>
-                        <div className='song-list'>
-                            <div className='all-labels'>
-                                <label className='featured-label-number'>#</label>
-                                <label className='featured-label-title'>Title</label>
-                                <label className='featured-label-album'>Album</label>
-                                <label className='featured-label-duration'>Duration</label>
-                            </div>
-                            {songs &&
-                                songs.map((song) => {
-                                    const minutes = Math.floor(song.track.duration_ms / 60000);
-                                    const seconds = ((song.track.duration_ms % 60000) / 1000).toFixed(0);
-                                    return (
-                                        <div className='song-metadata-container'>
-                                            <div className='song-number'>
-                                                {amountOfTracks += 1}
-                                            </div>
-                                            <div>
-                                                <img className='add-song' onClick={(e) => history.push(`/add/${e.target.id}`)} src={addIcon} id={song.track.id} value={song.track.id} />
-                                            </div>
-                                            <div>
-                                                <img className='play-pause-icon' src={playIcon}></img>
-                                            </div >
-                                            <div>
-                                                <img className='song-art' src={song.track.album.images[2].url} />
-                                            </div>
-                                            <div>
-                                            </ div>
-                                            <div className='song-name'>
-                                                {song.track.name}
-                                            </div>
-                                            <div className='album-name'>
-                                                {song.track.album.name}
-                                            </div>
-                                            <div className='song-duration'>
-                                                {minutes + ":" + (seconds < 10 ? '0' : '') + seconds}
-                                            </div>
-                                        </div>
-                                    )
-                                })
-
-                            }
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <div className='content-container'>
