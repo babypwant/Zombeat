@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask.wrappers import Response
 from sqlalchemy import update
 from app.models import Playlist, db, Song
+from app.models.playlist import saved_songs
 import ast
 import os
 
@@ -124,3 +125,22 @@ def save_song():
     elif check != None:
         id = check.id
         return{"id": id}
+
+
+@playlist_routes.route('/add/song', methods=["POST"])
+def add_song():
+    request_data = request.data.decode("utf-8")
+    data = ast.literal_eval(request_data)
+    song_id = data["song_id"]
+    playlist_id = data["playlist_id"]
+    saved_song_test = db.session.query(saved_songs).filter_by(
+        song_id=song_id, playlist_id=playlist_id).first()
+    if saved_song_test == None:
+        print("HERE IS YOUR INFORMATION", song_id, "HERE TOO", playlist_id)
+        saved_tabled = saved_songs.insert().values(
+            song_id=song_id, playlist_id=playlist_id)
+        db.session.execute(saved_tabled)
+        db.session.commit()
+        return{"== Executed ==": song_id}
+    elif saved_song_test != None:
+        return {"Already in db": song_id}

@@ -90,7 +90,6 @@ const AddToPlaylist = () => {
         const playlistId = e.target.value
         if (checked === true) {
             addedPlaylists[playlistId] = playlistId
-            console.log(addedPlaylists)
         } else if (checked === false) {
             delete addedPlaylists[playlistId];
             console.log(addedPlaylists)
@@ -101,13 +100,14 @@ const AddToPlaylist = () => {
         e.preventDefault();
         if (addedPlaylists) {
             for (const playlist in addedPlaylists) {
+                const playlist_id = playlist
                 const song_link = id;
                 const song_name = songName;
                 const artist_name = artists[0].name;
                 const album_name = albumName;
                 const song_length = songLength;
                 const song_img = image;
-                await dispatch(storeSavedSong(song_link, song_name, artist_name, album_name, song_length, song_img))
+                await dispatch(storeSavedSong(song_link, song_name, artist_name, album_name, song_length, song_img, playlist_id))
             }
         }
     }
