@@ -12,22 +12,6 @@ import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
 import { getSearchedSong } from '../store/searched';
 
-
-//match params with featuredplaylist and from useEffect make call in dashboard
-
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        backgroundImage: 'linear-gradient(280deg, #454545,#262222)',
-    },
-};
-
-
 const AddToPlaylist = () => {
     const [pausePlay, setPausePlay] = useState(playIcon)
     const [pausePlaySwitch, setPausePlaySwitch] = useState('play')
