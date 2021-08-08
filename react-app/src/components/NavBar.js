@@ -41,9 +41,6 @@ const NavBar = () => {
               Dashboard
             </NavLink>
           </div>
-          {/* <div className='avatar-container'>
-            <img classnName='user-avatar' src={user?.avatar} />
-          </div> */}
           <LogoutButton />
           <div>
           </div>

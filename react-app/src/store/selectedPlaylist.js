@@ -17,8 +17,6 @@ export const setSelectedPlaylist = (id, token) => async (dispatch) => {
     dispatch(currentPlaylist(data))
 }
 
-// set 
-
 const initialState = {};
 
 const selectedPlaylist = (state = initialState, action) => {

@@ -133,3 +133,11 @@ margin-top: 10px;
 .all-playlist-form-items{
     margin-bottom: 150px;
 }
+.play-pause-icon{
+    box-sizing: border-box;
+    width: 25px;
+    height: 23px;
+    margin-top: 8px;
+    margin-left: 12px;
+
+}

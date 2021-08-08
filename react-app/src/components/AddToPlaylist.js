@@ -15,9 +15,20 @@ import { getAllTimers } from '../store/timer';
 
 //match params with featuredplaylist and from useEffect make call in dashboard
 
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        backgroundImage: 'linear-gradient(280deg, #454545,#262222)',
+    },
+};
 
 
-const FeaturedPlaylist = () => {
+const AddToPlaylist = () => {
     const playlistName = useSelector(state => state.selectedPlaylist?.current?.name)
     const description = useSelector(state => state.selectedPlaylist?.current?.description)
     const user = useSelector(state => state.session.user);
@@ -31,9 +42,6 @@ const FeaturedPlaylist = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     let amountOfTracks = 0;
-
-
-
 
     useEffect(() => {
         (async () => {
@@ -61,10 +69,6 @@ const FeaturedPlaylist = () => {
         e.preventDefault();
         history.push(`/edit/timer/${e.target.value}`)
     };
-    const addToPlaylists = (e) => {
-        e.preventDefault();
-        console.log(e.target)
-    }
 
     return (
         <div className='dashboard-main-container'>
@@ -72,7 +76,7 @@ const FeaturedPlaylist = () => {
                 <div className='featured-header'>
                     <img className='playlist-img' src={image} />
                     <div className='playlist-name-top'>
-                        Playlist
+                        Song
                         <div className='playlist-name-bottom'>
                             {playlistName}
                             <i className="fa-solid fa-circle-minus"></i>
@@ -184,4 +188,4 @@ const FeaturedPlaylist = () => {
     );
 };
 
-export default FeaturedPlaylist;
+export default AddToPlaylist;
