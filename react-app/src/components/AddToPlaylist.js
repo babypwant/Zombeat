@@ -6,39 +6,60 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import timerIcon from '../components/styles/images/add-timer.png'
-import addIcon from '../components/styles/images/add-icon.png'
+import playIcon from '../components/styles/images/playIcon.png'
+import pauseIcon from '../components/styles/images/pause_icon.png'
 import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
-import { playCurrentSong } from '../store/current';
 import { getSearchedSong } from '../store/searched';
 
 
 //match params with featuredplaylist and from useEffect make call in dashboard
 
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        backgroundImage: 'linear-gradient(280deg, #454545,#262222)',
+    },
+};
 
 
-const FeaturedPlaylist = () => {
-    const playlistName = useSelector(state => state.selectedPlaylist?.current?.name)
-    const description = useSelector(state => state.selectedPlaylist?.current?.description)
+const AddToPlaylist = () => {
+    const [pausePlay, setPausePlay] = useState(playIcon)
+    const [pausePlaySwitch, setPausePlaySwitch] = useState('play')
+    const [songLength, setSongLength] = useState(0)
+    const playlistName = useSelector(state => state.searched?.currsong?.name)
+    const artists = useSelector(state => state.searched?.currsong?.artists)
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
+    const songs = useSelector(state => state.searched?.current?.tracks?.items)
+    const image = useSelector(state => state.searched?.currsong?.album?.images[0]?.url)
     const token = useSelector(state => state?.token?.token?.access_token)
-    const songs = useSelector(state => state.selectedPlaylist?.current?.tracks?.items)
-    const image = useSelector(state => state.selectedPlaylist?.current?.images[0]?.url)
+
+    const songLengthMs = useSelector(state => state.searched.currsong?.duration_ms)
+    const { id } = useParams()
+    let subtitle;
 
 
     const history = useHistory();
     const dispatch = useDispatch();
     let amountOfTracks = 0;
 
-
-
-
     useEffect(() => {
         (async () => {
-            dispatch(getPlaylists(user.id))
-            dispatch(getAllTimers(user.id))
+            await dispatch(getPlaylists(user.id))
+            await dispatch(getAllTimers(user.id))
+            await dispatch(getSearchedSong(id, token))
+            if (songLength) {
+                const minutes = Math.floor(songLengthMs / 60000);
+                const seconds = ((songLengthMs % 60000) / 1000).toFixed(0);
+                setSongLength(minutes + ":" + (seconds < 10 ? '0' : '') + seconds)
+            }
         })()
 
     }, [dispatch, user.id]);
@@ -62,16 +83,14 @@ const FeaturedPlaylist = () => {
         history.push(`/edit/timer/${e.target.value}`)
     };
 
-    const playSong = (e) => {
-        const id = e.target.id
-        dispatch(playCurrentSong(id, token))
-    };
-
-    const searchSong = async (e) => {
+    const pauseAndPlay = (e) => {
         e.preventDefault();
-        const id = e.target.id
-        await dispatch(getSearchedSong(id, token))
-        history.push(`/add/${id}`)
+        if (pauseAndPlay === 'play') {
+            setPausePlay(pauseIcon)
+        } else {
+            setPausePlay(playIcon)
+        }
+
     }
 
     return (
@@ -80,19 +99,22 @@ const FeaturedPlaylist = () => {
                 <div className='featured-header'>
                     <img className='playlist-img' src={image} />
                     <div className='playlist-name-top'>
-                        Playlist
-                        <div className='playlist-name-bottom'>
+                        Song
+                        <div className='song-name-bottom'>
                             {playlistName}
                             <i className="fa-solid fa-circle-minus"></i>
                         </div>
-                        <div className='playlist-desc-bottom'>
-                            {description}
+                        <div className='song-desc-bottom'>
+                            {artists &&
+                                artists.map((artist) => {
+                                    return (
+                                        <p className='artist-name'>• {artist.name} •</p>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                     <div>
-                        <div className='delete-playlist-Icon'>
-                            <img className='' />
-                        </div>
                     </div>
                 </div>
                 <div className='songs-container'>
@@ -101,40 +123,45 @@ const FeaturedPlaylist = () => {
                             <div className='all-labels'>
                                 <label className='featured-label-number'>#</label>
                                 <label className='featured-label-title'>Title</label>
-                                <label className='featured-label-album'>Album</label>
                                 <label className='featured-label-duration'>Duration</label>
                             </div>
-                            {songs &&
-                                songs.map((song) => {
-                                    const minutes = Math.floor(song.track.duration_ms / 60000);
-                                    const seconds = ((song.track.duration_ms % 60000) / 1000).toFixed(0);
-                                    return (
-                                        <div className='song-metadata-container' >
-                                            <div className='song-number'>
-                                                {amountOfTracks += 1}
-                                            </div>
-                                            <div>
-                                                <img className='add-song' onClick={searchSong} src={addIcon} id={song.track.id} value={song.track.id} />
-                                            </div>
-                                            <div>
-                                                <img className='song-art' src={song.track.album.images[2].url} />
-                                            </div>
-                                            <div>
-                                            </ div>
-                                            <div className='song-name' onClick={playSong} id={song.track.id}>
-                                                {song.track.name}
-                                            </div>
-                                            <div className='album-name' >
-                                                {song.track.album.name}
-                                            </div>
-                                            <div className='song-duration'>
-                                                {minutes + ":" + (seconds < 10 ? '0' : '') + seconds}
-                                            </div>
-                                        </div>
-                                    )
-                                })
+                            <div className='song-metadata-container' >
+                                <div className='song-number'>
+                                    <img className='play-and-pause' onClick={pauseAndPlay} src={pausePlay} />
+                                </div>
+                                <div>
+                                </ div>
+                                <div className='song-name-single'>
+                                    {playlistName}
+                                </div>
+                                <div className='song-duration-single'>
+                                    {songLength}
+                                </div>
+                            </div>
+                            <div className='add-to-playlists'>
+                                <form className='add-to-all-playlist-form'>
+                                    {allPlaylists &&
+                                        Object.values(allPlaylists).map((playlist) => {
+                                            return (
+                                                <div className='playlist-form-item'>
 
-                            }
+                                                    <input
+                                                        type='checkbox'
+                                                        className={`playlist-btn`}
+                                                        value={playlist.id}
+                                                        key={playlist.id}
+                                                    >
+                                                    </input>
+                                                    <label>{playlist.name}</label>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                    <div className=''>
+                                        <button>Save</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -170,7 +197,7 @@ const FeaturedPlaylist = () => {
                         {allPlaylists &&
                             Object.values(allPlaylists).map((playlist) => {
                                 return (
-                                    <li key={playlist.id}
+                                    <li
                                         className={`playlist-btn`}
                                         value={playlist.id}
                                         onClick={editPlaylist}
@@ -189,4 +216,4 @@ const FeaturedPlaylist = () => {
     );
 };
 
-export default FeaturedPlaylist;
+export default AddToPlaylist;

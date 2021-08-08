@@ -13,9 +13,14 @@ const NavBar = () => {
 
 
   useEffect(async () => {
+    if (!token) {
+      (async () => {
+
+        await dispatch(getAccessToken())
+      })()
+    }
     if (user) {
       (async () => {
-        await dispatch(getAccessToken())
         const response = await fetch("https://api.spotify.com/v1/browse/featured-playlists", {
           method: "GET",
           headers: { 'Authorization': 'Bearer ' + token }
@@ -36,9 +41,6 @@ const NavBar = () => {
               Dashboard
             </NavLink>
           </div>
-          {/* <div className='avatar-container'>
-            <img classnName='user-avatar' src={user?.avatar} />
-          </div> */}
           <LogoutButton />
           <div>
           </div>

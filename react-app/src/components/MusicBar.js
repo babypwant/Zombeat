@@ -1,15 +1,17 @@
 import './styles/MusicBar.css'
-
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 //See iframe data
 
 const MusicBar = () => {
-    const currsong = 'https://open.spotify.com/embed/track/45BBlVHECwB0uNt7BsJ97r';
-    //in tracks.id pass it in as the string
-    //"https://open.spotify.com/track/6ft4hAq6yde8jPZY2i5zLr"
+    const song = useSelector(state => state.current?.currsong?.id)
     return (
         <div className='music-bar-container'>
             <div className='iframe-container'>
-                <iframe src={`${currsong}`} width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                {
+                    song &&
+                    <iframe src={`https://open.spotify.com/embed/track/${song}`} width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                }
             </div>
         </div >
     );

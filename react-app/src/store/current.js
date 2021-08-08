@@ -1,9 +1,19 @@
-const SET_CURRENT_SONG = 'session/SET_CURRENT_SONG';
+const SET_CURRENT_SONG = 'SET_CURRENT_SONG';
 
-export const setCurrentSong = (id) => ({
+export const setSong = (id) => ({
     type: SET_CURRENT_SONG,
     id
 });
+
+export const playCurrentSong = (id, token) => async (dispatch) => {
+    const response = await fetch(`https://api.spotify.com/v1/tracks/${id}`, {
+        method: "GET",
+        headers: { 'Authorization': 'Bearer ' + token }
+    })
+    const data = await response.json()
+    console.log(data)
+    dispatch(setSong(data))
+}
 
 const initialState = {};
 

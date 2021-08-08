@@ -14,6 +14,7 @@ import EditPlaylist from './components/EditPlaylist';
 import Timer from './components/Timer';
 import EditTimer from './components/EditTimer';
 import FeaturedPlaylist from './components/FeaturedPlaylist';
+import AddToPlaylist from './components/AddToPlaylist';
 import { authenticate } from './store/session';
 import { useSelector } from 'react-redux';
 
@@ -71,6 +72,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/featured/:id' exact={true}>
           <FeaturedPlaylist />
+        </ProtectedRoute>
+        <ProtectedRoute path='/add/:id' exact={true}>
+          <AddToPlaylist />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

@@ -44,8 +44,8 @@
     display: flex;
     width:100%;
     text-align: left;
-    color: rgb(252, 230, 230);
-
+    font-family: 'Merriweather', serif;
+    
 }
 
 .song-list{
@@ -55,13 +55,22 @@
     width: 500px;
     margin-left: 15px;
     text-align: left;
+    color: rgb(182, 179, 179);
+    cursor:pointer;
+}
+.song-name:hover {
+    color: white;
 }
 .album-name{
     width: 500px;
     margin-left: 100px;
+    color: rgb(182, 179, 179);
+
 }
 .song-duration{
     margin-right: 60px;
+    color: rgb(182, 179, 179);
+
 }
 .all-labels{
     display: flex;
@@ -107,10 +116,101 @@ margin-top: 10px;
     width: 25px;
     width: 25px;
     margin-left: 2px;
+    cursor:pointer;
 }
 
 .playlist-desc-bottom{
-    color: rgb(11, 11, 12);
+    color: rgb(18, 19, 20);
     font-family: 'Merriweather', serif;
     font-weight: bold;
+}
+
+.all-playlist-form-items{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.make-playlist-form{
+    display: flex;
+    align-items: center;
+}
+.all-playlist-form-items{
+    margin-bottom: 150px;
+}
+.play-pause-icon{
+    box-sizing: border-box;
+    width: 25px;
+    height: 23px;
+    margin-top: 8px;
+    margin-left: 12px;
+
+}
+
+.song-name-bottom{
+    margin-top: 55px;
+    font-size: 45px;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: rgb(18, 19, 20);
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+}
+
+.song-desc-bottom{
+    display: flex;
+    color: rgb(18, 19, 20);
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+}
+.artist-name{
+    margin-left: 10px;
+}
+.artist-name:hover{
+    margin-left: 10px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.play-and-pause{
+    box-sizing: border-box;
+    width: 35px;
+    width: 35px;
+    /* margin-left: 2px; */
+    cursor:pointer;
+}
+
+.song-name-single{
+    margin-top: 14px;
+    width: 500px;
+    margin-left: 75px;
+    text-align: left;
+    color: rgb(182, 179, 179);
+    cursor:pointer;
+}
+
+.song-name-single:hover {
+    color: white;
+}
+.song-duration-single{
+    margin-right: 60px;
+    margin-top: 14px;
+    color: rgb(182, 179, 179);
+}
+.add-to-playlists{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+.add-to-all-playlist-form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%;
+}
+.playlist-form-item{
+    margin-top: 10px;
+    width: 40%;
 }
