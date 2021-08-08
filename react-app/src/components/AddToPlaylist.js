@@ -11,34 +11,20 @@ import pauseIcon from '../components/styles/images/pause_icon.png'
 import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
 import { getSearchedSong } from '../store/searched';
-
-
-//match params with featuredplaylist and from useEffect make call in dashboard
-
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        backgroundImage: 'linear-gradient(280deg, #454545,#262222)',
-    },
-};
-
+import { storeSavedSong } from '../store/saved';
 
 const AddToPlaylist = () => {
     const [pausePlay, setPausePlay] = useState(playIcon)
     const [pausePlaySwitch, setPausePlaySwitch] = useState('play')
     const [songLength, setSongLength] = useState(0)
-    const playlistName = useSelector(state => state.searched?.currsong?.name)
+    const songName = useSelector(state => state.searched?.currsong?.name)
     const artists = useSelector(state => state.searched?.currsong?.artists)
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
     const image = useSelector(state => state.searched?.currsong?.album?.images[0]?.url)
     const token = useSelector(state => state?.token?.token?.access_token)
+    const albumName = useSelector(state => state.searched?.currsong?.album?.name)
     let addedPlaylists = {};
 
     const songLengthMs = useSelector(state => state.searched.currsong?.duration_ms)
@@ -50,10 +36,10 @@ const AddToPlaylist = () => {
 
     useEffect(() => {
         (async () => {
-            await dispatch(getPlaylists(user.id))
-            await dispatch(getAllTimers(user.id))
-            await dispatch(getSearchedSong(id, token))
-            if (songLength) {
+            dispatch(getPlaylists(user.id))
+            dispatch(getAllTimers(user.id))
+            dispatch(getSearchedSong(id, token))
+            if (songLength != 0) {
                 const minutes = Math.floor(songLengthMs / 60000);
                 const seconds = ((songLengthMs % 60000) / 1000).toFixed(0);
                 setSongLength(minutes + ":" + (seconds < 10 ? '0' : '') + seconds)
@@ -111,11 +97,19 @@ const AddToPlaylist = () => {
         }
     }
 
-    const handleSaveRequests = (e) => {
+    const handleSaveRequests = async (e) => {
         e.preventDefault();
-        addedPlaylists.map((playlist) => {
-            console.log(playlist)
-        })
+        if (addedPlaylists) {
+            for (const playlist in addedPlaylists) {
+                const song_link = id;
+                const song_name = songName;
+                const artist_name = artists[0].name;
+                const album_name = albumName;
+                const song_length = songLength;
+                const song_img = image;
+                await dispatch(storeSavedSong(song_link, song_name, artist_name, album_name, song_length, song_img))
+            }
+        }
     }
     return (
         <div className='dashboard-main-container'>
@@ -125,7 +119,7 @@ const AddToPlaylist = () => {
                     <div className='playlist-name-top'>
                         Song
                         <div className='song-name-bottom'>
-                            {playlistName}
+                            {songName}
                             <i className="fa-solid fa-circle-minus"></i>
                         </div>
                         <div className='song-desc-bottom'>
@@ -156,7 +150,7 @@ const AddToPlaylist = () => {
                                 <div>
                                 </ div>
                                 <div className='song-name-single'>
-                                    {playlistName}
+                                    {songName}
                                 </div>
                                 <div className='song-duration-single'>
                                     {songLength}

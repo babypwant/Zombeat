@@ -8,6 +8,7 @@ import current from './current';
 import featured from './featured';
 import selectedPlaylist from './selectedPlaylist';
 import searched from './searched';
+import saved from './saved';
 
 const rootReducer = combineReducers({
   session,
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   current,
   featured,
   selectedPlaylist,
-  searched
+  searched,
+  saved
 });
 
 
