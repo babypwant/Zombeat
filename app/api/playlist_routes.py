@@ -144,3 +144,11 @@ def add_song():
         return{"== Executed ==": song_id}
     elif saved_song_test != None:
         return {"Already in db": song_id}
+
+
+@playlist_routes.route('/get/songs', methods=["POST"])
+def get_songs():
+    request_data = request.data.decode("utf-8")
+    data = ast.literal_eval(request_data)
+    print("YOU HIT THE BACKEND HERE IS YOUR DATA", data)
+    return{"here you got": data}
