@@ -24,7 +24,7 @@ def get_token():
 
     request_body = {
         "grant_type": 'client_credentials',
-        "redirect_uri": 'https://localhost:3000/dashboard',
+        "redirect_uri": 'https://spotify-clone-aa.herokuapp.com/dashboard',
         "client_id": client_id,
         "client_secret": client_secret,
     }

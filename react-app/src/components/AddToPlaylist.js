@@ -106,14 +106,16 @@ const AddToPlaylist = () => {
             addedPlaylists[playlistId] = playlistId
             console.log(addedPlaylists)
         } else if (checked === false) {
-            delete addedPlaylists.[playlistId];
+            delete addedPlaylists[playlistId];
             console.log(addedPlaylists)
         }
     }
 
     const handleSaveRequests = (e) => {
         e.preventDefault();
-        console.log(1)
+        addedPlaylists.map((playlist) => {
+            console.log(playlist)
+        })
     }
     return (
         <div className='dashboard-main-container'>
