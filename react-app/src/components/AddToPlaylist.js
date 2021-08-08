@@ -111,6 +111,10 @@ const AddToPlaylist = () => {
         }
     }
 
+    const handleSaveRequests = (e) => {
+        e.preventDefault();
+        console.log(1)
+    }
     return (
         <div className='dashboard-main-container'>
             <div className='featured-main-content'>
@@ -177,7 +181,7 @@ const AddToPlaylist = () => {
                                         })
                                     }
                                     <div className=''>
-                                        <button>Save</button>
+                                        <button onClick={handleSaveRequests}>Save</button>
                                     </div>
                                 </form>
                             </div>
