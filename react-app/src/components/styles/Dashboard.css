@@ -149,6 +149,41 @@ margin-top: 20px;
 .timer-label{
     color:gray;
 }
+
 .timer-label:hover{
     color: white;
 }
+
+.create-timer-btn {
+    margin-top: 20px;
+    background-color: #883181; /* Green */
+    border: none;
+    color: rgb(7, 4, 4);
+    padding: 15px 36px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 8px;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-family: 'Merriweather', serif;
+    font-weight: 600;
+    /* appearance: none;       Remove default arrow */
+    background-color: rgb(255, 255, 255);   
+    /* Add custom arrow */
+ }
+
+ option{
+    font-family: 'Merriweather', serif;
+    font-weight: 505;
+ }
+ .edit-playlist-form-container{
+display: flex;
+flex-direction: column;
+ }
+ 

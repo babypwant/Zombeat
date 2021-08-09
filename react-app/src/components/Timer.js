@@ -83,7 +83,7 @@ const Timer = () => {
                                 </select>
                             </div>
                             <div >
-                                <button onClick={newTimer}>Create</button>
+                                <button className='create-timer-btn' onClick={newTimer}>Create</button>
                             </div>
                         </form>
                     </div>

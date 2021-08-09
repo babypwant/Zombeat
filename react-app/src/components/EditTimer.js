@@ -24,7 +24,7 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        backgroundImage: 'linear-gradient(280deg, #454545,#262222)',
+        backgroundImage: 'linear-gradient(280deg, #194E9B,#7E638A)',
     },
 };
 
@@ -88,8 +88,8 @@ const EditTimer = () => {
             }
         })
         console.log(currentPlaylist)
-        setAssocPlaylist(currentPlaylist.name)
-        setTimerTitle(responseData.Success.name)
+        setAssocPlaylist(currentPlaylist?.name)
+        setTimerTitle(responseData?.Success.name)
         setTimerTime(minutes + ":" + (seconds < 10 ? '0' : '') + seconds)
     }, [timerTitle, setTimerTitle])
 
@@ -161,8 +161,8 @@ const EditTimer = () => {
                             contentLabel="Example Modal"
                         >
                             <div className='edit-playlist-form-container'>
-                                <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Edit Sleep Timer</h2>
-                                <div>New Timer name</div>
+                                <h2 className='timer-instruction-main' ref={(_subtitle) => (subtitle = _subtitle)}>Edit Sleep Timer</h2>
+                                <div className='timer-instruction-1'>New Timer name</div>
                                 <form>
                                     <input className='new-playlist-name' onChange={(e) => setNewTimerName(e.target.value)} />
                                     <input className='new-timer-time' onChange={(e) => setNewTime(e.target.value)}></input>

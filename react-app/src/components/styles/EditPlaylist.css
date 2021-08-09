@@ -154,3 +154,14 @@ margin-left: 300px;
 .minus-icon:hover{
     cursor: pointer;
 }
+.timer-instruction-1{
+    color: rgb(0, 0, 0);
+    font-family: 'Merriweather', serif;
+    font-weight: 600;
+}
+.timer-instruction-main{
+    color: black;
+}
+.playlist-img:hover{
+    cursor: pointer;
+}

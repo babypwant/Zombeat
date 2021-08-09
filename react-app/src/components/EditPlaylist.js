@@ -25,7 +25,7 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        backgroundImage: 'linear-gradient(280deg, #454545,#262222)',
+        backgroundImage: 'linear-gradient(280deg, #194E9B,#7E638A)',
     },
 };
 
@@ -155,7 +155,7 @@ const EditPlaylist = () => {
                         >
                             <div className='edit-playlist-form-container'>
                                 <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Edit playlist</h2>
-                                <div>New playlist Name</div>
+                                <div className='timer-instruction-1'>New playlist Name</div>
                                 <form>
                                     <input className='new-playlist-name' onChange={(e) => setNewPlaylistName(e.target.value)} />
                                     <button onClick={sendChanges}>Save</button>
