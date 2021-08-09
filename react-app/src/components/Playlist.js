@@ -24,16 +24,6 @@ const Playlist = () => {
 
     useEffect(() => {
         (async () => {
-            const response = await fetch('/api/playlists/id', {
-                mode: 'no-cors',
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ user_id })
-            });
-            const responseData = await response.json();
-            setPlaylistId(responseData?.id)
             dispatch(getPlaylists(user.id))
             dispatch(getAllTimers(user.id))
         })()
