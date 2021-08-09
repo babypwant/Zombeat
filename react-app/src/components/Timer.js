@@ -11,6 +11,8 @@ import MusicBar from './MusicBar';
 import { createTimer } from '../store/timer';
 import './styles/Dashboard.css'
 
+//come back during sprint week
+
 const Timer = () => {
     const [timerName, setTimerName] = useState('');
     const [time, setTime] = useState(0);
