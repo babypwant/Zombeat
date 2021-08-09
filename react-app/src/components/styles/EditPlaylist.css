@@ -151,3 +151,6 @@ margin-left: 300px;
     width: 25px;
     height: 25px;
 }
+.minus-icon:hover{
+    cursor: pointer;
+}

@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
 import { getPlaylistSongs } from '../store/saved';
+import { removeFromPlaylist } from '../store/saved';
 import Modal from 'react-modal';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import trashIcon from '../components/styles/images/trash.png'
@@ -132,6 +133,13 @@ const EditPlaylist = () => {
         console.log(1)
     };
 
+    const removeSong = async (e) => {
+        e.preventDefault();
+        const song_id = e.target.id
+        const playlist_id = id
+        dispatch(removeFromPlaylist(song_id, playlist_id))
+    }
+
     return (
         <div className='dashboard-main-container'>
             <div className='edit-playlist-main-content'>
@@ -183,8 +191,8 @@ const EditPlaylist = () => {
                                     const seconds = ((song.song_length % 60000) / 1000).toFixed(0);
                                     return (
                                         <div className='song-metadata-container' >
-                                            <div className='song-number'>
-                                                <img className='minus-icon' src={minusIcon} />
+                                            <div className='song-number' id={song.id}>
+                                                <img className='minus-icon' onClick={removeSong} src={minusIcon} id={song.id} />
                                             </div>
                                             <div>
                                                 <img className='song-art' src={song?.song_img} />

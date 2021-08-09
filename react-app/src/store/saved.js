@@ -57,6 +57,19 @@ export const getPlaylistSongs = (id) => async (dispatch) => {
     dispatch(getData(songs))
 }
 
+export const removeFromPlaylist = (song_id, playlist_id) => async (dispatch) => {
+    const response = await fetch(`/api/playlists/delete/song`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ song_id, playlist_id })
+    })
+    const data = await response.json()
+    if (data.success) {
+        dispatch(getPlaylistSongs(data.success))
+    } else {
+        console.log("not there yet")
+    }
+}
 
 let initialState = {};
 
