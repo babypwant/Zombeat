@@ -59,7 +59,9 @@ const EditPlaylist = () => {
         (async () => {
             dispatch(getPlaylists(user.id))
             dispatch(getAllTimers(user.id))
-            dispatch(getPlaylistSongs(id))
+            if (!songs) {
+                dispatch(getPlaylistSongs(id))
+            }
         })()
     }, [playlistTitle, setPlaylistTitle]);
 
