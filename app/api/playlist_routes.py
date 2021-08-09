@@ -159,10 +159,13 @@ def get_songs():
     return{"songs": filtered_songs}
 
 
-@playlist_routes.route('/metadata', methods=["POST"])
+@playlist_routes.route('/get/metadata', methods=["POST"])
 def get_metadata():
     request_data = request.data.decode("utf-8")
     data = ast.literal_eval(request_data)
-    data["song"]
-    print("===================== YOU MADE IT ========================")
-    return{"You made it here": "Nice"}
+    id = data["song"]
+    filtered_songs = []
+    song = Song.query.filter_by(id=id).first()
+    song_metadata = song.to_dict()
+    print(song_metadata)
+    return song_metadata

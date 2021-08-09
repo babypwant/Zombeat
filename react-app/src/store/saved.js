@@ -27,6 +27,21 @@ export const storeSavedSong = (song_link, song_name, artist_name, album_name, so
     dispatch(seedSongAndPlaylist(song_id, playlist_id))
 }
 
+export const getData = (songs) => async (dispatch) => {
+    let metadata = []
+    songs.forEach(async (song) => {
+        const response = await fetch(`/api/playlists/get/metadata`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ song })
+        })
+        const data = await response.json()
+        metadata.push(data)
+    })
+    dispatch(saveSong(metadata))
+}
+
+
 export const getPlaylistSongs = (id) => async (dispatch) => {
     const response = await fetch(`/api/playlists/get/songs`, {
         method: 'POST',
@@ -39,23 +54,9 @@ export const getPlaylistSongs = (id) => async (dispatch) => {
     res.forEach((song) => {
         songs.push(song[0])
     })
-    getData(songs)
-    // dispatch(saveSong(songs))
-
+    dispatch(getData(songs))
 }
 
-export const getData = (songs) => async (dispatch) => {
-    songs.forEach(async (song) => {
-        const response = await fetch(`/api/playlists/metadata`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ song })
-        })
-        const data = await response.json() 
-        console.log(data)
-    })
-
-}
 
 let initialState = {};
 

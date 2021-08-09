@@ -10,6 +10,7 @@ import Modal from 'react-modal';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import trashIcon from '../components/styles/images/trash.png'
 import timerIcon from '../components/styles/images/add-timer.png'
+import minusIcon from '../components/styles/images/minus-icon.png'
 
 import './styles/EditPlaylist.css'
 
@@ -167,14 +168,44 @@ const EditPlaylist = () => {
                         </div>
                     </div>
                 </div>
-                <div className='all-songs-container'>
-                    {
-                        songs &&
-                        songs.map((song) => {
-                            console.log(1)
-                        })
-
-                    }
+                <div className='songs-container'>
+                    <div className='featured-column-1'>
+                        <div className='song-list'>
+                            <div className='all-labels'>
+                                <label className='featured-label-number'>#</label>
+                                <label className='featured-label-title'>Title</label>
+                                <label className='featured-label-album'>Album</label>
+                                <label className='featured-label-duration'>Duration</label>
+                            </div>
+                            {songs?.length > 0 &&
+                                songs.map((song) => {
+                                    const minutes = Math.floor(song.song_length / 60000);
+                                    const seconds = ((song.song_length % 60000) / 1000).toFixed(0);
+                                    return (
+                                        <div className='song-metadata-container' >
+                                            <div className='song-number'>
+                                                <img className='minus-icon' src={minusIcon} />
+                                            </div>
+                                            <div>
+                                                <img className='song-art' src={song?.song_img} />
+                                            </div>
+                                            <div>
+                                            </ div>
+                                            <div className='song-name' id={song.id}>
+                                                {song?.song_name}
+                                            </div>
+                                            <div className='album-name' >
+                                                {song.album_name}
+                                            </div>
+                                            <div className='song-duration'>
+                                                {minutes + ":" + (seconds < 10 ? '0' : '') + seconds}
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className='content-container'>
