@@ -31,8 +31,32 @@
 .clouds-container{
     display: flex;
     justify-content: center;
-    cursor: pointer;
 }
 .demo-login{
     margin-bottom: 30px;
+}
+
+.git-cloud-img{
+    position: absolute;
+    box-sizing: border-box;
+    margin-top: 160px;
+    margin-left: 300px;
+    width: 200px;
+    height: 100px;
+}
+.git-cloud-img:hover{
+    cursor: pointer;
+}
+.linked-cloud{
+    position: absolute;
+    box-sizing: border-box;
+    margin-left: 300px;
+    width: 200px;
+    height: 100px;
+}
+.linked-cloud:hover{
+    cursor: pointer;
+}
+.pixel-clouds:hover{
+cursor: pointer;
 }
