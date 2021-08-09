@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask.wrappers import Response
-from sqlalchemy import update
-from app.models import Playlist, db, Song
+from sqlalchemy import update, delete
+from app.models import Playlist, db, Song, song
 from app.models.playlist import saved_songs
 import ast
 import os
@@ -108,7 +108,6 @@ def save_song():
     song_img = data["song_img"]
     check = Song.query.filter_by(song_link=song_link).first()
     if check == None:
-        print(" == New Song Added == ")
         song = Song(
             song_link=song_link,
             song_name=song_name,
@@ -136,7 +135,6 @@ def add_song():
     saved_song_test = db.session.query(saved_songs).filter_by(
         song_id=song_id, playlist_id=playlist_id).first()
     if saved_song_test == None:
-        print("HERE IS YOUR INFORMATION", song_id, "HERE TOO", playlist_id)
         saved_tabled = saved_songs.insert().values(
             song_id=song_id, playlist_id=playlist_id)
         db.session.execute(saved_tabled)
@@ -144,3 +142,42 @@ def add_song():
         return{"== Executed ==": song_id}
     elif saved_song_test != None:
         return {"Already in db": song_id}
+
+
+@playlist_routes.route('/get/songs', methods=["POST"])
+def get_songs():
+    request_data = request.data.decode("utf-8")
+    data = ast.literal_eval(request_data)
+    playlist_id = data["id"]
+    filtered_songs = []
+    unfiltered_songs = db.session.query(saved_songs).filter_by(
+        playlist_id=playlist_id).all()
+    for song in unfiltered_songs:
+        filtered_songs.append(list(song))
+    return{"songs": filtered_songs}
+
+
+@playlist_routes.route('/get/metadata', methods=["POST"])
+def get_metadata():
+    request_data = request.data.decode("utf-8")
+    data = ast.literal_eval(request_data)
+    id = data["song"]
+    filtered_songs = []
+    song = Song.query.filter_by(id=id).first()
+    song_metadata = song.to_dict()
+    print(song_metadata)
+    return song_metadata
+
+
+@playlist_routes.route('/delete/song', methods=["POST"])
+def remove_song():
+    request_data = request.data.decode("utf-8")
+    data = ast.literal_eval(request_data)
+    song_id = data["song_id"]
+    playlist_id = data["playlist_id"]
+
+    remove_song = saved_songs.delete().where(saved_songs.c.song_id == song_id)
+
+    db.session.execute(remove_song)
+    db.session.commit()
+    return{"success": playlist_id}

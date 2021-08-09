@@ -14,7 +14,7 @@ import './styles/Dashboard.css'
 const Timer = () => {
     const [timerName, setTimerName] = useState('');
     const [time, setTime] = useState(0);
-    const [playlist_Id, setPlaylistId] = useState(0)
+    const [playlistId, setPlaylistId] = useState(1)
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
@@ -30,7 +30,7 @@ const Timer = () => {
     const newTimer = (e) => {
         e.preventDefault();
         console.log("We're here")
-        const playlist_id = 1
+        const playlist_id = playlistId
         const name = timerName
         dispatch(createTimer(name, playlist_id, user_id, time))
         history.push('/dashboard')
@@ -65,22 +65,28 @@ const Timer = () => {
                     <div className='make-playlist-form'>
                         <form className='album-form' method="POST" action="/playlists/">
                             <label className='your-playlist-label'> A perfect name for a perfect sleep</label>
-                            <input placeholder='Your Sleep Timer Name' className='playlist-form-name-input' onChange={(e) => setTimerName(e.target.value)}>
+                            <input placeholder=' A Very Sleepy Name Here' className='playlist-form-name-input' onChange={(e) => setTimerName(e.target.value)}>
                             </input>
+                            <div className='pick-a-playlist'>
+                                <select className='playlist-options' onChange={(e) => setPlaylistId(e.target.value)} >
+                                    {
+                                        Object.values(allPlaylists).map((playlist) => {
+                                            return (
+                                                <option
+                                                    key={playlist.name}
+                                                    value={playlist.id}>
+                                                    {playlist.name}
+                                                </option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </div>
                             <div >
-                                <button onClick={newTimer}>Create</button>
+                                <button className='create-timer-btn' onClick={newTimer}>Create</button>
                             </div>
                         </form>
                     </div>
-                    <p className='p-label'>How to add songs:</p>
-                    <p className='p-label'>On the Dashboard, pick a playlist that fits your style!</p>
-                    <div>
-                        <img className='example-1' src={playlistExample1} />
-                    </div>
-                    <p className='p-label'>Press play to hear the song or the plus icon to add it to a playlist!</p>
-                    <img className='example-2' src={playlistExample2} />
-                    <p className='p-label'>That's it! You're a pro!</p>
-
                 </div>
             </div>
             {/* sidebar content */}

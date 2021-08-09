@@ -33,8 +33,6 @@ const FeaturedPlaylist = () => {
     let amountOfTracks = 0;
 
 
-
-
     useEffect(() => {
         (async () => {
             dispatch(getPlaylists(user.id))

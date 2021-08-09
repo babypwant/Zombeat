@@ -5,10 +5,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
+import { getPlaylistSongs } from '../store/saved';
+import { removeFromPlaylist } from '../store/saved';
 import Modal from 'react-modal';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import trashIcon from '../components/styles/images/trash.png'
 import timerIcon from '../components/styles/images/add-timer.png'
+import minusIcon from '../components/styles/images/minus-icon.png'
 
 import './styles/EditPlaylist.css'
 
@@ -22,7 +25,7 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        backgroundImage: 'linear-gradient(280deg, #454545,#262222)',
+        backgroundImage: 'linear-gradient(280deg, #194E9B,#7E638A)',
     },
 };
 
@@ -34,6 +37,7 @@ const EditPlaylist = () => {
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
+    const songs = useSelector(state => state.saved?.saved)
     let subtitle;
     const { id } = useParams()
     const history = useHistory();
@@ -41,23 +45,26 @@ const EditPlaylist = () => {
 
     function openModal() {
         setIsOpen(true);
-    }
+    };
 
     function afterOpenModal() {
-        // references are now sync'd and can be accessed.
         subtitle.style.color = 'white';
-    }
+    };
 
     function closeModal() {
         setIsOpen(false);
-    }
+    };
 
     useEffect(() => {
         (async () => {
             dispatch(getPlaylists(user.id))
             dispatch(getAllTimers(user.id))
+            if (!songs) {
+                dispatch(getPlaylistSongs(id))
+            }
         })()
-    }, [playlistTitle, setPlaylistTitle])
+    }, [playlistTitle, setPlaylistTitle]);
+
     useEffect(async () => {
         const user_id = user.id
         const response = await fetch(`/api/playlists/info`, {
@@ -70,7 +77,6 @@ const EditPlaylist = () => {
         })
         const responseData = await response.json()
         setPlaylistTitle(responseData.Success.name)
-        console.log(playlistTitle)
     }, [playlistTitle, setPlaylistTitle])
 
     const makeNewPlaylist = (e) => {
@@ -128,6 +134,13 @@ const EditPlaylist = () => {
         console.log(1)
     };
 
+    const removeSong = async (e) => {
+        e.preventDefault();
+        const song_id = e.target.id
+        const playlist_id = id
+        dispatch(removeFromPlaylist(song_id, playlist_id))
+    }
+
     return (
         <div className='dashboard-main-container'>
             <div className='edit-playlist-main-content'>
@@ -142,7 +155,7 @@ const EditPlaylist = () => {
                         >
                             <div className='edit-playlist-form-container'>
                                 <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Edit playlist</h2>
-                                <div>New playlist Name</div>
+                                <div className='timer-instruction-1'>New playlist Name</div>
                                 <form>
                                     <input className='new-playlist-name' onChange={(e) => setNewPlaylistName(e.target.value)} />
                                     <button onClick={sendChanges}>Save</button>
@@ -161,6 +174,45 @@ const EditPlaylist = () => {
                     <div>
                         <div className='delete-playlist-Icon'>
                             <img className='' src={trashIcon} onClick={deletePlaylist} />
+                        </div>
+                    </div>
+                </div>
+                <div className='songs-container'>
+                    <div className='featured-column-1'>
+                        <div className='song-list'>
+                            <div className='all-labels'>
+                                <label className='featured-label-number'>#</label>
+                                <label className='featured-label-title'>Title</label>
+                                <label className='featured-label-album'>Album</label>
+                                <label className='featured-label-duration'>Duration</label>
+                            </div>
+                            {songs?.length > 0 &&
+                                songs.map((song) => {
+                                    const minutes = Math.floor(song.song_length / 60000);
+                                    const seconds = ((song.song_length % 60000) / 1000).toFixed(0);
+                                    return (
+                                        <div className='song-metadata-container' >
+                                            <div className='song-number' id={song.id}>
+                                                <img className='minus-icon' onClick={removeSong} src={minusIcon} id={song.id} />
+                                            </div>
+                                            <div>
+                                                <img className='song-art' src={song?.song_img} />
+                                            </div>
+                                            <div>
+                                            </ div>
+                                            <div className='song-name' id={song.id}>
+                                                {song?.song_name}
+                                            </div>
+                                            <div className='album-name' >
+                                                {song.album_name}
+                                            </div>
+                                            <div className='song-duration'>
+                                                {minutes + ":" + (seconds < 10 ? '0' : '') + seconds}
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                 </div>

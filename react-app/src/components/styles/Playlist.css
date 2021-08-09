@@ -55,5 +55,7 @@
   color: white;
 }
 .playlist-form-name-input::placeholder{
-  color: white
+  color: rgb(211, 211, 211);
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
 }
