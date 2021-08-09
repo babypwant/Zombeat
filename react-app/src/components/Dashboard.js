@@ -134,10 +134,9 @@ const Dashboard = () => {
                             Object.values(allPlaylists).map((playlist) => {
                                 return (
                                     <li key={playlist.id}
-                                        className={`playlist - btn`}
+                                        className={`playlist-btn`}
                                         value={playlist.id}
                                         onClick={editPlaylist}
-                                        key={playlist.id}
                                     >
                                         {playlist.name}
                                     </li>

@@ -10,6 +10,7 @@ import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import sleepIcon from '../components/styles/images/sleep-icon.png'
 import trashIcon from '../components/styles/images/trash.png'
 import timerIcon from '../components/styles/images/add-timer.png'
+import minusIcon from '../components/styles/images/minus-icon.png'
 
 import './styles/EditPlaylist.css'
 
@@ -31,6 +32,8 @@ const customStyles = {
 const EditTimer = () => {
     const [timerTitle, setTimerTitle] = useState('')
     const [newTime, setNewTime] = useState(0)
+    const [timerTime, setTimerTime] = useState(0)
+    const [assocPlaylist, setAssocPlaylist] = useState('')
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [newTimerName, setNewTimerName] = useState('')
     const allPlaylists = useSelector(state => state.playlists)
@@ -60,9 +63,11 @@ const EditTimer = () => {
             dispatch(getAllTimers(user.id))
         })()
     }, [timerTitle, setTimerTitle])
+
     useEffect(async () => {
         const user_id = user.id
         const timer_id = id
+
         const response = await fetch(`/api/timers/info`, {
             mode: 'no-cors',
             method: "POST",
@@ -72,7 +77,20 @@ const EditTimer = () => {
             body: JSON.stringify({ user_id, timer_id })
         })
         const responseData = await response.json()
+        const playlist_id = responseData.Success.playlist_id
+        const duration = responseData.Success.time
+        const minutes = Math.floor(duration / 60000);
+        const seconds = ((minutes % 60000) / 1000).toFixed(0);
+        let currentPlaylist;
+        Object.values(allPlaylists).map((playlist) => {
+            if (playlist.id === playlist_id) {
+                currentPlaylist = playlist
+            }
+        })
+        console.log(currentPlaylist)
+        setAssocPlaylist(currentPlaylist.name)
         setTimerTitle(responseData.Success.name)
+        setTimerTime(minutes + ":" + (seconds < 10 ? '0' : '') + seconds)
     }, [timerTitle, setTimerTitle])
 
     const makeNewPlaylist = (e) => {
@@ -166,7 +184,26 @@ const EditTimer = () => {
                         </div>
                     </div>
                 </div>
-                <div>Hello</div>
+                <div className='songs-container'>
+                    <div className='featured-column-1'>
+                        <div className='song-list'>
+                            <div className='all-labels'>
+                                <label className='featured-label-number'>#</label>
+                                <label className='featured-label-title'>Title</label>
+                                <label className='featured-label-album'>Playlist</label>
+                                <label className='featured-label-duration'>Duration</label>
+                            </div>
+                            <div className='all-labels'>
+                                <div className='song-number'>
+                                    <img className='minus-icon' src={minusIcon}></img>
+                                </div>
+                                <label className='featured-label-title'>{timerTitle}</label>
+                                <label className='featured-label-album'>{assocPlaylist}</label>
+                                <label className='featured-label-duration'>{timerTime}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div className='content-container'>
                 <div className='create-playlist-btn' onClick={makeNewPlaylist}>
