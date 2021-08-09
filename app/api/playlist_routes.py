@@ -176,11 +176,8 @@ def remove_song():
     song_id = data["song_id"]
     playlist_id = data["playlist_id"]
 
-    remove_song = db.session.query(saved_songs).filter_by(
-        song_id=song_id, playlist_id=playlist_id).first()
+    remove_song = saved_songs.delete().where(saved_songs.c.song_id == song_id)
 
-    print(" ========== DATA HERE ===========", remove_song)
-
-    db.session.delete(remove_song)
+    db.session.execute(remove_song)
     db.session.commit()
     return{"success": playlist_id}
