@@ -39,11 +39,25 @@ export const getPlaylistSongs = (id) => async (dispatch) => {
     res.forEach((song) => {
         songs.push(song[0])
     })
-    console.log(songs)
-    dispatch(saveSong(songs))
+    getData(songs)
+    // dispatch(saveSong(songs))
+
 }
 
-const initialState = {};
+export const getData = (songs) => async (dispatch) => {
+    songs.forEach(async (song) => {
+        const response = await fetch(`/api/playlists/metadata`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ song })
+        })
+        const data = await response.json() 
+        console.log(data)
+    })
+
+}
+
+let initialState = {};
 
 const saved = (state = initialState, action) => {
     switch (action.type) {

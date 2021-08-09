@@ -156,5 +156,13 @@ def get_songs():
         playlist_id=playlist_id).all()
     for song in unfiltered_songs:
         filtered_songs.append(list(song))
-    print("YOU HIT THE BACKEND HERE IS YOUR DATA", filtered_songs)
     return{"songs": filtered_songs}
+
+
+@playlist_routes.route('/metadata', methods=["POST"])
+def get_metadata():
+    request_data = request.data.decode("utf-8")
+    data = ast.literal_eval(request_data)
+    data["song"]
+    print("===================== YOU MADE IT ========================")
+    return{"You made it here": "Nice"}
