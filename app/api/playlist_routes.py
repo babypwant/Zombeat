@@ -14,7 +14,6 @@ def new_playlist():
     request_data = request.data.decode("utf-8")
     data = ast.literal_eval(request_data)
     all_playlist_number = Playlist.query.filter_by().all()
-    playlist_number = all_playlist_number[-1].id
     name = data["new_name"]
     img = 'https://i.pinimg.com/originals/55/27/89/552789ccf1e4e919e17930976a5e62c9.jpg'
     user_id = data["user_id"]
@@ -25,6 +24,8 @@ def new_playlist():
     )
     db.session.add(playlist)
     db.session.commit()
+    song_number = Playlist.query.filter_by(user_id=user_id, name=name).first()
+    playlist_number = song_number.id
 
     return {"Backend": name, "playlist_Id": playlist_number}
 
