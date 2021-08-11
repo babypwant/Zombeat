@@ -12,6 +12,7 @@ import { createTimer } from '../store/timer';
 import './styles/Dashboard.css'
 
 //come back during sprint week
+//try out github copilot
 
 const Timer = () => {
     const [timerName, setTimerName] = useState('');
