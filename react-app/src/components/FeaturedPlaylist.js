@@ -13,8 +13,6 @@ import { playCurrentSong } from '../store/current';
 import { getSearchedSong } from '../store/searched';
 
 
-//match params with featuredplaylist and from useEffect make call in dashboard
-
 
 
 const FeaturedPlaylist = () => {

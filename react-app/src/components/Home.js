@@ -1,7 +1,5 @@
 import clouds from '../components/styles/images/clouds.png'
 import './styles/Home.css'
-import { Dispatch } from 'react';
-import { Redirect } from 'react-router';
 import gitCloud from '../components/styles/images/cloud-git.png'
 import linkedCloud from '../components/styles/images/linked.png'
 
@@ -19,14 +17,11 @@ const Home = () => {
         history.push('/dashboard')
     }
 
-    const gitHub = (e) => {
-        e.preventDefault();
-        window.location.href = "https://github.com/babypwant"
+    const openInNewTab = (url) => {
+        const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+        if (newWindow) newWindow.opener = null
     }
-    const linkedIn = (e) => {
-        e.preventDefault();
-        window.location.href = "https://www.linkedin.com/in/gary-rios-9464a2208"
-    }
+
     return (
         <div className='main-container'>
             <div className='background'>
@@ -46,11 +41,11 @@ const Home = () => {
                         </div>
                     </div>
                     <div className='git-cloud-container'>
-                        <img className='git-cloud-img' onClick={gitHub} src={gitCloud} />
+                        <img className='git-cloud-img' onClick={() => openInNewTab('https://github.com/babypwant')} src={gitCloud} />
                     </div>
                 </div>
                 <div>
-                    <img className='linked-cloud' onClick={linkedIn} src={linkedCloud} />
+                    <img className='linked-cloud' onClick={() => openInNewTab('https://www.linkedin.com/in/gary-rios-9464a2208')} src={linkedCloud} />
                 </div>
             </div>
         </div >

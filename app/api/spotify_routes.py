@@ -18,8 +18,6 @@ def get_token():
     encode_secret = base64.b64encode(ascii_secret)
     formatted_id = encode_id.decode('ascii')
     formatted_secret = encode_secret.decode('ascii')
-    print("HERE IS CLIENT ID", formatted_id)
-    print("HERE IS CLIENT SECRET", formatted_secret)
     print('Basic ' + f'{formatted_id}' + ':' + f'{formatted_secret}')
     request_body = {
         "grant_type": 'client_credentials',

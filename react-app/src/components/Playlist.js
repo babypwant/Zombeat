@@ -49,34 +49,6 @@ const Playlist = () => {
         history.push('/dashboard')
     }
 
-    const updatePlaylist = async (e) => {
-        e.preventDefault();
-        const response = await fetch('/api/playlists/edit', {
-            mode: 'no-cors',
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ playlist_Id, user_id, new_name })
-        })
-        const responseData = await response.json();
-        console.log(playlist_Id)
-    }
-    const deletePlaylist = async (e) => {
-        e.preventDefault();
-        const response = await fetch('/api/playlists/delete', {
-            mode: 'no-cors',
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ playlist_Id, user_id })
-        })
-        const responseData = await response.json();
-        console.log(responseData)
-        history.push('/dashboard')
-    }
-
     const createTimer = (e) => {
         e.preventDefault();
         history.push('/new/timer')
@@ -93,7 +65,6 @@ const Playlist = () => {
         history.push(`/edit/playlist/${e.target.value}`)
     };
 
-    //Just need to make button look nice
 
     return (
         <div className='dashboard-main-container'>
