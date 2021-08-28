@@ -12,6 +12,7 @@ import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import trashIcon from '../components/styles/images/trash.png'
 import timerIcon from '../components/styles/images/add-timer.png'
 import minusIcon from '../components/styles/images/minus-icon.png'
+import SideBar from './Sidebar';
 
 import './styles/EditPlaylist.css'
 
@@ -31,15 +32,14 @@ const customStyles = {
 
 
 const EditPlaylist = () => {
-    const [playlistTitle, setPlaylistTitle] = useState('')
-    const [modalIsOpen, setIsOpen] = React.useState(false);
-    const [newPlaylistName, setNewPlaylistName] = useState('')
-    const user = useSelector(state => state.session.user);
-    const allPlaylists = useSelector(state => state.playlists)
-    const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
-    const songs = useSelector(state => state.saved?.saved)
-    let subtitle;
     const { id } = useParams()
+    const [playlistTitle, setPlaylistTitle] = useState('');
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [currentPlaylist, setCurrentPlalist] = useState('');
+    const [newPlaylistName, setNewPlaylistName] = useState('');
+    const user = useSelector(state => state.session.user);
+    const songs = useSelector(state => state.saved?.saved);
+    let subtitle;
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -63,7 +63,8 @@ const EditPlaylist = () => {
                 dispatch(getPlaylistSongs(id))
             }
         })()
-    }, [playlistTitle, setPlaylistTitle]);
+        setCurrentPlalist(id)
+    }, [playlistTitle, setPlaylistTitle, currentPlaylist]);
 
     useEffect(async () => {
         const user_id = user.id
@@ -217,50 +218,7 @@ const EditPlaylist = () => {
                     </div>
                 </div>
             </div>
-            <div className='content-container'>
-                <div className='create-playlist-btn' onClick={makeNewPlaylist}>
-                    <img className='new-playlist-icon' src={playlistIcon} />
-                    <label className='create-playlist-label'> Create Playlist </label>
-                </div>
-                <div className='timers-container' onClick={createTimer}>
-                    <img className='new-timer-icon' src={timerIcon} />
-                    <label className='timer-label'>Create a Timer</label>
-                </div>
-                <div className='timers'>
-                    <ul>
-
-                        {allTimers &&
-                            allTimers.map((timer) => {
-                                return (
-                                    <li value={timer.id}
-                                        onClick={editTimer}
-                                        className='timer-li'
-                                        key={timer.id}
-                                    >{timer.name}</li>
-                                )
-                            })
-
-                        }
-                    </ul>
-                </div>
-                <div className='all-playlists-container'>
-                    <ul>
-                        {allPlaylists &&
-                            Object.values(allPlaylists).map((playlist) => {
-                                return (
-                                    <li key={playlist.id}
-                                        className={`playlist-btn`}
-                                        value={playlist.id}
-                                        onClick={editPlaylist}
-                                    >
-                                        {playlist.name}
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
-            </div>
+            <SideBar />
             <MusicBar />
         </div >
     );

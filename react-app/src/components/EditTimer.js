@@ -4,13 +4,10 @@ import MusicBar from './MusicBar';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
-import { getPlaylists } from '../store/playlists';
-import { getAllTimers } from '../store/timer';
-import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import sleepIcon from '../components/styles/images/sleep-icon.png'
 import trashIcon from '../components/styles/images/trash.png'
-import timerIcon from '../components/styles/images/add-timer.png'
 import minusIcon from '../components/styles/images/minus-icon.png'
+import SideBar from './Sidebar';
 
 import './styles/EditPlaylist.css'
 
@@ -37,7 +34,6 @@ const EditTimer = () => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [newTimerName, setNewTimerName] = useState('')
     const allPlaylists = useSelector(state => state.playlists)
-    const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
     const user = useSelector(state => state.session.user);
     let subtitle;
     const { id } = useParams()
@@ -49,7 +45,6 @@ const EditTimer = () => {
     }
 
     function afterOpenModal() {
-        // references are now sync'd and can be accessed.
         subtitle.style.color = 'white';
     }
 
@@ -57,12 +52,6 @@ const EditTimer = () => {
         setIsOpen(false);
     }
 
-    useEffect(() => {
-        (async () => {
-            dispatch(getPlaylists(user.id))
-            dispatch(getAllTimers(user.id))
-        })()
-    }, [timerTitle, setTimerTitle])
 
     useEffect(async () => {
         const user_id = user.id
@@ -92,27 +81,6 @@ const EditTimer = () => {
         setTimerTitle(responseData?.Success.name)
         setTimerTime(minutes + ":" + (seconds < 10 ? '0' : '') + seconds)
     }, [timerTitle, setTimerTitle])
-
-    const makeNewPlaylist = (e) => {
-        e.preventDefault();
-        history.push('/new/playlist')
-    }
-    const editPlaylist = (e) => {
-        e.preventDefault();
-        history.push(`/edit/playlist/${e.target.value}`)
-
-    }
-
-    const createTimer = (e) => {
-        e.preventDefault();
-        history.push('/new/timer')
-    };
-
-    const editTimer = (e) => {
-        e.preventDefault();
-        history.push(`/edit/timer/${e.target.value}`)
-        console.log(1)
-    };
 
     const sendChanges = async (e) => {
         e.preventDefault();
@@ -205,50 +173,7 @@ const EditTimer = () => {
                     </div>
                 </div>
             </div>
-            <div className='content-container'>
-                <div className='create-playlist-btn' onClick={makeNewPlaylist}>
-                    <img className='new-playlist-icon' src={playlistIcon} />
-                    <label className='create-playlist-label'> Create Playlist </label>
-                </div>
-                <div className='timers-container' onClick={createTimer}>
-                    <img className='new-timer-icon' src={timerIcon} />
-                    <label className='timer-label'>Create a Timer</label>
-                </div>
-                <div className='timers'>
-                    <ul>
-
-                        {allTimers &&
-                            allTimers.map((timer) => {
-                                return (
-                                    <li value={timer.id}
-                                        onClick={editTimer}
-                                        className='timer-li'
-                                        key={timer.id}
-                                    >{timer.name}</li>
-                                )
-                            })
-
-                        }
-                    </ul>
-                </div>
-                <div className='all-playlists-container'>
-                    <ul>
-                        {allPlaylists &&
-                            Object.values(allPlaylists).map((playlist) => {
-                                return (
-                                    <li key={playlist.id}
-                                        className={`playlist-btn`}
-                                        value={playlist.id}
-                                        onClick={editPlaylist}
-                                    >
-                                        {playlist.name}
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
-            </div>
+            <SideBar />
             <MusicBar />
         </div >
     );
