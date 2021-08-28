@@ -10,6 +10,7 @@ import playlistExample2 from '../components/styles/images/Example2.PNG'
 
 import './styles/Playlist.css'
 import MusicBar from './MusicBar';
+import SideBar from './Sidebar';
 
 
 const Playlist = () => {
@@ -95,50 +96,7 @@ const Playlist = () => {
 
             </div>
             {/* sidebar content */}
-            <div className='content-container'>
-                <div className='create-playlist-btn' onClick={makeNewPlaylist}>
-                    <img className='new-playlist-icon' src={playlistIcon} />
-                    <label className='create-playlist-label'> Create Playlist </label>
-                </div>
-                <div className='timers-container' onClick={createTimer}>
-                    <img className='new-timer-icon' src={timerIcon} />
-                    <label className='timer-label'>Create a Timer</label>
-                </div>
-                <div className='timers'>
-                    <ul>
-
-                        {allTimers &&
-                            allTimers.map((timer) => {
-                                return (
-                                    <li value={timer.id}
-                                        onClick={editTimer}
-                                        className='timer-li'
-                                        key={timer.id}
-                                    >{timer.name}</li>
-                                )
-                            })
-
-                        }
-                    </ul>
-                </div>
-                <div className='all-playlists-container'>
-                    <ul>
-                        {allPlaylists &&
-                            Object.values(allPlaylists).map((playlist) => {
-                                return (
-                                    <li key={playlist.id}
-                                        className={`playlist-btn`}
-                                        value={playlist.id}
-                                        onClick={editPlaylist}
-                                    >
-                                        {playlist.name}
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
-            </div>
+            <SideBar />
             <MusicBar />
         </div >
     );
