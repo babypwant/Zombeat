@@ -165,8 +165,8 @@ const EditPlaylist = () => {
                                 <label className='featured-label-album'>Album</label>
                                 <label className='featured-label-duration'>Duration</label>
                             </div>
-                            {songs?.length > 0 &&
-                                songs.map((song) => {
+                            {songs &&
+                                Object.values(songs).map((song) => {
                                     const minutes = Math.floor(song.song_length / 60000);
                                     const seconds = ((song.song_length % 60000) / 1000).toFixed(2);
                                     return (

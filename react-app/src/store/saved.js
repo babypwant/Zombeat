@@ -42,7 +42,7 @@ export const getData = (songs) => async (dispatch) => {
             body: JSON.stringify({ song })
         })
         const data = await response.json()
-        metadata.push(data)
+        await metadata.push(data)
         console.log("step 2", metadata)
         await dispatch(passData(metadata));
     })
