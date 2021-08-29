@@ -29,6 +29,7 @@ export const storeSavedSong = (song_link, song_name, artist_name, album_name, so
 
 export const getData = (songs) => async (dispatch) => {
     let metadata = []
+    if (!songs) return;
     songs.forEach(async (song) => {
         const response = await fetch(`/api/playlists/get/metadata`, {
             method: 'POST',
@@ -71,12 +72,24 @@ export const removeFromPlaylist = (song_id, playlist_id) => async (dispatch) => 
     }
 }
 
-let initialState = {};
-
+const initialState = { };
 const saved = (state = initialState, action) => {
+    const songs = "songs"
     switch (action.type) {
         case SET_PLAYLIST_SONGS:
-            return { saved: action.songs }
+            if (!state[action.songs.id]) {
+                const newState = {
+                    ...state,
+                    [songs]: action.songs
+                };
+                return newState
+            };
+            return {
+                [action.songs]: {
+                    ...state[action.songs],
+                    ...action.songs
+                }
+            }
         default:
             return state;
     }

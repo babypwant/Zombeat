@@ -37,7 +37,7 @@ const EditPlaylist = () => {
     const [currentPlaylist, setCurrentPlalist] = useState('');
     const [newPlaylistName, setNewPlaylistName] = useState('');
     const user = useSelector(state => state.session.user);
-    const songs = useSelector(state => state.saved?.saved);
+    const songs = useSelector(state => state.saved?.songs);
     let subtitle;
     const history = useHistory();
     const dispatch = useDispatch();
@@ -58,12 +58,11 @@ const EditPlaylist = () => {
         (async () => {
             dispatch(getPlaylists(user.id))
             dispatch(getAllTimers(user.id))
-            if (!songs) {
-                dispatch(getPlaylistSongs(id))
-            }
+            dispatch(getPlaylistSongs(id))
+
         })()
         setCurrentPlalist(id)
-    }, [playlistTitle, setPlaylistTitle, currentPlaylist, dispatch, id, user?.id, songs]);
+    }, [playlistTitle, setPlaylistTitle, currentPlaylist, dispatch, id, user?.id]);
 
     useEffect(() => {
         (async () => {
