@@ -1,6 +1,5 @@
 import './styles/MusicBar.css'
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
 //See iframe data
 
 const MusicBar = () => {
@@ -10,7 +9,7 @@ const MusicBar = () => {
             <div className='iframe-container'>
                 {
                     song &&
-                    <iframe src={`https://open.spotify.com/embed/track/${song}`} width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                    <iframe title="Spotify Playbar" src={`https://open.spotify.com/embed/track/${song}`} width="100%" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                 }
             </div>
         </div >

@@ -24,7 +24,7 @@ const Playlist = () => {
             dispatch(getPlaylists(user.id))
             dispatch(getAllTimers(user.id))
         })()
-    }, []);
+    }, [dispatch, user?.id]);
 
     const makeNewPlaylist = async (e) => {
         e.preventDefault();
@@ -37,6 +37,7 @@ const Playlist = () => {
             body: JSON.stringify({ user_id, new_name })
         });
         const responseData = await response.json()
+        console.log(playlist_Id)
         setPlaylistId(responseData.playlist_Id)
 
         console.log("Successful", `=== New playlist Created ===`)
@@ -61,10 +62,10 @@ const Playlist = () => {
                         <p className='p-label'>How to add songs:</p>
                         <p className='p-label'>On the Dashboard, pick a playlist that fits your style!</p>
                         <div>
-                            <img className='example-1' src={playlistExample1} />
+                            <img className='example-1' alt='On the Dashboard, pick a playlist that fits your style' src={playlistExample1} />
                         </div>
                         <p className='p-label'>Press the plus icon to add it to a playlist!</p>
-                        <img className='example-2' src={playlistExample2} />
+                        <img className='example-2' alt='Press the plus icon to add it to a playlist' src={playlistExample2} />
                         <p className='p-label'>That's it! You're a pro!</p>
                     </div>
                 </div>
