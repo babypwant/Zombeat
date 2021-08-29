@@ -16,10 +16,8 @@ import EditTimer from './components/EditTimer';
 import FeaturedPlaylist from './components/FeaturedPlaylist';
 import AddToPlaylist from './components/AddToPlaylist';
 import { authenticate } from './store/session';
-import { useSelector } from 'react-redux';
 
 function App() {
-  const token = useSelector(state => state?.token?.token?.access_token)
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
