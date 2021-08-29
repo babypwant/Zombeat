@@ -5,6 +5,7 @@ export const saveSong = (songs) => ({
     songs
 });
 
+
 export const seedSongAndPlaylist = (song_id, playlist_id) => async (dispatch) => {
     const response = await fetch(`/api/playlists/add/song`, {
         method: 'POST',
@@ -27,9 +28,13 @@ export const storeSavedSong = (song_link, song_name, artist_name, album_name, so
     dispatch(seedSongAndPlaylist(song_id, playlist_id))
 }
 
+export const passData = (metadata) => async (dispatch) => {
+    dispatch(saveSong(metadata))
+};
+
 export const getData = (songs) => async (dispatch) => {
+
     let metadata = []
-    if (!songs) return;
     songs.forEach(async (song) => {
         const response = await fetch(`/api/playlists/get/metadata`, {
             method: 'POST',
@@ -38,12 +43,15 @@ export const getData = (songs) => async (dispatch) => {
         })
         const data = await response.json()
         metadata.push(data)
+        console.log("step 2", metadata)
+        await dispatch(passData(metadata));
     })
-    dispatch(saveSong(metadata))
+
 }
 
 
 export const getPlaylistSongs = (id) => async (dispatch) => {
+
     const response = await fetch(`/api/playlists/get/songs`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -55,6 +63,7 @@ export const getPlaylistSongs = (id) => async (dispatch) => {
     res.forEach((song) => {
         songs.push(song[0])
     })
+    console.log("step 1")
     dispatch(getData(songs))
 }
 
@@ -73,11 +82,12 @@ export const removeFromPlaylist = (song_id, playlist_id) => async (dispatch) => 
 }
 
 const initialState = { };
+
 const saved = (state = initialState, action) => {
     const songs = "songs"
     switch (action.type) {
-        case SET_PLAYLIST_SONGS:
-            if (!state[action.songs.id]) {
+        case SET_PLAYLIST_SONGS: {
+            if (!state[songs]) {
                 const newState = {
                     ...state,
                     [songs]: action.songs
@@ -85,11 +95,12 @@ const saved = (state = initialState, action) => {
                 return newState
             };
             return {
-                [action.songs]: {
-                    ...state[action.songs],
+                [songs]: {
+                    ...state[songs],
                     ...action.songs
                 }
             }
+        }
         default:
             return state;
     }

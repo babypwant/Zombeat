@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPlaylists } from '../store/playlists';
@@ -8,12 +8,9 @@ import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import timerIcon from '../components/styles/images/add-timer.png'
 
 const SideBar = () => {
-    const [new_name, setNewName] = useState('')
-    const [playlist_Id, setPlaylistId] = useState(0)
     const user = useSelector(state => state.session.user);
     const allPlaylists = useSelector(state => state.playlists)
     const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
-    const user_id = user.id
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -25,22 +22,7 @@ const SideBar = () => {
     }, [dispatch, user?.id]);
 
     const makeNewPlaylist = async (e) => {
-        e.preventDefault();
-        const response = await fetch('/api/playlists/', {
-            mode: 'no-cors',
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ user_id, new_name })
-        });
-        setNewName('');
-        const responseData = await response.json()
-        console.log(playlist_Id)
-        setPlaylistId(responseData.playlist_Id)
-
-        console.log("Successful", `=== New playlist Created ===`)
-        history.push('/dashboard')
+        history.push('/new/playlist')
     };
 
     const createTimer = (e) => {

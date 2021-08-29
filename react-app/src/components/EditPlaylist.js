@@ -37,7 +37,7 @@ const EditPlaylist = () => {
     const [currentPlaylist, setCurrentPlalist] = useState('');
     const [newPlaylistName, setNewPlaylistName] = useState('');
     const user = useSelector(state => state.session.user);
-    const songs = useSelector(state => state.saved?.songs);
+    const songs = useSelector(state => state?.saved?.songs);
     let subtitle;
     const history = useHistory();
     const dispatch = useDispatch();
@@ -59,7 +59,6 @@ const EditPlaylist = () => {
             dispatch(getPlaylists(user.id))
             dispatch(getAllTimers(user.id))
             dispatch(getPlaylistSongs(id))
-
         })()
         setCurrentPlalist(id)
     }, [playlistTitle, setPlaylistTitle, currentPlaylist, dispatch, id, user?.id]);
@@ -169,7 +168,7 @@ const EditPlaylist = () => {
                             {songs?.length > 0 &&
                                 songs.map((song) => {
                                     const minutes = Math.floor(song.song_length / 60000);
-                                    const seconds = ((song.song_length % 60000) / 1000).toFixed(0);
+                                    const seconds = ((song.song_length % 60000) / 1000).toFixed(2);
                                     return (
                                         <div className='song-metadata-container' >
                                             <div className='song-number' id={song.id}>

@@ -32,7 +32,6 @@ export const getAllTimers = (user_id) => async (dispatch) => {
 };
 
 export const createTimer = (name, playlist_id, user_id, time) => async (dispatch) => {
-    console.log(1)
     const response = await fetch(`/api/timers/new`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -46,7 +45,8 @@ export const createTimer = (name, playlist_id, user_id, time) => async (dispatch
     }
 };
 
-const initialState = {};
+const initialState = { };
+
 const timers = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TIMER: {
