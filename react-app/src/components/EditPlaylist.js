@@ -10,7 +10,6 @@ import { removeFromPlaylist } from '../store/saved';
 import Modal from 'react-modal';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import trashIcon from '../components/styles/images/trash.png'
-import timerIcon from '../components/styles/images/add-timer.png'
 import minusIcon from '../components/styles/images/minus-icon.png'
 import SideBar from './Sidebar';
 
@@ -64,31 +63,23 @@ const EditPlaylist = () => {
             }
         })()
         setCurrentPlalist(id)
-    }, [playlistTitle, setPlaylistTitle, currentPlaylist]);
+    }, [playlistTitle, setPlaylistTitle, currentPlaylist, dispatch, id, user?.id, songs]);
 
-    useEffect(async () => {
-        const user_id = user.id
-        const response = await fetch(`/api/playlists/info`, {
-            mode: 'no-cors',
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ user_id, id })
-        })
-        const responseData = await response.json()
-        setPlaylistTitle(responseData.Success.name)
-    }, [playlistTitle, setPlaylistTitle])
-
-    const makeNewPlaylist = (e) => {
-        e.preventDefault();
-        history.push('/new/playlist')
-    }
-    const editPlaylist = (e) => {
-        e.preventDefault();
-        history.push(`/edit/playlist/${e.target.value}`)
-
-    }
+    useEffect(() => {
+        (async () => {
+            const user_id = user.id
+            const response = await fetch(`/api/playlists/info`, {
+                mode: 'no-cors',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ user_id, id })
+            })
+            const responseData = await response.json()
+            setPlaylistTitle(responseData.Success.name)
+        })()
+    }, [playlistTitle, setPlaylistTitle, id, user?.id])
 
     const sendChanges = async (e) => {
         e.preventDefault();
@@ -124,17 +115,6 @@ const EditPlaylist = () => {
         history.push('/dashboard')
     }
 
-    const createTimer = (e) => {
-        e.preventDefault();
-        history.push('/new/timer')
-    };
-
-    const editTimer = (e) => {
-        e.preventDefault();
-        history.push(`/edit/timer/${e.target.value}`)
-        console.log(1)
-    };
-
     const removeSong = async (e) => {
         e.preventDefault();
         const song_id = e.target.id
@@ -164,7 +144,7 @@ const EditPlaylist = () => {
                             </div>
                         </Modal>
                     </div>
-                    <img className='playlist-img' src={playlistIcon} onClick={openModal} />
+                    <img className='playlist-img' alt="Playlist" src={playlistIcon} onClick={openModal} />
                     <div className='playlist-name-top'>
                         Playlist
                         <div className='playlist-name-bottom'>
@@ -174,7 +154,7 @@ const EditPlaylist = () => {
                     </div>
                     <div>
                         <div className='delete-playlist-Icon'>
-                            <img className='' src={trashIcon} onClick={deletePlaylist} />
+                            <img className='' alt="remove" src={trashIcon} onClick={deletePlaylist} />
                         </div>
                     </div>
                 </div>
@@ -194,10 +174,10 @@ const EditPlaylist = () => {
                                     return (
                                         <div className='song-metadata-container' >
                                             <div className='song-number' id={song.id}>
-                                                <img className='minus-icon' onClick={removeSong} src={minusIcon} id={song.id} />
+                                                <img className='minus-icon' alt="remove-song-icon" onClick={removeSong} src={minusIcon} id={song.id} />
                                             </div>
                                             <div>
-                                                <img className='song-art' src={song?.song_img} />
+                                                <img className='song-art' alt="Playlist" src={song?.song_img} />
                                             </div>
                                             <div>
                                             </ div>

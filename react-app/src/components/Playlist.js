@@ -3,8 +3,6 @@ import { useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
-import playlistIcon from '../components/styles/images/playlist-icon.jpg'
-import timerIcon from '../components/styles/images/add-timer.png'
 import playlistExample1 from '../components/styles/images/Example1.PNG'
 import playlistExample2 from '../components/styles/images/Example2.PNG'
 
@@ -18,8 +16,6 @@ const Playlist = () => {
     const [playlist_Id, setPlaylistId] = useState(0)
     const [new_name, setNewName] = useState('')
     const user = useSelector(state => state.session.user);
-    const allPlaylists = useSelector(state => state.playlists)
-    const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
     const user_id = user.id
     const dispatch = useDispatch();
 
@@ -29,9 +25,6 @@ const Playlist = () => {
             dispatch(getAllTimers(user.id))
         })()
     }, []);
-
-
-
 
     const makeNewPlaylist = async (e) => {
         e.preventDefault();
@@ -48,24 +41,7 @@ const Playlist = () => {
 
         console.log("Successful", `=== New playlist Created ===`)
         history.push('/dashboard')
-    }
-
-    const createTimer = (e) => {
-        e.preventDefault();
-        history.push('/new/timer')
     };
-
-    const editTimer = (e) => {
-        e.preventDefault();
-        history.push(`/edit/timer/${e.target.value}`)
-        console.log(1)
-    };
-
-    const editPlaylist = (e) => {
-        e.preventDefault();
-        history.push(`/edit/playlist/${e.target.value}`)
-    };
-
 
     return (
         <div className='dashboard-main-container'>
@@ -90,12 +66,9 @@ const Playlist = () => {
                         <p className='p-label'>Press the plus icon to add it to a playlist!</p>
                         <img className='example-2' src={playlistExample2} />
                         <p className='p-label'>That's it! You're a pro!</p>
-
                     </div>
                 </div>
-
             </div>
-            {/* sidebar content */}
             <SideBar />
             <MusicBar />
         </div >

@@ -22,7 +22,7 @@ const SideBar = () => {
             dispatch(getPlaylists(user.id))
             dispatch(getAllTimers(user.id))
         })()
-    }, []);
+    }, [dispatch, user?.id]);
 
     const makeNewPlaylist = async (e) => {
         e.preventDefault();
@@ -34,7 +34,9 @@ const SideBar = () => {
             },
             body: JSON.stringify({ user_id, new_name })
         });
+        setNewName('');
         const responseData = await response.json()
+        console.log(playlist_Id)
         setPlaylistId(responseData.playlist_Id)
 
         console.log("Successful", `=== New playlist Created ===`)
@@ -48,7 +50,6 @@ const SideBar = () => {
     const editTimer = (e) => {
         e.preventDefault();
         history.push(`/edit/timer/${e.target.value}`)
-        console.log(1)
     };
 
     const editPlaylist = (e) => {
@@ -59,11 +60,11 @@ const SideBar = () => {
     return (
         <div className='content-container'>
             <div className='create-playlist-btn' onClick={makeNewPlaylist}>
-                <img className='new-playlist-icon' src={playlistIcon} />
+                <img className='new-playlist-icon' alt="playlist-icon" src={playlistIcon} />
                 <label className='create-playlist-label'> Create Playlist </label>
             </div>
             <div className='timers-container' onClick={createTimer}>
-                <img className='new-timer-icon' src={timerIcon} />
+                <img className='new-timer-icon' alt="timer-icon" src={timerIcon} />
                 <label className='timer-label'>Create a Timer</label>
             </div>
             <div className='timers'>

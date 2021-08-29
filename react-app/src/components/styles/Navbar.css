@@ -129,7 +129,7 @@ nav {
 
 .search_inner_container {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .search_container {
