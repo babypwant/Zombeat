@@ -1,10 +1,14 @@
 const SET_PLAYLIST_SONGS = 'SET_PLAYLIST_SONGS';
+const REMOVE_PLAYLIST_SONGS = 'REMOVE_PLAYLIST_SONGS';
 
 export const saveSong = (songs) => ({
     type: SET_PLAYLIST_SONGS,
     songs
 });
 
+export const delSongs = () => ({
+    type: REMOVE_PLAYLIST_SONGS
+});
 
 export const seedSongAndPlaylist = (song_id, playlist_id) => async (dispatch) => {
     const response = await fetch(`/api/playlists/add/song`, {
@@ -35,17 +39,22 @@ export const passData = (metadata) => async (dispatch) => {
 export const getData = (songs) => async (dispatch) => {
 
     let metadata = []
-    songs.forEach(async (song) => {
-        const response = await fetch(`/api/playlists/get/metadata`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ song })
+    if (songs.length > 0) {
+        songs.forEach(async (song) => {
+            const response = await fetch(`/api/playlists/get/metadata`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ song })
+            })
+            const data = await response.json()
+            await metadata.push(data)
+            console.log("step 2 THERE IS DATA!", metadata)
+            await dispatch(passData(metadata));
         })
-        const data = await response.json()
-        await metadata.push(data)
-        console.log("step 2", metadata)
-        await dispatch(passData(metadata));
-    })
+    };
+    console.log("Step 2 no data")
+    dispatch(delSongs());
+
 
 }
 
@@ -63,8 +72,8 @@ export const getPlaylistSongs = (id) => async (dispatch) => {
     res.forEach((song) => {
         songs.push(song[0])
     })
-    console.log("step 1")
-    dispatch(getData(songs))
+    console.log("step 1");
+    dispatch(getData(songs));
 }
 
 export const removeFromPlaylist = (song_id, playlist_id) => async (dispatch) => {
@@ -101,6 +110,10 @@ const saved = (state = initialState, action) => {
                 }
             }
         }
+        case REMOVE_PLAYLIST_SONGS: {
+            state = { };
+            return state;
+        };
         default:
             return state;
     }
