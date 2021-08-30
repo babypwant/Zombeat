@@ -24,7 +24,7 @@
       }
 
   .signup-form-label {
-    margin-top: 60px;
+    margin-top: 20px;
     margin-left: 80px;
     display: flex;
     flex-direction: row;
@@ -32,7 +32,7 @@
     width: 500px;
     line-height: 26px;
     margin-bottom: 0px;
-    font-family: Tahoma, sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-style: bold;
   } 
   
@@ -57,12 +57,12 @@
   }
   .sign-up-form-btn{
     margin-top: 10px;
-    margin-left: 60px;
+    margin-left: 20px;
   }
   .sign-up-form-btn{
     display: flex;
-    margin-top: 90px;
-    margin-left: 80px;
+    margin-top: 60px;
+    margin-left:200px;
     background-color: rgb(180, 115, 172);
     border: none;
     color: black;
@@ -99,6 +99,6 @@
     font-weight: bold;
   }
    .sign-up-holder{
-       margin-top: 100px;
+       margin-top: 250px;
        margin-left: 80px;
    }

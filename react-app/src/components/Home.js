@@ -41,11 +41,11 @@ const Home = () => {
                         </div>
                     </div>
                     <div className='git-cloud-container'>
-                        <img className='git-cloud-img' onClick={() => openInNewTab('https://github.com/babypwant')} src={gitCloud} />
+                        <img className='git-cloud-img' alt='github' onClick={() => openInNewTab('https://github.com/babypwant')} src={gitCloud} />
                     </div>
                 </div>
                 <div>
-                    <img className='linked-cloud' onClick={() => openInNewTab('https://www.linkedin.com/in/gary-rios-9464a2208')} src={linkedCloud} />
+                    <img className='linked-cloud' alt='LinkedIn' onClick={() => openInNewTab('https://www.linkedin.com/in/gary-rios-9464a2208')} src={linkedCloud} />
                 </div>
             </div>
         </div >

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setFeaturedPlaylists } from '../store/featured';
@@ -12,7 +12,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
 
 
-  useEffect(async () => {
+  useEffect(() => {
     if (!token) {
       (async () => {
 
@@ -29,7 +29,7 @@ const NavBar = () => {
         dispatch(setFeaturedPlaylists(data.playlists?.items))
       })()
     }
-  }, [dispatch, token]);
+  }, [dispatch, token, user]);
 
   if (user) {
     return (

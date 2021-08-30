@@ -1,17 +1,15 @@
 import React from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useHistory } from 'react-router';
 import MusicBar from './MusicBar';
 import './styles/Featured.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import playlistIcon from '../components/styles/images/playlist-icon.jpg'
-import timerIcon from '../components/styles/images/add-timer.png'
+import { useEffect } from 'react';
 import addIcon from '../components/styles/images/add-icon.png'
 import { getPlaylists } from '../store/playlists';
 import { getAllTimers } from '../store/timer';
 import { playCurrentSong } from '../store/current';
 import { getSearchedSong } from '../store/searched';
-
+import SideBar from './Sidebar';
 
 
 
@@ -19,8 +17,6 @@ const FeaturedPlaylist = () => {
     const playlistName = useSelector(state => state.selectedPlaylist?.current?.name)
     const description = useSelector(state => state.selectedPlaylist?.current?.description)
     const user = useSelector(state => state.session.user);
-    const allPlaylists = useSelector(state => state.playlists)
-    const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
     const token = useSelector(state => state?.token?.token?.access_token)
     const songs = useSelector(state => state.selectedPlaylist?.current?.tracks?.items)
     const image = useSelector(state => state.selectedPlaylist?.current?.images[0]?.url)
@@ -39,25 +35,6 @@ const FeaturedPlaylist = () => {
 
     }, [dispatch, user.id]);
 
-    const makeNewPlaylist = (e) => {
-        e.preventDefault();
-        history.push('/new/playlist')
-    };
-    const editPlaylist = (e) => {
-        e.preventDefault();
-        history.push(`/edit/playlist/${e.target.value}`)
-    };
-
-    const createTimer = (e) => {
-        e.preventDefault();
-        history.push('/new/timer')
-    };
-
-    const editTimer = (e) => {
-        e.preventDefault();
-        history.push(`/edit/timer/${e.target.value}`)
-    };
-
     const playSong = (e) => {
         const id = e.target.id
         dispatch(playCurrentSong(id, token))
@@ -74,7 +51,7 @@ const FeaturedPlaylist = () => {
         <div className='dashboard-main-container'>
             <div className='featured-main-content'>
                 <div className='featured-header'>
-                    <img className='playlist-img' src={image} />
+                    <img className='playlist-img' alt='playlist art' src={image} />
                     <div className='playlist-name-top'>
                         Playlist
                         <div className='playlist-name-bottom'>
@@ -87,7 +64,7 @@ const FeaturedPlaylist = () => {
                     </div>
                     <div>
                         <div className='delete-playlist-Icon'>
-                            <img className='' />
+                            <img className='' alt='' />
                         </div>
                     </div>
                 </div>
@@ -110,10 +87,10 @@ const FeaturedPlaylist = () => {
                                                 {amountOfTracks += 1}
                                             </div>
                                             <div>
-                                                <img className='add-song' onClick={searchSong} src={addIcon} id={song.track.id} value={song.track.id} />
+                                                <img className='add-song' alt='search' onClick={searchSong} src={addIcon} id={song.track.id} value={song.track.id} />
                                             </div>
                                             <div>
-                                                <img className='song-art' src={song.track.album.images[2].url} />
+                                                <img className='song-art' alt='album art' src={song.track.album.images[2].url} />
                                             </div>
                                             <div>
                                             </ div>
@@ -135,51 +112,7 @@ const FeaturedPlaylist = () => {
                     </div>
                 </div>
             </div>
-            <div className='content-container'>
-                <div className='create-playlist-btn' onClick={makeNewPlaylist}>
-                    <img className='new-playlist-icon' src={playlistIcon} />
-                    <label className='create-playlist-label'> Create Playlist </label>
-                </div>
-                <div className='timers-container' onClick={createTimer}>
-                    <img className='new-timer-icon' src={timerIcon} />
-                    <label className='timer-label'>Create a Timer</label>
-                </div>
-                <div className='timers'>
-                    <ul>
-
-                        {allTimers &&
-                            allTimers.map((timer) => {
-                                return (
-                                    <li value={timer.id}
-                                        onClick={editTimer}
-                                        className='timer-li'
-                                        key={timer.id}
-                                    >{timer.name}</li>
-                                )
-                            })
-
-                        }
-                    </ul>
-                </div>
-                <div className='all-playlists-container'>
-                    <ul>
-                        {allPlaylists &&
-                            Object.values(allPlaylists).map((playlist) => {
-                                return (
-                                    <li key={playlist.id}
-                                        className={`playlist-btn`}
-                                        value={playlist.id}
-                                        onClick={editPlaylist}
-                                        key={playlist.id}
-                                    >
-                                        {playlist.name}
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
-            </div>
+            <SideBar />
             <MusicBar />
         </div >
     );

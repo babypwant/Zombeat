@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import { login } from '../../store/session';
 import '../styles/LoginForm.css'
 
@@ -9,7 +10,14 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
+  const history = useHistory();
   const dispatch = useDispatch();
+
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    await dispatch(login('demo@aa.io', 'password'));
+    history.push('/dashboard')
+  }
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -73,6 +81,7 @@ const LoginForm = () => {
         </div>
         <div className='login-form-btn-container'>
           <button type='submit' className='login-form-btn' onClick={onLogin}>Sign In</button>
+          <button type='submit' className='login-form-btn' onClick={demoLogin}>Demo</button>
         </div>
       </div>
     </div >

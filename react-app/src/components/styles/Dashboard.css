@@ -45,7 +45,8 @@
     color: rgb(161, 161, 161);
   }
   .playlist-btn:hover{
-      color: white;
+    cursor: pointer;
+    color: white;
   }
  
   .create-playlist-btn:hover{
@@ -81,6 +82,8 @@
   }
   .create-timer-btn:hover{
     color: white;
+    cursor: pointer;
+
 }
 .playlist-btn{
     list-style-type: none;
@@ -120,6 +123,8 @@ margin-top: 20px;
 }
 .spotify-playlist:hover{
     background-color: rgb(51, 50, 50);
+    cursor: pointer;
+
 
 }
 
@@ -144,6 +149,8 @@ margin-top: 20px;
 
 .timer-li:hover {
     color: white;
+    cursor: pointer;
+
 }
 
 .timer-label{
@@ -167,6 +174,10 @@ margin-top: 20px;
     border-radius: 8px;
     font-family: 'Merriweather', serif;
     font-weight: 700;
+}
+.create-timer-btn:hover {
+    cursor: pointer;
+
 }
 select {
     -webkit-appearance: none;

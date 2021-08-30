@@ -1,18 +1,18 @@
 
-    .column-1 {
+.column-1 {
         float: left;
         height: 100%;
         width: 50%;
         flex: 50%;
         background-image: url('../styles/images/panel1.jpg');
         }
-      .column-2{
+.column-2{
         float: right;
         height: 50%;
         width: 50%;
         flex: 50%;
       }
-      .row{
+.row{
         position: fixed;
         top: 6.5%;
         left: 0;
@@ -24,7 +24,7 @@
       }
 
   .form-label {
-    margin-top: 100px;
+    margin-top: 60px;
     margin-left: 80px;
     display: flex;
     flex-direction: row;
@@ -61,7 +61,7 @@
   }
   .login-form-btn{
     display: flex;
-    margin-top: 90px;
+    margin-top: 50px;
     margin-left: 80px;
     background-color: rgb(180, 115, 172);
     border: none;
@@ -77,6 +77,7 @@
   }
   .login-form-btn:hover{
     background-color: rgb(196, 119, 136);
+    cursor: pointer;
   }
   .login-title{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -99,6 +100,6 @@
     font-weight: bold;
   }
    .login-holder{
-       margin-top: 100px;
+       margin-top: 250px;
        margin-left: 80px;
    }

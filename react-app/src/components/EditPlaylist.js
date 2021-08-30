@@ -10,8 +10,8 @@ import { removeFromPlaylist } from '../store/saved';
 import Modal from 'react-modal';
 import playlistIcon from '../components/styles/images/playlist-icon.jpg'
 import trashIcon from '../components/styles/images/trash.png'
-import timerIcon from '../components/styles/images/add-timer.png'
 import minusIcon from '../components/styles/images/minus-icon.png'
+import SideBar from './Sidebar';
 
 import './styles/EditPlaylist.css'
 
@@ -31,15 +31,14 @@ const customStyles = {
 
 
 const EditPlaylist = () => {
-    const [playlistTitle, setPlaylistTitle] = useState('')
-    const [modalIsOpen, setIsOpen] = React.useState(false);
-    const [newPlaylistName, setNewPlaylistName] = useState('')
-    const user = useSelector(state => state.session.user);
-    const allPlaylists = useSelector(state => state.playlists)
-    const allTimers = useSelector(state => state.timers?.undefined?.all_timers)
-    const songs = useSelector(state => state.saved?.saved)
-    let subtitle;
     const { id } = useParams()
+    const [playlistTitle, setPlaylistTitle] = useState('');
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [currentPlaylist, setCurrentPlalist] = useState('');
+    const [newPlaylistName, setNewPlaylistName] = useState('');
+    const user = useSelector(state => state.session.user);
+    const songs = useSelector(state => state?.saved?.songs);
+    let subtitle;
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -59,35 +58,26 @@ const EditPlaylist = () => {
         (async () => {
             dispatch(getPlaylists(user.id))
             dispatch(getAllTimers(user.id))
-            if (!songs) {
-                dispatch(getPlaylistSongs(id))
-            }
+            dispatch(getPlaylistSongs(id))
         })()
-    }, [playlistTitle, setPlaylistTitle]);
+        setCurrentPlalist(id)
+    }, [playlistTitle, setPlaylistTitle, currentPlaylist, dispatch, id, user?.id]);
 
-    useEffect(async () => {
-        const user_id = user.id
-        const response = await fetch(`/api/playlists/info`, {
-            mode: 'no-cors',
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ user_id, id })
-        })
-        const responseData = await response.json()
-        setPlaylistTitle(responseData.Success.name)
-    }, [playlistTitle, setPlaylistTitle])
-
-    const makeNewPlaylist = (e) => {
-        e.preventDefault();
-        history.push('/new/playlist')
-    }
-    const editPlaylist = (e) => {
-        e.preventDefault();
-        history.push(`/edit/playlist/${e.target.value}`)
-
-    }
+    useEffect(() => {
+        (async () => {
+            const user_id = user.id
+            const response = await fetch(`/api/playlists/info`, {
+                mode: 'no-cors',
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ user_id, id })
+            })
+            const responseData = await response.json()
+            setPlaylistTitle(responseData.Success.name)
+        })()
+    }, [playlistTitle, setPlaylistTitle, id, user?.id])
 
     const sendChanges = async (e) => {
         e.preventDefault();
@@ -123,17 +113,6 @@ const EditPlaylist = () => {
         history.push('/dashboard')
     }
 
-    const createTimer = (e) => {
-        e.preventDefault();
-        history.push('/new/timer')
-    };
-
-    const editTimer = (e) => {
-        e.preventDefault();
-        history.push(`/edit/timer/${e.target.value}`)
-        console.log(1)
-    };
-
     const removeSong = async (e) => {
         e.preventDefault();
         const song_id = e.target.id
@@ -163,7 +142,7 @@ const EditPlaylist = () => {
                             </div>
                         </Modal>
                     </div>
-                    <img className='playlist-img' src={playlistIcon} onClick={openModal} />
+                    <img className='playlist-img' alt="Playlist" src={playlistIcon} onClick={openModal} />
                     <div className='playlist-name-top'>
                         Playlist
                         <div className='playlist-name-bottom'>
@@ -173,7 +152,7 @@ const EditPlaylist = () => {
                     </div>
                     <div>
                         <div className='delete-playlist-Icon'>
-                            <img className='' src={trashIcon} onClick={deletePlaylist} />
+                            <img className='' alt="remove" src={trashIcon} onClick={deletePlaylist} />
                         </div>
                     </div>
                 </div>
@@ -186,17 +165,17 @@ const EditPlaylist = () => {
                                 <label className='featured-label-album'>Album</label>
                                 <label className='featured-label-duration'>Duration</label>
                             </div>
-                            {songs?.length > 0 &&
-                                songs.map((song) => {
+                            {songs &&
+                                Object.values(songs).map((song) => {
                                     const minutes = Math.floor(song.song_length / 60000);
-                                    const seconds = ((song.song_length % 60000) / 1000).toFixed(0);
+                                    const seconds = ((song.song_length % 60000) / 1000).toFixed(2);
                                     return (
                                         <div className='song-metadata-container' >
                                             <div className='song-number' id={song.id}>
-                                                <img className='minus-icon' onClick={removeSong} src={minusIcon} id={song.id} />
+                                                <img className='minus-icon' alt="remove-song-icon" onClick={removeSong} src={minusIcon} id={song.id} />
                                             </div>
                                             <div>
-                                                <img className='song-art' src={song?.song_img} />
+                                                <img className='song-art' alt="Playlist" src={song?.song_img} />
                                             </div>
                                             <div>
                                             </ div>
@@ -217,50 +196,7 @@ const EditPlaylist = () => {
                     </div>
                 </div>
             </div>
-            <div className='content-container'>
-                <div className='create-playlist-btn' onClick={makeNewPlaylist}>
-                    <img className='new-playlist-icon' src={playlistIcon} />
-                    <label className='create-playlist-label'> Create Playlist </label>
-                </div>
-                <div className='timers-container' onClick={createTimer}>
-                    <img className='new-timer-icon' src={timerIcon} />
-                    <label className='timer-label'>Create a Timer</label>
-                </div>
-                <div className='timers'>
-                    <ul>
-
-                        {allTimers &&
-                            allTimers.map((timer) => {
-                                return (
-                                    <li value={timer.id}
-                                        onClick={editTimer}
-                                        className='timer-li'
-                                        key={timer.id}
-                                    >{timer.name}</li>
-                                )
-                            })
-
-                        }
-                    </ul>
-                </div>
-                <div className='all-playlists-container'>
-                    <ul>
-                        {allPlaylists &&
-                            Object.values(allPlaylists).map((playlist) => {
-                                return (
-                                    <li key={playlist.id}
-                                        className={`playlist-btn`}
-                                        value={playlist.id}
-                                        onClick={editPlaylist}
-                                    >
-                                        {playlist.name}
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
-            </div>
+            <SideBar />
             <MusicBar />
         </div >
     );
