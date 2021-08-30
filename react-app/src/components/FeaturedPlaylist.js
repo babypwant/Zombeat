@@ -63,9 +63,6 @@ const FeaturedPlaylist = () => {
                         </div>
                     </div>
                     <div>
-                        <div className='delete-playlist-Icon'>
-                            <img className='' alt='' />
-                        </div>
                     </div>
                 </div>
                 <div className='songs-container'>

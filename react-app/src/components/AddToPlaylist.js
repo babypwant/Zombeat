@@ -92,6 +92,7 @@ const AddToPlaylist = () => {
         }
     };
 
+
     return (
         <div className='dashboard-main-container'>
             <div className='featured-main-content'>
@@ -143,10 +144,8 @@ const AddToPlaylist = () => {
                                         Object.values(allPlaylists).map((playlist) => {
                                             return (
                                                 <div className='playlist-form-item'>
-
                                                     <input
                                                         type='checkbox'
-                                                        className={`playlist-btn`}
                                                         value={playlist.id}
                                                         key={playlist.id}
                                                         onChange={checkPlaylist}
@@ -165,7 +164,7 @@ const AddToPlaylist = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
             <SideBar />
             <MusicBar />
         </div >

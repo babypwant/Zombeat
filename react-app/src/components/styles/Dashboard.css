@@ -25,14 +25,14 @@
 .dashboard-main-content{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
     float: right;
     align-self: stretch;
-    font-family: 'Merriweather', serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
     width: 10%;
-    height: 100%;
-    color: rgb(240, 234, 234);
+    height: 90%;
     background-color: rgb(155, 103, 142);
     width:88.5%;
   }
@@ -52,14 +52,6 @@
   .create-playlist-btn:hover{
       color: white;
   }
-  .all-playlists-container{
-      box-sizing: border-box;
-      width: 100%;
-      height: 70%;
-      overflow: scroll;
-      overflow-x: hidden;
-      
-  }
   .new-playlist-icon{
     height: 25px;
     width: 25px;
@@ -68,10 +60,12 @@
     margin-bottom: 12px;
   }
   .create-playlist-label{
+    cursor: pointer;
       margin-left: 4px;
   }
 
   .create-timer-btn{
+      cursor: pointer;
       margin-bottom: 10px;
   }
   .new-timer-icon{
@@ -90,6 +84,8 @@
 }
 
 .timers{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
     box-sizing: border-box;
     width: 100%;
     height: 20%;
@@ -99,7 +95,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    height: 100%;
+    height: 80%;
     width:90%;
 }
 
@@ -112,17 +108,20 @@ margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 275px;
+    height: 260px;
     width: 200px;
     border-radius: 6px;
-    margin-right: 20px;
+    margin-top: 100px;
+    margin-right: 40px;
     background-color: rgba(26,26,26,255);
-    margin-top: 40px;
+    /* margin-top: 40px; */
     cursor: pointer;
     box-shadow: 5px 8px #000000;
+    color: rgb(182, 182, 182);
 }
 .spotify-playlist:hover{
     background-color: rgb(51, 50, 50);
+    color: rgb(255, 254, 254);
     cursor: pointer;
 
 
@@ -141,6 +140,8 @@ margin-top: 20px;
     display: flex;
     flex-direction: row;
     text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
     color:rgb(199, 196, 196);
     width: 100%;
     height: 10%;
@@ -158,6 +159,7 @@ margin-top: 20px;
 }
 
 .timer-label:hover{
+    cursor: pointer;
     color: white;
 }
 
@@ -179,22 +181,11 @@ margin-top: 20px;
     cursor: pointer;
 
 }
-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    font-family: 'Merriweather', serif;
-    font-weight: 600;
-    /* appearance: none;       Remove default arrow */
-    background-color: rgb(255, 255, 255);   
-    /* Add custom arrow */
- }
-
- option{
-    font-family: 'Merriweather', serif;
-    font-weight: 505;
- }
  .edit-playlist-form-container{
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
  }
  
+.single-ul::-webkit-scrollbar-track{
+background-color: blue;
+}

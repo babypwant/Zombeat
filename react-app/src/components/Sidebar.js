@@ -65,21 +65,25 @@ const SideBar = () => {
                 </ul>
             </div>
             <div className='all-playlists-container'>
-                <ul>
-                    {allPlaylists &&
-                        Object.values(allPlaylists).map((playlist) => {
-                            return (
-                                <li key={playlist.id}
-                                    className={`playlist-btn`}
-                                    value={playlist.id}
-                                    onClick={editPlaylist}
-                                >
-                                    {playlist.name}
-                                </li>
-                            )
-                        })
-                    }
-                </ul>
+                <div class="scrollbar medium-scroll">
+                    <div class="force-overflow">
+                        <ul className='single-ul'>
+                            {allPlaylists &&
+                                Object.values(allPlaylists).map((playlist) => {
+                                    return (
+                                        <li key={playlist.id}
+                                            className={`playlist-btn`}
+                                            value={playlist.id}
+                                            onClick={editPlaylist}
+                                        >
+                                            {playlist.name}
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     )

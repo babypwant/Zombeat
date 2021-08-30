@@ -47,6 +47,7 @@
   }
   
   .signup-div:hover {
+    cursor: pointer;
     border-color: rgb(190, 83, 106);
   }
   
@@ -76,6 +77,8 @@
     font-weight: bold;
   }
   .sign-up-form-btn:hover{
+    cursor: pointer;
+
     background-color: rgb(196, 119, 136);
   }
   .sign-up-title{

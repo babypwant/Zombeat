@@ -3,7 +3,7 @@
     bottom: 0%;
     left: 0;
     width: 100%;
-    height: 98px;
+    height: 90px;
     background-color: #000000;
     padding: 20px;
     outline: 1px solid  #3f3d3d;
@@ -11,10 +11,20 @@
 
 .iframe-container{
     position: absolute;
-    height: 69px;
+    height: 60px;
     width: 90%;
-    margin-left: 90px;
+    margin-left: 140px;
     margin-top: 10;
     bottom: 70px;
     border-radius: 8px;
+}
+.contact-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 120px;
+}
+.github-icon-bar{
+    height: 40px;
+    width: 40px;
 }

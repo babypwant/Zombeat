@@ -1,3 +1,10 @@
+.featured-header{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 35%;
+    background-image: linear-gradient(180deg, rgb(95, 51, 88),rgb(95, 51, 88));  
+}
 .featured-main-content{
     display: flex;
     flex-direction: column;
@@ -5,11 +12,13 @@
     align-self: stretch;
     width: 10%;
     height: 100%;
-    color: rgb(29, 25, 25);
-    background-image: linear-gradient(180deg, rgb(119, 18, 49),rgb(119, 18, 49));
+    color: rgb(14, 10, 10);
+    background-image: linear-gradient(180deg, rgb(136, 66, 124),rgb(23, 23, 24));
     width:88.5%;
   }
-  .songs-container{
+
+
+.songs-container{
       display: flex;
       flex-direction: column;
       justify-content: space-around;
@@ -18,7 +27,7 @@
       margin-left: 120px;
       overflow: scroll;
       overflow-x: hidden;
-      color: rgb(48, 46, 46);
+      color: rgb(15, 15, 15);
 
   }
 
@@ -54,45 +63,50 @@
 .song-name{
     width: 500px;
     margin-left: 15px;
+    margin-top: 10px;
     text-align: left;
-    color: rgb(182, 179, 179);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    color: rgb(196, 192, 192);
     cursor:pointer;
 }
 .song-name:hover {
     color: white;
 }
 .album-name{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    margin-top: 10px;
     width: 500px;
-    margin-left: 100px;
+    margin-left: 75px;
     color: rgb(182, 179, 179);
 
 }
 .song-duration{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    margin-top: 10px;
     margin-right: 60px;
     color: rgb(182, 179, 179);
 
 }
 .all-labels{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    color: rgb(216, 216, 216);
     display: flex;
     width: 100%;
 }
 
 
-.featured-header{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 35%;
-    background-image: linear-gradient(180deg, rgb(161, 159, 167),rgb(119, 18, 49));  
-}
 .featured-label-number{
     margin-left: 10px;
 }
 .featured-label-title{
-    margin-left: 110px;
+    margin-left: 80px;
 }
 .featured-label-album{
-    margin-left: 570px;
+    margin-left: 600px;
 }
 .featured-label-duration{
     margin-left: 440px;
@@ -120,9 +134,10 @@ margin-top: 10px;
 }
 
 .playlist-desc-bottom{
-    color: rgb(18, 19, 20);
+    color: rgb(24, 20, 20);
     font-family: 'Merriweather', serif;
     font-weight: bold;
+    margin-left: 20px;
 }
 
 .all-playlist-form-items{
@@ -181,6 +196,7 @@ margin-top: 10px;
 }
 
 .song-name-single{
+    
     margin-top: 14px;
     width: 500px;
     margin-left: 75px;
