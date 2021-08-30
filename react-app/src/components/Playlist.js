@@ -59,7 +59,6 @@ const Playlist = () => {
                                 </div>
                             </form>
                         </div>
-                        <p className='p-label'>How to add songs:</p>
                         <p className='p-label'>On the Dashboard, pick a playlist that fits your style!</p>
                         <div>
                             <img className='example-1' alt='On the Dashboard, pick a playlist that fits your style' src={playlistExample1} />

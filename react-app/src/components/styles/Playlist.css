@@ -13,7 +13,7 @@
     width: 10%;
     height: 100%;
     color: rgb(0, 0, 0);
-    background-color: rgb(60, 71, 218);
+    background-color: rgb(48, 140, 177);
     width:88.5%;
   }
   .album-form{
@@ -50,13 +50,11 @@
   border: none;
   background: transparent;
   outline: none;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 600;
   margin-bottom: 20px;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 .playlist-form-name-input::placeholder{
-  color: rgb(211, 211, 211);
-  font-family: 'Merriweather', serif;
-  font-weight: 700;
+  color: rgb(0, 0, 0);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
 }
