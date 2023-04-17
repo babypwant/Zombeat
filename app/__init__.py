@@ -17,6 +17,9 @@ from .seeds import seed_commands
 
 from .config import Config
 
+# !/usr/bin/env python3
+
+
 app = Flask(__name__)
 
 # Setup login manager
