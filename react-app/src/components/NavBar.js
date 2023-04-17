@@ -8,6 +8,7 @@ import './styles/Navbar.css'
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user);
+  console.log(user)
   const token = useSelector(state => state?.token?.token?.access_token)
   const dispatch = useDispatch();
 
