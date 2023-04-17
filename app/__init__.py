@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
@@ -16,8 +17,6 @@ from .api.spotify_routes import spotify_routes
 from .seeds import seed_commands
 
 from .config import Config
-
-# !/usr/bin/env python3
 
 
 app = Flask(__name__)
