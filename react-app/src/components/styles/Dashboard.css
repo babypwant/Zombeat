@@ -1,12 +1,14 @@
 .dashboard-main-container{
-    position: fixed;
-    top: 6.5%;
+    position: absolute;
+    top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-    overflow: auto;
-    height:100%;
-    width: 100%;
+    min-height: 50vh; /* Ensure the container takes at least the full viewport height */
+    overflow: visible;
+    height: 100%;
+    background-color: rgb(155, 103, 142);
+
 }
 .content-container{
     display: flex;
@@ -30,12 +32,14 @@
     float: right;
     align-self: stretch;
     font-family: 'Merriweather', serif;
-    width: 10%;
     height: 100%;
     color: rgb(240, 234, 234);
     background-color: rgb(155, 103, 142);
     width:88.5%;
-  }
+    position: relative;
+    min-height: 40vh;
+    overflow: auto;
+}
   .album-form{
       display: flex;
       flex-direction: column;
