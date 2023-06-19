@@ -44,10 +44,6 @@ const SideBar = () => {
                 <img className='new-playlist-icon' alt="playlist-icon" src={playlistIcon} />
                 <label className='create-playlist-label'> Create Playlist </label>
             </div>
-            <div className='timers-container' onClick={createTimer}>
-                <img className='new-timer-icon' alt="timer-icon" src={timerIcon} />
-                <label className='timer-label'>Create a Timer</label>
-            </div>
             <div className='timers'>
                 <ul>
                     {allTimers &&

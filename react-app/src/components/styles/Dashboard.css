@@ -55,6 +55,7 @@
  
   .create-playlist-btn:hover{
       color: white;
+      cursor: pointer;
   }
   .all-playlists-container{
       box-sizing: border-box;
@@ -62,6 +63,7 @@
       height: 70%;
       overflow: scroll;
       overflow-x: hidden;
+      cursor: pointer;
       
   }
   .new-playlist-icon{
@@ -73,6 +75,10 @@
   }
   .create-playlist-label{
       margin-left: 4px;
+  }
+  .create-playlist-label:hover {
+    cursor: pointer;
+    color: white;
   }
 
   .create-timer-btn{
