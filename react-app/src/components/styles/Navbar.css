@@ -226,8 +226,9 @@ nav {
 }
 
 .logout-button{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
     font-size: 18px;
+    font-weight: bold;
     border: none;
     background: none;
     cursor: pointer;
