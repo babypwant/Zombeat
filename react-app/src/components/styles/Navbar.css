@@ -3,11 +3,16 @@ nav {
     justify-content: space-between;
     align-items: center;
     align-content: center;
-    height: 64px;
+    height: 50px;
     padding: 0 30px;
     margin: 0px;
     box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 20%);
     background-color: black;
+    width: 100%;
+}
+
+.navbar-background{
+    width: 95%;
 }
 
 .signup {

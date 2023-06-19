@@ -4,10 +4,11 @@
     left: 0;
     bottom: 0;
     right: 0;
-    overflow: auto;
+    overflow-x: hidden;
     height:100%;
     width: 100%;
     background-image: linear-gradient(rgb(214, 104, 155), rgb(14, 14, 9)) ;
+    /* overflow-x: hidden; */
 }
 
 .title-container{
@@ -26,6 +27,7 @@
 }
 .background{
     height: 100%;
+    width: 101%;
     background-image: url('../styles/images/Vaporwave-Background-Gif-1920x1080-Spicesncurry.com.gif');
 }
 .clouds-container{
@@ -40,7 +42,7 @@
     position: absolute;
     box-sizing: border-box;
     margin-top: 160px;
-    margin-left: 300px;
+    margin-left: 5%;
     width: 200px;
     height: 100px;
 }
@@ -50,7 +52,7 @@
 .linked-cloud{
     position: absolute;
     box-sizing: border-box;
-    margin-left: 300px;
+    margin-left: 10%;
     width: 200px;
     height: 100px;
 }
