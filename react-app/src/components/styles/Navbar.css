@@ -178,7 +178,7 @@ nav {
     color: black;
     font-weight: bold;
     font-size: 17px;
-    margin-left: 1070px;
+    /* margin-left: 1070px; */
 }
 
 .dropdown {
@@ -253,7 +253,7 @@ nav {
     font-size: 20px;
     font-weight: bold;
     margin-right: 30px;
-    margin-left: 1450px;
+    margin-left: 60%;
     background-color: rgb(190, 183, 199);
 }
 
