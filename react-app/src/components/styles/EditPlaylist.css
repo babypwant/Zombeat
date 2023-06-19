@@ -1,14 +1,5 @@
 
-.content-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: rgb(161, 161, 161);
-    height: 100%;
-    width: 11.5%;
-    background-color: black;
-}
+
 .new-playlist-btn{
     margin-bottom: 300px;
 }
@@ -37,19 +28,7 @@
   .playlist-btn:hover{
       color: white;
   }
-  .create-playlist-btn{
-      display: flex;
-      margin-top: 50px;
-      flex-direction: row;
-      text-align: center;
-      color:rgb(199, 196, 196);
-      width: 100%;
 
-      /* background-color: white; */
-  }
-  .create-playlist-btn:hover{
-      color: white;
-  }
   .all-playlists-container{
       box-sizing: border-box;
       width: 100%;

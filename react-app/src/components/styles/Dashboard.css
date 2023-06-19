@@ -7,7 +7,6 @@
     min-height: 100vh;
     overflow: hidden;
     background-color: rgb(155, 103, 142);
-    /* height: 90%; */
 }
 
 
@@ -21,6 +20,7 @@
     width: 11.5%;
     background-color: black;
 }
+
 .new-playlist-btn{
     margin-bottom: 300px;
 }
@@ -52,11 +52,24 @@
     cursor: pointer;
     color: white;
   }
+
+  .create-playlist-btn{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    color:rgb(199, 196, 196);
+    width: 100%;
+    background-color: reds;
+    margin-bottom: 20%;
+}
  
   .create-playlist-btn:hover{
+
       color: white;
       cursor: pointer;
   }
+
+
   .all-playlists-container{
       box-sizing: border-box;
       width: 100%;
@@ -67,14 +80,14 @@
       
   }
   .new-playlist-icon{
-    height: 25px;
-    width: 25px;
+    height: 15px;
+    width: 15px;
     margin-right: 4px;
-    margin-left: 7px;
-    margin-bottom: 12px;
+    margin-left: 2px;
   }
   .create-playlist-label{
       margin-left: 4px;
+      font-size: 16px;
   }
   .create-playlist-label:hover {
     cursor: pointer;

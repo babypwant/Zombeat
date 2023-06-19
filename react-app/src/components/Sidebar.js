@@ -41,24 +41,8 @@ const SideBar = () => {
     return (
         <div className='content-container'>
             <div className='create-playlist-btn' onClick={makeNewPlaylist}>
-                <img className='new-playlist-icon' alt="playlist-icon" src={playlistIcon} />
-                <label className='create-playlist-label'> Create Playlist </label>
-            </div>
-            <div className='timers'>
-                <ul>
-                    {allTimers &&
-                        allTimers.map((timer) => {
-                            return (
-                                <li value={timer.id}
-                                    onClick={editTimer}
-                                    className='timer-li'
-                                    key={timer.id}
-                                >{timer.name}</li>
-                            )
-                        })
-
-                    }
-                </ul>
+                <img className='new-playlist-icon' alt="playlist-icon" src={timerIcon} />
+                <label className='create-playlist-label'> New Playlist </label>
             </div>
             <div className='all-playlists-container'>
                 <ul>
