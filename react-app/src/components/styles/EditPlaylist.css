@@ -1,13 +1,4 @@
-.dashboard-main-container{
-    position: fixed;
-    top: 6.5%;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    overflow: auto;
-    height:100%;
-    width: 100%;
-}
+
 .content-container{
     display: flex;
     flex-direction: column;

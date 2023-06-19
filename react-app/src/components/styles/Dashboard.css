@@ -1,15 +1,16 @@
 .dashboard-main-container{
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 6.5%;
     left: 0;
     bottom: 0;
     right: 0;
-    min-height: 50vh; /* Ensure the container takes at least the full viewport height */
-    overflow: visible;
-    height: 100%;
+    min-height: 100vh;
+    overflow: hidden;
     background-color: rgb(155, 103, 142);
-
+    /* height: 90%; */
 }
+
+
 .content-container{
     display: flex;
     flex-direction: column;
@@ -37,7 +38,6 @@
     background-color: rgb(155, 103, 142);
     width:88.5%;
     position: relative;
-    min-height: 40vh;
     overflow: auto;
 }
   .album-form{
@@ -117,17 +117,20 @@ margin-top: 20px;
     flex-direction: column;
     align-items: center;
     height: 275px;
-    width: 200px;
+    width: 25%;
     border-radius: 6px;
     margin-right: 20px;
     background-color: rgba(26,26,26,255);
     margin-top: 40px;
     cursor: pointer;
     box-shadow: 5px 8px #000000;
+    transition: ease-in-out 0.2s;
 }
 .spotify-playlist:hover{
     background-color: rgb(51, 50, 50);
     cursor: pointer;
+    box-shadow: 10px 10px 10px #000000;
+
 
 
 }
