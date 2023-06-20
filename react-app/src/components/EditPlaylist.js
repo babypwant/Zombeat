@@ -15,17 +15,18 @@ import SideBar from './Sidebar';
 
 import './styles/EditPlaylist.css'
 
-// Modal.setAppElement('App');
 
 const customStyles = {
     content: {
         top: '50%',
         left: '50%',
         right: 'auto',
+        width: '40%',
+        height: '50%',
         bottom: 'auto',
-        marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        backgroundImage: 'linear-gradient(280deg, #194E9B,#7E638A)',
+        backgroundColor: '#1A1A1A',
+        boderRadius: '10px',
     },
 };
 
@@ -156,7 +157,7 @@ const EditPlaylist = () => {
                         </div>
                     </div>
                 </div>
-                <div className='songs-container'>
+                <div className='edit-songs-container'>
                     <div className='featured-column-1'>
                         <div className='song-list'>
                             <div className='all-labels'>
