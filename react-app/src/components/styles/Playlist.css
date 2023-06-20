@@ -13,17 +13,40 @@
     width: 10%;
     height: 100%;
     color: rgb(0, 0, 0);
-    background-color: rgb(60, 71, 218);
+    background-color: rgb(124, 156, 187);
     width:88.5%;
   }
   .album-form{
-      display: flex;
-      flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 80%;
+    margin-left: 10%;
   }
+  .outside-container{
+    background-color: rgba(0, 0, 0, 0.816);
+    height: 80%;
+    width: 60%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    transition: ease-in-out 0.2s;
+  }
+  .outside-container:hover{
+    background-color: rgb(51 50 50);;
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
+  }
+
+
+  
   .example-1{
     border-radius: 10px;
-    box-shadow: 5px 8px #000000;
-
+    box-shadow: 5px 8px #00000065;
+    height: 60%;
+    width: 90%;
+    margin-bottom: 10%;
+    margin-left: 5%;
   }
 
   .example-2{
@@ -51,11 +74,40 @@
   background: transparent;
   outline: none;
   font-weight: 700;
-  margin-bottom: 20px;
+  width: 90%;
+  margin-top: 20%;
+  margin-bottom: 45%;
   color: white;
+  text-align: center;
 }
+
 .playlist-form-name-input::placeholder{
   color: rgb(211, 211, 211);
   font-family: 'Merriweather', serif;
   font-weight: 700;
 }
+
+
+.make-playlist-form{
+  height: 50%;
+}
+
+.slide {
+  width: 100px;
+  height: 40px;
+  background-color: #635e5e;
+  
+  color: #ffffff;
+  border-radius: 8px;
+  text-align: center;
+  line-height: 40px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Merriweather', serif;
+
+  transition: transform 0.3s ease;
+}
+.slide:hover{
+  cursor: pointer;
+}
+

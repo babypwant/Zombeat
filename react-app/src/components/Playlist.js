@@ -47,28 +47,23 @@ const Playlist = () => {
     return (
         <div className='dashboard-main-container'>
             <div className='playlist-main-content'>
-                <div className='new-list-header'>
-                    <div className='all-playlist-form-items'>
                         <div className='make-playlist-form'>
                             <form className='album-form' method="POST" action="/playlists/">
                                 <label className='your-playlist-label'> Your Playlist, needs a  name to fit your mood</label>
-                                <input placeholder='Your Playlist Name HERE' className='playlist-form-name-input' onChange={(e) => setNewName(e.target.value)}>
-                                </input>
-                                <div >
-                                    <button onClick={makeNewPlaylist}>Create</button>
+                                <div className='outside-container' >
+
+                                    <input placeholder='Your Playlist Name' className='playlist-form-name-input' onChange={(e) => setNewName(e.target.value)}>
+                                    </input>
+                                    <div >
+                                        <button className='slide' onClick={makeNewPlaylist}>Create</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
-                        <p className='p-label'>How to add songs:</p>
-                        <p className='p-label'>On the Dashboard, pick a playlist that fits your style!</p>
+                        <p className='p-label'>Add songs from Spotify's featured playlists !</p>
                         <div>
                             <img className='example-1' alt='On the Dashboard, pick a playlist that fits your style' src={playlistExample1} />
                         </div>
-                        <p className='p-label'>Press the plus icon to add it to a playlist!</p>
-                        <img className='example-2' alt='Press the plus icon to add it to a playlist' src={playlistExample2} />
-                        <p className='p-label'>That's it! You're a pro!</p>
-                    </div>
-                </div>
             </div>
             <SideBar />
             <MusicBar />
