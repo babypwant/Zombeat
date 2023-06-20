@@ -14,12 +14,10 @@
     flex-direction: column;
     justify-content: space-around;
     width: 90%;
-    /* height: 50%; */
     margin-left: 120px;
     overflow: scroll;
     overflow-x: hidden;
     color: rgb(48, 46, 46);
-
 }
 
   .featured-column-1{
@@ -81,7 +79,6 @@ color: white;
     width: 100%;
 }
 
-
 .featured-header{
     display: flex;
     flex-direction: row;
@@ -90,18 +87,23 @@ color: white;
     background-image: linear-gradient(180deg, rgb(92, 26, 139),rgb(119, 18, 49));  
     box-shadow: 2px 3px 10px rgb(0 0 0 / 0.2);
 }
+
 .featured-label-number{
     margin-left: 10px;
 }
+
 .featured-label-title{
     margin-left: 110px;
 }
+
 .featured-label-album{
     margin-left: 570px;
 }
+
 .featured-label-duration{
     margin-left: 440px;
 }
+
 .song-art{
     box-sizing: border-box;
     width:40px;
