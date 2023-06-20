@@ -14,11 +14,12 @@
     flex-direction: column;
     justify-content: space-around;
     width: 90%;
-    margin-left: 120px;
+    margin-left: 15%;
     overflow: scroll;
     overflow-x: hidden;
     color: rgb(48, 46, 46);
 }
+
 
   .featured-column-1{
       margin-top: 10px;
@@ -216,11 +217,28 @@ margin-top: 10px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-between;
     width: 80%;
-    height: 95%;
+    height: 75%;
 }
 .playlist-form-item{
     margin-top: 10px;
-    width: 40%;
+    width: 100%;
+    background-color: orange;
+    border-radius: 2px;
+    color: black;
+    font-family: 'Arial', sans-serif;
+}
+
+/* addtoplaylist.js */
+.add-to-playlist-songs-container{
+    width: 90%;
+    height: 42%;
+    margin-left: 15%;
+    overflow: scroll;
+    overflow-x: hidden;
+    color: rgb(48, 46, 46);
+}
+
+.save-to-playlist-btn{
+    margin-top: 10px;
 }

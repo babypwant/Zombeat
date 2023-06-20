@@ -116,7 +116,7 @@ const AddToPlaylist = () => {
                     <div>
                     </div>
                 </div>
-                <div className='songs-container'>
+                <div className='add-to-playlist-songs-container'>
                     <div className='featured-column-1'>
                         <div className='song-list'>
                             <div className='all-labels'>
@@ -146,7 +146,7 @@ const AddToPlaylist = () => {
 
                                                     <input
                                                         type='checkbox'
-                                                        className={`playlist-btn`}
+                                                        className={`add-to-playlist-btn`}
                                                         value={playlist.id}
                                                         key={playlist.id}
                                                         onChange={checkPlaylist}
@@ -157,10 +157,10 @@ const AddToPlaylist = () => {
                                             )
                                         })
                                     }
+                                    <div className='save-to-playlist-btn'>
+                                        <button onClick={handleSaveRequests}>Save</button>
+                                    </div>
                                 </form>
-                                <div className=''>
-                                    <button onClick={handleSaveRequests}>Save</button>
-                                </div>
                             </div>
                         </div>
                     </div>

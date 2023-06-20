@@ -35,9 +35,17 @@ const FeaturedPlaylist = () => {
 
     }, [dispatch, user.id]);
 
-    const playSong = (e) => {
+    const playSong = async (e) => {
         const id = e.target.id
-        dispatch(playCurrentSong(id, token))
+        await dispatch(playCurrentSong(id, token))
+
+        setTimeout(() => {
+            const playPauseButton = document.querySelector('[data-testid="play-pause-button"]');
+            if (playPauseButton) {
+                playPauseButton.dispatchEvent(new MouseEvent('click'));
+                console.log('clicked')
+            }
+          }, 500);
     };
 
     const searchSong = async (e) => {
