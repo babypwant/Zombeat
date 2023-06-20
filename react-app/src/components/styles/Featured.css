@@ -9,18 +9,18 @@
     background-image: linear-gradient(180deg, rgb(119, 18, 49),rgb(119, 18, 49));
     width:88.5%;
   }
-  .songs-container{
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 90%;
-      height: 52%;
-      margin-left: 120px;
-      overflow: scroll;
-      overflow-x: hidden;
-      color: rgb(48, 46, 46);
+.songs-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 90%;
+    /* height: 50%; */
+    margin-left: 120px;
+    overflow: scroll;
+    overflow-x: hidden;
+    color: rgb(48, 46, 46);
 
-  }
+}
 
   .featured-column-1{
       margin-top: 10px;
@@ -28,7 +28,7 @@
       flex-direction: row;
       color: white;
       width: 100%;
-      height: 100%;
+      height: 90%;
       text-align: left;
   }
 
@@ -51,16 +51,20 @@
 .song-list{
     width: 100%;
 }
-.song-name{
+.song-name {
     width: 500px;
     margin-left: 15px;
     text-align: left;
     color: rgb(182, 179, 179);
-    cursor:pointer;
-}
+    cursor: pointer;
+    transition: ease-in-out 0.2s;
+  }
+  
 .song-name:hover {
-    color: white;
+text-shadow: 0 2px 2px rgb(0 0 0 / 0.2);
+color: white;
 }
+  
 .album-name{
     width: 500px;
     margin-left: 100px;
@@ -82,8 +86,8 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 35%;
-    background-image: linear-gradient(180deg, rgb(161, 159, 167),rgb(119, 18, 49));  
+    height: 40%;
+    background-image: linear-gradient(180deg, rgb(92, 26, 139),rgb(119, 18, 49));  
 }
 .featured-label-number{
     margin-left: 10px;
@@ -187,10 +191,12 @@ margin-top: 10px;
     text-align: left;
     color: rgb(182, 179, 179);
     cursor:pointer;
+    transition: ease-in-out 0.2s;
 }
 
 .song-name-single:hover {
     color: white;
+    box-shadow: 0px 0px 10px 0px rgba(255,255,255,1);   
 }
 .song-duration-single{
     margin-right: 60px;

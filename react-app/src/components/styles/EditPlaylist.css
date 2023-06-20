@@ -55,8 +55,7 @@
       margin-left: 30px;
   }
   .playlist-name-bottom{
-      margin-top: 55px;
-      font-size: 90px;
+      font-size: 64px;
       font-family: 'Roboto Condensed', sans-serif;
   }
   .edit-modal{
@@ -135,3 +134,9 @@ margin-left: 300px;
 .playlist-img:hover{
     cursor: pointer;
 }
+
+@media screen and (min-width: 300px) and (max-width: 900px) {
+    .playlist-name-bottom {
+      font-size: 40px;
+    }
+  }

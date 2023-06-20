@@ -56,7 +56,7 @@ const FeaturedPlaylist = () => {
                         Playlist
                         <div className='playlist-name-bottom'>
                             {playlistName}
-                            <i className="fa-solid fa-circle-minus"></i>
+                            {/* <i className="fa-solid fa-circle-minus"></i> */}
                         </div>
                         <div className='playlist-desc-bottom'>
                             {description}
@@ -95,7 +95,7 @@ const FeaturedPlaylist = () => {
                                             <div>
                                             </ div>
                                             <div className='song-name' onClick={playSong} id={song.track.id}>
-                                                {song.track.name}
+                                                    {song.track.name}
                                             </div>
                                             <div className='album-name' >
                                                 {song.track.album.name}
