@@ -21,10 +21,6 @@
     background-color: black;
 }
 
-.new-playlist-btn{
-    margin-bottom: 300px;
-}
-
 .dashboard-main-content{
     display: flex;
     align-items: center;
@@ -33,7 +29,7 @@
     float: right;
     align-self: stretch;
     font-family: 'Merriweather', serif;
-    height: 100%;
+    height: 85%;
     color: rgb(240, 234, 234);
     background-color: rgb(155, 103, 142);
     width:88.5%;
@@ -44,15 +40,6 @@
       display: flex;
       flex-direction: column;
   }
-  .playlist-btn{
-    margin-top: 15px;
-    color: rgb(161, 161, 161);
-  }
-  .playlist-btn:hover{
-    cursor: pointer;
-    color: white;
-  }
-
   .create-playlist-btn{
     display: flex;
     flex-direction: row;
@@ -61,6 +48,7 @@
     width: 100%;
     background-color: reds;
     margin-bottom: 20%;
+    margin-left: 20%;
 }
  
   .create-playlist-btn:hover{
@@ -70,15 +58,7 @@
   }
 
 
-  .all-playlists-container{
-      box-sizing: border-box;
-      width: 100%;
-      height: 70%;
-      overflow: scroll;
-      overflow-x: hidden;
-      cursor: pointer;
-      
-  }
+
   .new-playlist-icon{
     height: 15px;
     width: 15px;
@@ -108,9 +88,38 @@
     cursor: pointer;
 
 }
-.playlist-btn{
-    list-style-type: none;
+
+.all-playlists-container{
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    height: 70%;
+    overflow: scroll;
+    overflow-x: hidden;
+    cursor: pointer;
+    /* background-color: blue; */
+  
 }
+
+.playlist-ul{
+    position: relative;
+    width: 100%;
+    /* background-color: green; */
+    text-align: left;
+}
+
+.playlist-btn{
+    left: 0;
+    width: 100%;
+    margin-top: 15px;
+    color: rgb(161, 161, 161);
+    list-style-type: none;
+    /* background-color: red; */
+    width: 100%;
+}
+  .playlist-btn:hover{
+      color: white;
+  }
 
 .timers{
     box-sizing: border-box;
@@ -135,8 +144,8 @@ margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 33%;
-    width: 25%;
+    height: 35%;
+    width: 15%;
     border-radius: 6px;
     margin-right: 20px;
     background-color: rgba(26,26,26,255);
@@ -219,8 +228,3 @@ select {
     font-family: 'Merriweather', serif;
     font-weight: 505;
  }
- .edit-playlist-form-container{
-display: flex;
-flex-direction: column;
- }
- 

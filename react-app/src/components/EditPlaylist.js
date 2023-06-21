@@ -131,7 +131,7 @@ const EditPlaylist = () => {
                             onAfterOpen={afterOpenModal}
                             onRequestClose={closeModal}
                             style={customStyles}
-                            contentLabel="Example Modal"
+                            contentLabel="Update playlist name"
                         >
                             <div className='edit-playlist-form-container'>
                                 <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Edit playlist</h2>

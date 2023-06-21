@@ -7,6 +7,7 @@
     background-color: #000000;
     padding: 20px;
     outline: 1px solid  #3f3d3d;
+    align-items: center;
 }
 
 .iframe-container{

@@ -45,7 +45,7 @@ const SideBar = () => {
                 <label className='create-playlist-label'> New Playlist </label>
             </div>
             <div className='all-playlists-container'>
-                <ul>
+                <ul className='playlist-ul'>
                     {allPlaylists &&
                         Object.values(allPlaylists).map((playlist) => {
                             return (
