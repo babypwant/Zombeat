@@ -4,11 +4,6 @@
 pip install --no-cache-dir -r requirements.txt
 pip install --no-cache-dir -r dev-requirements.txt
 
-# Use Node 12 for the build stage
-echo "Building React app..."
-docker build -t myapp-build -f Dockerfile.build .
-docker run --rm -v $(pwd)/app/static:/var/www/app/static myapp-build
-
 # Install Node.js dependencies and build React app
 echo "Installing Node.js dependencies..."
 cd react-app
