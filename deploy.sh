@@ -19,3 +19,4 @@ cp -R react-app/build/* app/static/
 # Start the Flask app
 echo "Starting the Flask app..."
 gunicorn --bind 0.0.0.0:8000 app:app
+# change
