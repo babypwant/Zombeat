@@ -1,2 +1,2 @@
 web: gunicorn app:app
-release: bash ./deploy.sh
+release: bash deploy.sh
