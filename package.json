@@ -1,0 +1,15 @@
+{
+    "name": "dummy-package",
+    "version": "1.0.0",
+    "description": "Dummy package.json file",
+    "main": "index.js",
+    "scripts": {
+      "start": "echo 'No start command specified'"
+    },
+    "author": "Your Name",
+    "license": "ISC",
+    "engines": {
+      "node": "16.20.0"
+    }
+  }
+  
