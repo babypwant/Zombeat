@@ -15,7 +15,11 @@ cp -R react-app/build/* app/static/
 
 # Start the Flask app in the background
 echo "Starting the Flask app..."
-gunicorn --bind 0.0.0.0:8000 app:app &
+gunicorn --bind 0.0.0.0:$PORT app:app &
+
+# Wait for the Flask app to fully start
+echo "Waiting for the Flask app to start..."
+sleep 10  # Adjust the sleep duration as needed
 
 # Continue with other release processes
 echo "Continuing with other release processes..."
