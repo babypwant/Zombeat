@@ -4,7 +4,7 @@
     "description": "Dummy package.json file",
     "main": "index.js",
     "scripts": {
-      "start": "echo 'No start command specified'"
+      "start": "bash start.sh'"
     },
     "author": "Your Name",
     "license": "ISC",

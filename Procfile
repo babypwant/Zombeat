@@ -1,1 +1,1 @@
-web: $PWD/start.sh
+web: npm start
