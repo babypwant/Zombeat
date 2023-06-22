@@ -4,6 +4,12 @@
 pip install --no-cache-dir -r requirements.txt
 pip install --no-cache-dir -r dev-requirements.txt
 
+
+# Start the Flask app in the background
+echo "Starting the Flask app..."
+gunicorn --bind 0.0.0.0:$PORT app:app &
+
+
 # Build React app
 echo "Building React app..."
 npm install --prefix react-app
@@ -13,9 +19,6 @@ npm run build --prefix react-app
 echo "Copying React app files to Flask app's static directory..."
 cp -R react-app/build/* app/static/
 
-# Start the Flask app in the background
-echo "Starting the Flask app..."
-gunicorn --bind 0.0.0.0:$PORT app:app &
 
 # Wait for the Flask app to fully start
 echo "Waiting for the Flask app to start..."
