@@ -13,6 +13,10 @@ npm run build --prefix react-app
 echo "Copying React app files to Flask app's static directory..."
 cp -R react-app/build/* app/static/
 
-# Start the Flask app
+# Start the Flask app in the background
 echo "Starting the Flask app..."
-gunicorn --bind 0.0.0.0:8000 app:app
+gunicorn --bind 0.0.0.0:8000 app:app &
+
+# Continue with other release processes
+echo "Continuing with other release processes..."
+# Add your other release commands here
