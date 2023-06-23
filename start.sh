@@ -18,12 +18,3 @@ npm run build --prefix react-app
 # Move the built React app files to the Flask app's static directory
 echo "Copying React app files to Flask app's static directory..."
 cp -R react-app/build/* app/static/
-
-
-# Wait for the Flask app to fully start
-echo "Waiting for the Flask app to start..."
-sleep 10  # Adjust the sleep duration as needed
-
-# Continue with other release processes
-echo "Continuing with other release processes..."
-# Add your other release commands here
